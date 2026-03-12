@@ -1,0 +1,1944 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>De la Sombra al Volumen - TUTOR IA</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    
+    <!-- Estilos -->
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { 
+            width: 100vw; 
+            height: 100vh; 
+            overflow: hidden;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+        
+        #conceptual, #conceptualizacion, #resultados {
+            position: fixed; 
+            width: 100%; 
+            height: 100%;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            color: white;
+            display: flex; 
+            flex-direction: column;
+            align-items: center;
+            text-align: center; 
+            padding: 20px;
+            z-index: 1000;
+            overflow-y: auto;
+            top: 0;
+            left: 0;
+        }
+        
+        #conceptualizacion {
+            display: none;
+            padding: 30px 20px;
+            justify-content: flex-start;
+        }
+        
+        #resultados { 
+            display: none; 
+            padding: 40px 20px;
+            justify-content: flex-start;
+            padding-top: 60px;
+        }
+        
+        .btn {
+            background: linear-gradient(45deg, #007AFF, #00BCD4);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            width: 90%;
+            max-width: 300px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
+        }
+        
+        #barra-superior {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%;
+            height: 60px;
+            background: linear-gradient(90deg, rgba(0,0,0,0.95) 0%, rgba(26,26,46,0.95) 100%);
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+            z-index: 900;
+            border-bottom: 2px solid #00BCD4;
+            backdrop-filter: blur(5px);
+        }
+        
+        #panel-ia {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+            padding: 20px;
+            z-index: 900;
+            text-align: center;
+            max-height: 40vh;
+            overflow-y: auto;
+            border-top: 2px solid #00BCD4;
+            backdrop-filter: blur(5px);
+        }
+        
+        /* Estilo para Fase 3 - Pantalla completa */
+        #panel-ia.pantalla-completa {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            max-height: 100vh;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a1a2e 100%);
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 40px 20px;
+            border-top: none;
+        }
+        
+        #panel-ia.pantalla-completa #mensaje-ia {
+            font-size: 24px;
+            margin-bottom: 40px;
+            max-width: 800px;
+            line-height: 1.5;
+        }
+        
+        #panel-ia.pantalla-completa .opcion-btn {
+            max-width: 500px;
+            padding: 20px;
+            font-size: 20px;
+            margin: 15px auto;
+        }
+        
+        .opcion-btn {
+            background: linear-gradient(45deg, #00BCD4, #0097A7);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            cursor: pointer;
+            width: 100%;
+            max-width: 350px;
+            margin: 8px 0;
+            transition: all 0.3s ease;
+            font-size: 15px;
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3);
+        }
+        
+        .opcion-btn:hover {
+            background: linear-gradient(45deg, #0097A7, #00838F);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(0, 188, 212, 0.4);
+        }
+        
+        .opcion-btn:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+        
+        #indicador-ar {
+            position: fixed;
+            top: 70px; 
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, rgba(0, 122, 255, 0.95), rgba(0, 188, 212, 0.95));
+            color: white;
+            padding: 12px 25px;
+            border-radius: 15px;
+            z-index: 800;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+        
+        #escena-ar, #escena-vr {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1;
+        }
+        
+        .oculto { display: none !important; }
+        
+        .mensaje-exito {
+            color: #4CAF50;
+            font-weight: bold;
+        }
+        
+        .mensaje-error {
+            color: #FF5252;
+            font-weight: bold;
+        }
+        
+        .vr-gafas-btn {
+            position: fixed !important;
+            top: 80px !important;
+            right: 20px !important;
+            background: linear-gradient(45deg, #FF9800, #F57C00) !important;
+            color: white !important;
+            border: none !important;
+            padding: 12px 20px !important;
+            border-radius: 50px !important;
+            cursor: pointer !important;
+            z-index: 1001 !important;
+            display: flex !important;
+            align-items: center !important;
+            gap: 10px !important;
+            font-weight: bold !important;
+            font-size: 14px !important;
+            transition: all 0.3s ease !important;
+            box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3) !important;
+            visibility: visible !important;
+            opacity: 1 !important;
+            backdrop-filter: blur(5px) !important;
+            border: 2px solid rgba(255,255,255,0.3) !important;
+        }
+        
+        .vr-gafas-btn:hover {
+            background: linear-gradient(45deg, #F57C00, #EF6C00) !important;
+            transform: translateY(-2px) !important;
+            box-shadow: 0 6px 20px rgba(255, 152, 0, 0.4) !important;
+        }
+        
+        .resultados-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+            box-sizing: border-box;
+            overflow: visible;
+        }
+        
+        .recomendaciones {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 25px auto;
+            max-width: 700px;
+            text-align: left;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            box-sizing: border-box;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .recomendacion-item {
+            margin: 12px 0;
+            padding-left: 25px;
+            position: relative;
+            line-height: 1.6;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .recomendacion-item:before {
+            content: "▸";
+            color: #00BCD4;
+            font-size: 18px;
+            position: absolute;
+            left: 0;
+        }
+        
+        .botones-final {
+            display: flex;
+            gap: 20px;
+            margin-top: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .puntaje-final {
+            font-size: 80px;
+            margin: 20px;
+            color: #FFD700;
+            text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
+            font-weight: bold;
+        }
+        
+        .contenido-conceptual {
+            max-width: 900px;
+            width: 100%;
+            text-align: left;
+            margin: 0 auto;
+            padding: 10px;
+        }
+        
+        .concepto-card {
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            padding: 25px;
+            margin: 20px 0;
+            border-left: 5px solid #00BCD4;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .concepto-imagen-container {
+            width: 100%;
+            max-width: 400px;
+            height: 250px;
+            margin: 15px auto;
+            border-radius: 15px;
+            border: 3px solid #00BCD4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: rgba(255, 255, 255, 0.05);
+        }
+        
+        .diagrama {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        
+        .concepto-titulo {
+            color: #00BCD4;
+            font-size: 26px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .concepto-lista {
+            margin-left: 25px;
+            margin-bottom: 20px;
+            line-height: 1.8;
+        }
+        
+        .concepto-lista li {
+            margin: 8px 0;
+        }
+
+        #qr-visualizacion {
+            position: fixed;
+            bottom: 100px;
+            right: 20px;
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            z-index: 2000;
+            text-align: center;
+            border: 3px solid #00BCD4;
+        }
+        
+        #qr-visualizacion canvas {
+            display: block;
+            margin: 10px auto;
+            border: 2px solid #333;
+        }
+        
+        #btn-cerrar-qr {
+            background: #FF5252;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        
+        .qr-info {
+            color: #333;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        
+        #contenedor-ar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            z-index: 1;
+        }
+        
+        #contenedor-ar canvas {
+            width: 100% !important;
+            height: 100% !important;
+            display: block !important;
+            position: absolute !important;
+            top: 0 !important;
+            left: 0 !important;
+        }
+        
+        #distancia-info {
+            position: fixed;
+            top: 130px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            color: #FFD700;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            z-index: 801;
+            border: 1px solid #00BCD4;
+            backdrop-filter: blur(5px);
+        }
+        
+        #ia-status {
+            font-size: 12px;
+            color: #00BCD4;
+            margin-top: 5px;
+        }
+        #ia-progress-bar {
+            width: 100%;
+            height: 4px;
+            background: #333;
+            border-radius: 2px;
+            margin-top: 5px;
+            display: none;
+        }
+        #ia-progress-bar-fill {
+            width: 0%;
+            height: 100%;
+            background: #00BCD4;
+            border-radius: 2px;
+            transition: width 0.3s;
+        }
+        .ia-verification {
+            font-size: 10px;
+            color: #87CEEB;
+            margin-top: 5px;
+            border-top: 1px dashed #00BCD4;
+            padding-top: 5px;
+            font-family: monospace;
+        }
+    </style>
+    
+    <!-- Import Maps para MindAR -->
+    <script type="importmap">
+        {
+            "imports": {
+                "three": "https://unpkg.com/three@0.128.0/build/three.module.js",
+                "three/addons/": "https://unpkg.com/three@0.128.0/examples/jsm/",
+                "mindar-image-three": "https://cdn.jsdelivr.net/npm/mind-ar@1.2.2/dist/mindar-image-three.prod.js"
+            }
+        }
+    </script>
+    
+    <!-- A-Frame para VR -->
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    
+    <!-- QR Code Generator -->
+    <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
+</head>
+<body>
+    <!-- PANTALLA INICIAL -->
+    <div id="conceptual">
+        <h1 style="color: #00BCD4; margin-bottom: 20px; font-size: 2.8em; text-shadow: 0 0 20px rgba(0,188,212,0.5);">🔦 DE LA SOMBRA AL VOLUMEN</h1>
+        <div style="color: #B0BEC5; margin-bottom: 30px; font-size: 18px; max-width: 600px;">
+            Tutor IA adaptativo - Relación entre luz, objetos y sombras
+        </div>
+        <div style="text-align: left; max-width: 500px; margin-bottom: 30px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 15px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1);">
+            <p><strong style="color: #00BCD4;">Características:</strong></p>
+            <p>✅ RA: Identifica el objeto por su sombra</p>
+            <p>✅ RV: Deduce la posición de la luz oculta</p>
+            <p>✅ IA: Cuestionario conceptual de 4 preguntas</p>
+            <p>✅ Recomendaciones personalizadas por IA</p>
+        </div>
+        <button class="btn" onclick="window.mostrarConceptualizacion()">📚 ESTUDIAR CONCEPTOS</button>
+        <button class="btn" onclick="window.comenzarActividad()">🚀 COMENZAR PRÁCTICA</button>
+    </div>
+
+    <!-- PANTALLA CONCEPTUALIZACIÓN -->
+    <div id="conceptualizacion">
+        <h1 style="color: #00BCD4; margin-bottom: 20px; text-shadow: 0 0 20px rgba(0,188,212,0.5);">📚 FUNDAMENTOS: LUZ Y SOMBRA</h1>
+        
+        <div class="contenido-conceptual">
+            <!-- Concepto 1: Relación Luz-Objeto-Sombra -->
+            <div class="concepto-card">
+                <h2 class="concepto-titulo">💡 1. La Tríada Esencial</h2>
+                <p>Para que exista una sombra se necesitan tres elementos: una <strong style="color: #00BCD4;">fuente de luz</strong>, un <strong style="color: #00BCD4;">objeto</strong> que bloquee la luz, y una <strong style="color: #00BCD4;">superficie</strong> donde la sombra se proyecte.</p>
+                
+                <div class="concepto-imagen-container" style="height: 150px;">
+                    <div style="display: flex; justify-content: space-around; align-items: center; width: 100%;">
+                        <div style="text-align: center;">
+                            <div style="width: 50px; height: 50px; background: #FFD700; border-radius: 50%; margin: 0 auto; box-shadow: 0 0 30px #FFD700;"></div>
+                            <p>LUZ</p>
+                        </div>
+                        <div style="font-size: 40px; color: #00BCD4;">→</div>
+                        <div style="text-align: center;">
+                            <div style="width: 50px; height: 50px; background: #8B4513; margin: 0 auto;"></div>
+                            <p>OBJETO</p>
+                        </div>
+                        <div style="font-size: 40px; color: #00BCD4;">→</div>
+                        <div style="text-align: center;">
+                            <div style="width: 70px; height: 40px; background: #555; margin: 0 auto; position: relative;">
+                                <div style="width: 60px; height: 30px; background: #333; position: absolute; top: 5px; left: 5px;"></div>
+                            </div>
+                            <p>SOMBRA</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <ul class="concepto-lista">
+                    <li>La luz viaja en <strong>línea recta</strong> desde la fuente.</li>
+                    <li>La sombra se forma donde la luz <strong>no puede llegar</strong> porque el objeto la bloquea.</li>
+                    <li>La <strong>forma de la sombra</strong> depende de la forma del objeto Y de la dirección de la luz.</li>
+                </ul>
+            </div>
+
+            <!-- Concepto 2: La Dirección de la Luz -->
+            <div class="concepto-card">
+                <h2 class="concepto-titulo">⬆️ 2. La Dirección de la Luz</h2>
+                <p>La posición de la fuente de luz es el factor más importante que determina la apariencia de una sombra.</p>
+                
+                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="background: #FFD700; width: 30px; height: 30px; border-radius: 50%; display: inline-block;"></span>
+                        <span>↑ Luz desde arriba → Sombra compacta, justo debajo del objeto</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="background: #FFD700; width: 30px; height: 30px; border-radius: 50%; display: inline-block;"></span>
+                        <span>→ Luz lateral → Sombra alargada hacia el lado opuesto</span>
+                    </div>
+                    <div style="display: flex; align-items: center; gap: 10px;">
+                        <span style="background: #FFD700; width: 30px; height: 30px; border-radius: 50%; display: inline-block;"></span>
+                        <span>↓ Luz frontal → Sombra detrás del objeto, similar a su silueta frontal</span>
+                    </div>
+                </div>
+                
+                <p style="margin-top:15px;"><em>"La sombra siempre se aleja de la luz."</em></p>
+            </div>
+
+            <!-- Concepto 3: Objetos y sus Sombras Características -->
+            <div class="concepto-card">
+                <h2 class="concepto-titulo">🔲 3. Objetos Básicos y sus Sombras</h2>
+                <p>Cada tipo de objeto tiene comportamientos característicos con la luz.</p>
+                
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px;">
+                        <h3 style="color: #FFD700;">🧊 Cubo</h3>
+                        <ul style="text-align: left;">
+                            <li><strong>Luz arriba:</strong> Sombra cuadrada</li>
+                            <li><strong>Luz lateral:</strong> Sombra rectangular</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px;">
+                        <h3 style="color: #FFD700;">⚪ Esfera</h3>
+                        <ul style="text-align: left;">
+                            <li><strong>Cualquier dirección:</strong> Siempre sombra circular u ovalada</li>
+                            <li><strong>Nunca tiene bordes rectos</strong></li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px;">
+                        <h3 style="color: #FFD700;">🥫 Cilindro</h3>
+                        <ul style="text-align: left;">
+                            <li><strong>Luz arriba:</strong> Sombra circular</li>
+                            <li><strong>Luz lateral:</strong> Sombra rectangular con bordes redondeados</li>
+                        </ul>
+                    </div>
+                    
+                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px;">
+                        <h3 style="color: #FFD700;">🔺 Pirámide</h3>
+                        <ul style="text-align: left;">
+                            <li><strong>Luz arriba:</strong> Sombra cuadrada (base) o triangular</li>
+                            <li><strong>Luz lateral:</strong> Sombra triangular alargada</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Concepto 4: El Desafío de la Actividad -->
+            <div class="concepto-card" style="background: linear-gradient(135deg, rgba(0, 188, 212, 0.15), rgba(0, 122, 255, 0.15)); border-left: 5px solid #FFD700;">
+                <h2 class="concepto-titulo" style="color: #FFD700;">🔍 4. El Desafío de esta Actividad</h2>
+                
+                <div style="display: flex; align-items: center; justify-content: space-around; margin: 25px 0;">
+                    <div style="text-align: center;">
+                        <div style="font-size: 50px;">👁️</div>
+                        <p><strong>Fase RA</strong><br>Ves solo la SOMBRA<br>Debes inferir el OBJETO</p>
+                    </div>
+                    <div style="font-size: 40px; color: #00BCD4;">→</div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 50px;">💡</div>
+                        <p><strong>Fase RV</strong><br>Ves OBJETO y SOMBRA<br>Debes inferir la LUZ oculta</p>
+                    </div>
+                    <div style="font-size: 40px; color: #00BCD4;">→</div>
+                    <div style="text-align: center;">
+                        <div style="font-size: 50px;">🧠</div>
+                        <p><strong>Fase IA</strong><br>4 preguntas conceptuales<br>Demuestra lo aprendido</p>
+                    </div>
+                </div>
+                
+                <h3 style="color: #00BCD4;">Reglas de oro:</h3>
+                <ol class="concepto-lista">
+                    <li><strong>Bordes rectos</strong> en la sombra → El objeto probablemente tiene <strong>caras planas</strong> (cubo, pirámide).</li>
+                    <li><strong>Bordes curvos</strong> en la sombra → El objeto probablemente es <strong>redondeado</strong> (esfera, cilindro).</li>
+                    <li>Una sombra <strong>alargada</strong> indica que la luz viene de un <strong>lado</strong>.</li>
+                    <li>Una sombra <strong>compacta</strong> y justo debajo indica luz <strong>desde arriba</strong>.</li>
+                </ol>
+                
+                <p style="text-align: center; margin-top: 15px;">
+                    <button class="btn" style="max-width: 200px; padding: 10px;" onclick="mostrarQR()">🔍 VER QR</button>
+                </p>
+            </div>
+        </div>
+        
+        <div style="margin-top: 30px; margin-bottom: 30px; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+            <button class="btn" onclick="volverInicio()">🏠 VOLVER AL INICIO</button>
+            <button class="btn" onclick="comenzarActividad()">🚀 COMENZAR PRÁCTICA</button>
+        </div>
+    </div>
+
+    <!-- BARRA SUPERIOR -->
+    <div id="barra-superior" class="oculto">
+        <div id="fase-actual" style="font-size: 18px; font-weight: bold;">Fase 1: La Sombra Misteriosa</div>
+        <div id="puntaje" style="font-size: 18px; font-weight: bold;">Puntos: <span style="color: #FFD700;">0</span></div>
+    </div>
+
+    <!-- INDICADOR AR -->
+    <div id="indicador-ar" class="oculto">📱 Escanea el QR para ver la sombra misteriosa</div>
+    
+    <!-- INFO DE DISTANCIA -->
+    <div id="distancia-info" class="oculto">📏 Distancia: <span id="distancia-valor">0</span> cm</div>
+
+    <!-- ESCENAS -->
+    <div id="escena-ar" class="oculto"></div>
+    <div id="contenedor-ar" class="oculto" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1;"></div>
+    <div id="escena-vr" class="oculto"></div>
+
+    <!-- PANEL IA -->
+    <div id="panel-ia" class="oculto">
+        <div id="mensaje-ia">Preparando actividad...</div>
+        <div id="ia-status"></div>
+        <div id="ia-progress-bar">
+            <div id="ia-progress-bar-fill"></div>
+        </div>
+        <div id="contenedor-opciones" style="margin-top: 15px;"></div>
+        <div id="ia-verification" class="ia-verification"></div>
+    </div>
+
+    <!-- RESULTADOS -->
+    <div id="resultados">
+        <div class="resultados-container">
+            <h1 style="color: #00BCD4; margin-bottom: 10px; font-size: 2.5em; text-shadow: 0 0 20px rgba(0,188,212,0.5);">🎉 ACTIVIDAD COMPLETADA</h1>
+            <div style="color: #B0BEC5; margin-bottom: 30px; font-size: 18px;">
+                Análisis generado por el tutor IA
+            </div>
+            
+            <div class="puntaje-final" id="puntaje-final">0</div>
+            <h3 style="margin-bottom: 30px; color: #B0BEC5;">PUNTUACIÓN FINAL</h3>
+            
+            <div class="recomendaciones" id="recomendaciones-container">
+                <!-- Las recomendaciones se generarán dinámicamente -->
+            </div>
+            
+            <div class="botones-final">
+                <button class="btn" onclick="reiniciar()">🔄 REPETIR ACTIVIDAD</button>
+                <button class="btn" onclick="volverInicio()">🏠 VOLVER AL INICIO</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- VISUALIZACIÓN QR -->
+    <div id="qr-visualizacion" style="display: none;">
+        <div style="font-weight: bold; color: #1976D2;">QR "ARQUITECTO"</div>
+        <canvas id="qr-canvas" width="200" height="200"></canvas>
+        <div class="qr-info">Escanea este código QR para activar RA</div>
+        <button id="btn-cerrar-qr" onclick="cerrarQR()">Cerrar</button>
+    </div>
+
+    <script type="module">
+        // ============================================
+        // IMPORTACIONES
+        // ============================================
+        import * as THREE from 'three';
+        import { MindARThree } from 'mindar-image-three';
+
+        // ============================================
+        // CONFIGURACIÓN DE LOGS - MISMA URL DEL PROTOTIPO
+        // ============================================
+        const LOG_URL = 'https://script.google.com/macros/s/AKfycbzgSxgwQQgiT3aDp7Vn6staeY4-Evpz9n68bg2JxIAYanQjJm12thZ2yc3HNaQCqXLO/exec';
+        
+        let estudianteId = localStorage.getItem('estudianteId');
+        if (!estudianteId) {
+            estudianteId = 'est_' + Math.random().toString(36).substr(2, 9);
+            localStorage.setItem('estudianteId', estudianteId);
+        }
+
+        let tiempoInicioFase = null;
+        let tiemposPorFase = { 0: 0, 1: 0, 2: 0 };
+
+        function iniciarTemporizadorFase(numFase) {
+            tiempoInicioFase = Date.now();
+        }
+
+        function guardarTiempoFase(numFase) {
+            if (tiempoInicioFase) {
+                tiemposPorFase[numFase] = Date.now() - tiempoInicioFase;
+                tiempoInicioFase = null;
+            }
+        }
+
+        // ============================================
+        // FUNCIÓN ENVIAR LOG - EXACTAMENTE COMO EN EL PROTOTIPO
+        // ============================================
+        async function enviarLog(evento, objetoActual = null, opcionElegida = null, correcto = null, puntos = 0, metadata = {}) {
+            try {
+                const timestamp = new Date().toISOString();
+                
+                let fase = '';
+                let objeto = '';
+                let tiempoRespuesta = 0;
+
+                switch(faseActual) {
+                    case 0:
+                        fase = 'Fase 1 - RA Identificación';
+                        objeto = objetoFase1 ? objetoFase1.nombre : 'desconocido';
+                        tiempoRespuesta = tiemposPorFase[0];
+                        break;
+                    case 1:
+                        fase = 'Fase 2 - RV Deducir Luz';
+                        objeto = objetoFase2 ? objetoFase2.objetoNombre : 'desconocido';
+                        tiempoRespuesta = tiemposPorFase[1];
+                        break;
+                    case 2:
+                        fase = 'Fase 3 - IA Cuestionario';
+                        objeto = 'Preguntas conceptuales';
+                        tiempoRespuesta = tiemposPorFase[2];
+                        break;
+                    default:
+                        fase = 'Conceptualización';
+                }
+
+                if (objetoActual) {
+                    objeto = objetoActual;
+                }
+
+                const logData = {
+                    timestamp: timestamp,
+                    estudianteId: estudianteId,
+                    fase: fase,
+                    evento: evento,
+                    objetoActual: objeto,
+                    opcionElegida: opcionElegida || '',
+                    correcto: correcto !== null ? (correcto ? 'Sí' : 'No') : '',
+                    puntos: puntos || 0,
+                    tiempoRespuesta: tiempoRespuesta,
+                    metadata: JSON.stringify({
+                        puntajeTotal: puntaje,
+                        tiemposPorFase: tiemposPorFase,
+                        ...metadata
+                    })
+                };
+
+                console.log('Enviando log:', logData);
+
+                await fetch(LOG_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(logData)
+                });
+                
+            } catch (error) {
+                console.error('Error enviando log:', error);
+            }
+        }
+
+        // ============================================
+        // BASE DE DATOS DE OBJETOS PARA LA ACTIVIDAD
+        // ============================================
+        const objetosParaSombras = [
+            {
+                id: 1,
+                nombre: "Cubo",
+                sombraDesc: "Cuadrado perfecto",
+                descripcion: "Un cubo tiene todas sus caras cuadradas. Desde arriba, su sombra es un cuadrado. Desde un lado, se convierte en un rectángulo.",
+                tipo: "cubo",
+                color: "#8B4513",
+                tamaño: 1.5,
+                ejercicioComplementario: "Dibuja un cubo y luego dibuja su sombra desde diferentes posiciones de luz. ¿Qué observas?"
+            },
+            {
+                id: 2,
+                nombre: "Esfera",
+                sombraDesc: "Círculo perfecto",
+                descripcion: "Una esfera es completamente redonda. No importa desde dónde la ilumines, su sombra siempre será un círculo o un óvalo, nunca tendrá bordes rectos.",
+                tipo: "esfera",
+                color: "#C0C0C0",
+                tamaño: 1.2,
+                ejercicioComplementario: "Busca objetos redondos en tu casa (pelotas, frutas) y observa cómo cambia su sombra al mover una linterna."
+            },
+            {
+                id: 3,
+                nombre: "Cilindro",
+                sombraDesc: "Rectángulo con bordes redondeados",
+                descripcion: "Un cilindro es como una lata. Desde arriba, su sombra es un círculo. Desde un lado, se convierte en un rectángulo con los extremos redondeados.",
+                tipo: "cilindro",
+                color: "#4682B4",
+                tamaño: 1.3,
+                ejercicioComplementario: "Consigue un vaso cilíndrico y una linterna. Ilumínalo desde arriba y desde un lado. Dibuja las sombras que observas."
+            },
+            {
+                id: 4,
+                nombre: "Pirámide",
+                sombraDesc: "Triángulo o cuadrado según la luz",
+                descripcion: "Una pirámide de base cuadrada. Desde arriba, su sombra es un cuadrado. Desde un lado, se convierte en un triángulo alargado.",
+                tipo: "piramide",
+                color: "#DAA520",
+                tamaño: 1.4,
+                ejercicioComplementario: "Construye una pirámide de papel y experimenta con diferentes ángulos de luz. ¿Cuándo ves un triángulo? ¿Cuándo ves un cuadrado?"
+            }
+        ];
+
+        const configuracionesRV = [
+            {
+                objetoNombre: "Cubo",
+                luzCorrecta: "Este",
+                sombraResultado: "Rectángulo alargado horizontal",
+                descripcion: "Un cubo con luz desde el Este produce una sombra rectangular alargada hacia el Oeste."
+            },
+            {
+                objetoNombre: "Esfera",
+                luzCorrecta: "Arriba",
+                sombraResultado: "Círculo",
+                descripcion: "Una esfera con luz desde arriba produce una sombra circular justo debajo."
+            },
+            {
+                objetoNombre: "Cilindro",
+                luzCorrecta: "Norte",
+                sombraResultado: "Rectángulo con bordes redondos",
+                descripcion: "Un cilindro vertical con luz desde el Norte produce una sombra alargada hacia el Sur."
+            },
+            {
+                objetoNombre: "Pirámide",
+                luzCorrecta: "Oeste",
+                sombraResultado: "Triángulo alargado",
+                descripcion: "Una pirámide con luz desde el Oeste produce una sombra triangular alargada hacia el Este."
+            }
+        ];
+
+        // ============================================
+        // BANCO DE 8 PREGUNTAS PARA FASE 3
+        // ============================================
+        const bancoPreguntasIA = [
+            {
+                pregunta: "La sombra de un objeto depende únicamente de la forma del objeto.",
+                opciones: ["Verdadero", "Falso"],
+                correcta: "Falso",
+                explicacion: "Falso. La sombra depende de la forma del objeto Y de la posición de la luz. Un cubo puede dar sombra cuadrada (luz arriba) o rectangular (luz lateral)."
+            },
+            {
+                pregunta: "Una esfera siempre proyecta una sombra con bordes curvos, sin importar la posición de la luz.",
+                opciones: ["Verdadero", "Falso"],
+                correcta: "Verdadero",
+                explicacion: "¡Correcto! La esfera es simétrica y no tiene caras planas, por lo que su sombra siempre será curva (circular u ovalada)."
+            },
+            {
+                pregunta: "Si la luz está directamente arriba de un cubo, la sombra será un rectángulo alargado.",
+                opciones: ["Verdadero", "Falso"],
+                correcta: "Falso",
+                explicacion: "Falso. Con luz directamente arriba, un cubo proyecta la forma de su cara superior, que es un cuadrado, no un rectángulo."
+            },
+            {
+                pregunta: "La dirección de la sombra (hacia dónde se proyecta) nos indica la dirección de la fuente de luz.",
+                opciones: ["Verdadero", "Falso"],
+                correcta: "Verdadero",
+                explicacion: "¡Exacto! La sombra siempre se proyecta en dirección opuesta a la luz. Si la sombra está a la derecha, la luz está a la izquierda."
+            },
+            {
+                pregunta: "Un cilindro iluminado desde arriba proyecta una sombra circular.",
+                opciones: ["Verdadero", "Falso"],
+                correcta: "Verdadero",
+                explicacion: "Verdadero. Desde arriba, un cilindro muestra su base circular, por lo que su sombra también es circular."
+            },
+            {
+                pregunta: "La sombra de una pirámide puede ser triangular o cuadrada dependiendo de la posición de la luz.",
+                opciones: ["Verdadero", "Falso"],
+                correcta: "Verdadero",
+                explicacion: "Verdadero. Con luz arriba, la sombra sigue la base (cuadrada). Con luz lateral, se proyecta la forma triangular de sus caras."
+            },
+            {
+                pregunta: "Si la luz está muy cerca del objeto, la sombra se vuelve más pequeña que el objeto.",
+                opciones: ["Verdadero", "Falso"],
+                correcta: "Falso",
+                explicacion: "Falso. Cuanto más cerca está la luz, más grande y difusa se vuelve la sombra (por la divergencia de los rayos)."
+            },
+            {
+                pregunta: "La sombra de un objeto siempre tiene la misma forma sin importar la superficie donde se proyecte.",
+                opciones: ["Verdadero", "Falso"],
+                correcta: "Falso",
+                explicacion: "Falso. La forma puede distorsionarse si la superficie no es plana o está inclinada."
+            }
+        ];
+
+        // ============================================
+        // VARIABLES GLOBALES
+        // ============================================
+        let puntaje = 0;
+        let faseActual = 0;
+        let marcadorDetectado = false;
+        let respuestasUsuario = [];
+        let modoVR = false;
+        let botonVR = null;
+        let escenaVR = null;
+        let fase2Avanzada = false;
+        let fase3Avanzada = false;
+        
+        let objetoFase1 = null;
+        let objetoFase2 = null;
+        let preguntasSeleccionadasIA = [];
+        let respuestasIA = [];
+        
+        let mindarInstance = null;
+        let anchorDetectado = false;
+        let objetoActualAR = null;
+
+        let fase1Puntos = 0;
+        let fase2Puntos = 0;
+        let fase3Puntos = 0;
+        let preguntaActualIA = 0;
+
+        let numeroSesion = Math.floor(Math.random() * 10000);
+
+        // ============================================
+        // FUNCIÓN PARA SELECCIONAR 4 PREGUNTAS ALEATORIAS
+        // ============================================
+        function seleccionarPreguntasIA() {
+            const copiaBanco = [...bancoPreguntasIA];
+            const seleccionadas = [];
+            
+            for (let i = 0; i < 4; i++) {
+                if (copiaBanco.length === 0) break;
+                const indice = Math.floor(Math.random() * copiaBanco.length);
+                seleccionadas.push(copiaBanco[indice]);
+                copiaBanco.splice(indice, 1);
+            }
+            
+            return seleccionadas;
+        }
+
+        // ============================================
+        // FUNCIÓN PARA DETENER MINDAR
+        // ============================================
+        async function detenerMindAR() {
+            if (mindarInstance) {
+                try {
+                    await mindarInstance.stop();
+                    mindarInstance = null;
+                } catch (e) {
+                    console.log('Error deteniendo MindAR:', e);
+                }
+            }
+            const contenedorAR = document.getElementById('contenedor-ar');
+            if (contenedorAR) {
+                contenedorAR.innerHTML = '';
+            }
+            anchorDetectado = false;
+            objetoActualAR = null;
+        }
+
+        // ============================================
+        // FUNCIONES DE NAVEGACIÓN
+        // ============================================
+        function mostrarConceptualizacion() {
+            document.getElementById('conceptual').style.display = 'none';
+            document.getElementById('conceptualizacion').style.display = 'flex';
+            document.getElementById('conceptualizacion').scrollTop = 0;
+            enviarLog('Ver conceptualización');
+        }
+        
+        function volverInicio() {
+            if (tiempoInicioFase) {
+                guardarTiempoFase(faseActual);
+            }
+
+            document.getElementById('conceptual').style.display = 'flex';
+            document.getElementById('conceptualizacion').style.display = 'none';
+            document.getElementById('resultados').style.display = 'none';
+            document.getElementById('barra-superior').classList.add('oculto');
+            document.getElementById('panel-ia').classList.add('oculto');
+            document.getElementById('indicador-ar').classList.add('oculto');
+            document.getElementById('escena-ar').classList.add('oculto');
+            document.getElementById('contenedor-ar').classList.add('oculto');
+            document.getElementById('escena-vr').classList.add('oculto');
+            document.getElementById('qr-visualizacion').style.display = 'none';
+            document.getElementById('distancia-info').classList.add('oculto');
+
+            const contenedorAR = document.getElementById('contenedor-ar');
+            contenedorAR.innerHTML = '';
+
+            const escenaVR = document.getElementById('escena-vr');
+            escenaVR.innerHTML = '';
+
+            puntaje = 0;
+            faseActual = 0;
+            marcadorDetectado = false;
+            respuestasUsuario = [];
+            respuestasIA = [];
+            modoVR = false;
+            fase2Avanzada = false;
+            fase3Avanzada = false;
+            tiemposPorFase = {0: 0, 1: 0, 2: 0};
+            tiempoInicioFase = null;
+
+            objetoFase1 = null;
+            objetoFase2 = null;
+
+            const botonVR = document.querySelector('.vr-gafas-btn');
+            if (botonVR) botonVR.remove();
+
+            enviarLog('Volver al inicio');
+        }
+        
+        function comenzarActividad() {
+            document.getElementById('conceptual').style.display = 'none';
+            document.getElementById('conceptualizacion').style.display = 'none';
+            document.getElementById('resultados').style.display = 'none';
+            document.getElementById('qr-visualizacion').style.display = 'none';
+
+            document.getElementById('barra-superior').classList.remove('oculto');
+            document.getElementById('panel-ia').classList.remove('oculto');
+
+            fase2Avanzada = false;
+            fase3Avanzada = false;
+            puntaje = 0;
+            respuestasUsuario = [];
+            respuestasIA = [];
+            tiemposPorFase = {0: 0, 1: 0, 2: 0};
+            tiempoInicioFase = null;
+            fase1Puntos = 0;
+            fase2Puntos = 0;
+            fase3Puntos = 0;
+
+            document.querySelector('#puntaje span').textContent = puntaje;
+
+            objetoFase1 = objetosParaSombras[Math.floor(Math.random() * objetosParaSombras.length)];
+            objetoFase2 = configuracionesRV[Math.floor(Math.random() * configuracionesRV.length)];
+            preguntasSeleccionadasIA = seleccionarPreguntasIA();
+
+            enviarLog('Iniciar actividad', 'general', null, null, 0, {
+                fase1: objetoFase1.nombre,
+                fase2: `${objetoFase2.objetoNombre} - Luz: ${objetoFase2.luzCorrecta}`
+            });
+
+            iniciarFase(0);
+        }
+        
+        function reiniciar() {
+            enviarLog('Reiniciar actividad');
+            volverInicio();
+            setTimeout(() => comenzarActividad(), 100);
+        }
+
+        // ============================================
+        // FUNCIONES QR
+        // ============================================
+        function mostrarQR() {
+            const qrDiv = document.getElementById('qr-visualizacion');
+            const canvas = document.getElementById('qr-canvas');
+            
+            QRCode.toCanvas(canvas, 'ARQUITECTO', { width: 200, margin: 2 }, function(error) {
+                if (error) console.error('Error generando QR:', error);
+                else {
+                    qrDiv.style.display = 'block';
+                    enviarLog('Ver QR', objetoFase1?.nombre);
+                }
+            });
+        }
+        
+        function cerrarQR() {
+            document.getElementById('qr-visualizacion').style.display = 'none';
+        }
+
+        window.mostrarQR = mostrarQR;
+        window.cerrarQR = cerrarQR;
+
+        // ============================================
+        // FUNCIÓN DE ESCALADO DINÁMICO
+        // ============================================
+        function actualizarEscalaPorDistancia(objetoMesh, distanciaEstimada) {
+            if (!objetoMesh) return;
+            
+            const distanciaCm = Math.max(10, Math.min(100, distanciaEstimada));
+            const factorEscala = 0.08 + (30 / distanciaCm) * 0.42;
+            const escalaFinal = Math.min(0.5, Math.max(0.08, factorEscala));
+            
+            objetoMesh.scale.set(escalaFinal, escalaFinal, escalaFinal);
+            document.getElementById('distancia-valor').textContent = Math.round(distanciaCm);
+        }
+
+        // ============================================
+        // IA: GENERAR RESPUESTA ÚNICA
+        // ============================================
+        async function generarRespuestaUnica(contexto) {
+            const ahora = new Date();
+            const timestamp = ahora.toLocaleTimeString();
+            const idUnico = Math.floor(Math.random() * 10000);
+            
+            let respuesta = '';
+            
+            if (contexto.tipo === 'bienvenida') {
+                const frases = [
+                    `Bienvenido a la Fase ${contexto.fase+1}. ${contexto.mensaje || ''}`,
+                    `Comenzamos la Fase ${contexto.fase+1}. Observa con atención.`,
+                    `Fase ${contexto.fase+1}: Pon a prueba tu capacidad de observación.`
+                ];
+                respuesta = frases[Math.floor(Math.random() * frases.length)];
+            }
+            else if (contexto.tipo === 'validacion') {
+                if (contexto.esCorrecto) {
+                    const felicitaciones = [
+                        `¡Excelente! ${contexto.explicacion || ''}`,
+                        `¡Correcto! ${contexto.explicacion || ''}`,
+                        `¡Muy bien! ${contexto.explicacion || ''}`
+                    ];
+                    respuesta = felicitaciones[Math.floor(Math.random() * felicitaciones.length)];
+                } else {
+                    const errores = [
+                        `No es correcto. ${contexto.explicacion || 'Observa de nuevo.'}`,
+                        `Incorrecto. ${contexto.explicacion || 'Analiza la relación entre luz y sombra.'}`,
+                        `Fallaste. ${contexto.explicacion || 'Revisa el concepto.'}`
+                    ];
+                    respuesta = errores[Math.floor(Math.random() * errores.length)];
+                }
+            }
+            
+            document.getElementById('ia-verification').innerHTML = 
+                `🆔 Sesión: ${numeroSesion} | ⏱️ ${timestamp} | 🎲 ID: ${idUnico}`;
+            
+            return respuesta;
+        }
+
+        // ============================================
+        // FUNCIONES PARA CREAR OBJETOS 3D
+        // ============================================
+        function crearObjetoSegunTipo(tipo, color, tamaño) {
+            const grupo = new THREE.Group();
+            
+            switch(tipo) {
+                case 'cubo':
+                    const cuboGeo = new THREE.BoxGeometry(tamaño, tamaño, tamaño);
+                    const cuboMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.6, emissive: new THREE.Color(0x221100), emissiveIntensity: 0.1 });
+                    const cubo = new THREE.Mesh(cuboGeo, cuboMat);
+                    cubo.castShadow = true;
+                    cubo.receiveShadow = true;
+                    cubo.position.y = tamaño/2;
+                    grupo.add(cubo);
+                    break;
+                    
+                case 'esfera':
+                    const esferaGeo = new THREE.SphereGeometry(tamaño/2, 32, 32);
+                    const esferaMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.3, metalness: 0.2, emissive: new THREE.Color(0x222222), emissiveIntensity: 0.1 });
+                    const esfera = new THREE.Mesh(esferaGeo, esferaMat);
+                    esfera.castShadow = true;
+                    esfera.receiveShadow = true;
+                    esfera.position.y = tamaño/2;
+                    grupo.add(esfera);
+                    break;
+                    
+                case 'cilindro':
+                    const cilindroGeo = new THREE.CylinderGeometry(tamaño/2, tamaño/2, tamaño, 32);
+                    const cilindroMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.5, emissive: new THREE.Color(0x223344), emissiveIntensity: 0.1 });
+                    const cilindro = new THREE.Mesh(cilindroGeo, cilindroMat);
+                    cilindro.castShadow = true;
+                    cilindro.receiveShadow = true;
+                    cilindro.position.y = tamaño/2;
+                    grupo.add(cilindro);
+                    break;
+                    
+                case 'piramide':
+                    const piramideGeo = new THREE.ConeGeometry(tamaño/2, tamaño, 4);
+                    const piramideMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.6, emissive: new THREE.Color(0x332200), emissiveIntensity: 0.1 });
+                    const piramide = new THREE.Mesh(piramideGeo, piramideMat);
+                    piramide.castShadow = true;
+                    piramide.receiveShadow = true;
+                    piramide.position.y = tamaño/2;
+                    grupo.add(piramide);
+                    break;
+            }
+            
+            return grupo;
+        }
+
+        // ============================================
+        // FUNCIÓN PARA CREAR SOMBRA REALISTA
+        // ============================================
+        function crearSombraRealista(objeto) {
+            const grupo = new THREE.Group();
+            const tamaño = objeto.tamaño * 1.5;
+            
+            // Crear un canvas para la textura de sombra con gradiente
+            const canvas = document.createElement('canvas');
+            canvas.width = 256;
+            canvas.height = 256;
+            const ctx = canvas.getContext('2d');
+            
+            // Gradiente radial para sombra suave
+            const gradient = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
+            gradient.addColorStop(0, 'rgba(0,0,0,0.9)');
+            gradient.addColorStop(0.5, 'rgba(0,0,0,0.5)');
+            gradient.addColorStop(1, 'rgba(0,0,0,0)');
+            
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, 256, 256);
+            
+            // Según la forma del objeto, dibujar la silueta correspondiente
+            ctx.globalCompositeOperation = 'destination-out';
+            ctx.fillStyle = 'white';
+            
+            const centroX = 128;
+            const centroY = 128;
+            
+            switch(objeto.formaSombra || objeto.tipo) {
+                case 'cubo':
+                case 'cuadrado':
+                    ctx.fillRect(centroX - 60, centroY - 60, 120, 120);
+                    break;
+                case 'esfera':
+                case 'circulo':
+                    ctx.beginPath();
+                    ctx.arc(centroX, centroY, 70, 0, Math.PI * 2);
+                    ctx.fill();
+                    break;
+                case 'cilindro':
+                case 'rectangulo_redondeado':
+                    // Rectángulo con bordes redondeados
+                    ctx.fillRect(centroX - 70, centroY - 40, 140, 80);
+                    ctx.beginPath();
+                    ctx.arc(centroX - 70, centroY - 40, 40, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(centroX + 70, centroY - 40, 40, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(centroX - 70, centroY + 40, 40, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.beginPath();
+                    ctx.arc(centroX + 70, centroY + 40, 40, 0, Math.PI * 2);
+                    ctx.fill();
+                    break;
+                case 'piramide':
+                case 'triangulo':
+                    ctx.beginPath();
+                    ctx.moveTo(centroX, centroY - 70);
+                    ctx.lineTo(centroX - 70, centroY + 50);
+                    ctx.lineTo(centroX + 70, centroY + 50);
+                    ctx.closePath();
+                    ctx.fill();
+                    break;
+            }
+            
+            ctx.globalCompositeOperation = 'source-over';
+            
+            const texturaSombra = new THREE.CanvasTexture(canvas);
+            
+            // Plano para la sombra en el suelo
+            const sombraSueloGeo = new THREE.PlaneGeometry(tamaño, tamaño);
+            const sombraSueloMat = new THREE.MeshStandardMaterial({ 
+                map: texturaSombra,
+                transparent: true,
+                opacity: 1,
+                side: THREE.DoubleSide,
+                emissive: 0x000000,
+                depthWrite: false,
+                blending: THREE.NormalBlending
+            });
+            
+            const sombraSuelo = new THREE.Mesh(sombraSueloGeo, sombraSueloMat);
+            sombraSuelo.rotation.x = -Math.PI / 2;
+            sombraSuelo.position.set(0.5, 0.02, 0.8);
+            sombraSuelo.receiveShadow = false;
+            grupo.add(sombraSuelo);
+            
+            // Sombra proyectada en la pared (para dar más realismo)
+            const sombraParedGeo = new THREE.PlaneGeometry(tamaño * 1.2, tamaño * 0.8);
+            const sombraParedMat = new THREE.MeshStandardMaterial({ 
+                map: texturaSombra,
+                transparent: true,
+                opacity: 0.4,
+                side: THREE.DoubleSide
+            });
+            const sombraPared = new THREE.Mesh(sombraParedGeo, sombraParedMat);
+            sombraPared.position.set(0.5, 1.2, -1.8);
+            sombraPared.rotation.y = 0;
+            sombraPared.receiveShadow = false;
+            grupo.add(sombraPared);
+            
+            return grupo;
+        }
+
+        // ============================================
+        // CONFIGURAR MINDAR (FASE 1) - VERSIÓN MEJORADA
+        // ============================================
+        async function configurarMindAR() {
+            document.getElementById('indicador-ar').classList.remove('oculto');
+            document.getElementById('contenedor-ar').classList.remove('oculto');
+            document.getElementById('distancia-info').classList.remove('oculto');
+            
+            const container = document.getElementById('contenedor-ar');
+            container.innerHTML = '';
+            
+            try {
+                const mindarThree = new MindARThree({
+                    container: container,
+                    imageTargetSrc: './assets/qr-arquitecto.mind',
+                    filterMinCF: 0.001,
+                    filterBeta: 0.001,
+                });
+
+                mindarInstance = mindarThree;
+                const { renderer, scene, camera } = mindarThree;
+
+                renderer.shadowMap.enabled = true;
+                renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+                renderer.setClearColor(0x111122);
+                renderer.shadowMap.bias = 0.0001;
+
+                // Luces para crear ambiente realista
+                const ambientLight = new THREE.AmbientLight(0x404060);
+                scene.add(ambientLight);
+                
+                // Luz principal que crea la sombra
+                const dirLight = new THREE.DirectionalLight(0xffeedd, 1.5);
+                dirLight.position.set(3, 5, 2);
+                dirLight.castShadow = true;
+                dirLight.shadow.mapSize.width = 2048;
+                dirLight.shadow.mapSize.height = 2048;
+                dirLight.shadow.camera.near = 0.5;
+                dirLight.shadow.camera.far = 15;
+                dirLight.shadow.camera.left = -5;
+                dirLight.shadow.camera.right = 5;
+                dirLight.shadow.camera.top = 5;
+                dirLight.shadow.camera.bottom = -5;
+                dirLight.shadow.bias = -0.0005;
+                scene.add(dirLight);
+
+                // Luz de relleno desde atrás
+                const backLight = new THREE.DirectionalLight(0x446688, 0.5);
+                backLight.position.set(-2, 1, -3);
+                scene.add(backLight);
+
+                // Luz de acento desde la derecha
+                const rightLight = new THREE.PointLight(0x88aaff, 0.3);
+                rightLight.position.set(2, 2, 1);
+                scene.add(rightLight);
+
+                // Crear el objeto 3D (INVISIBLE)
+                const objeto3D = crearObjetoSegunTipo(objetoFase1.tipo, objetoFase1.color, objetoFase1.tamaño);
+                objeto3D.visible = false;
+                objeto3D.position.y = objetoFase1.tamaño/2;
+                
+                // Crear suelo con textura
+                const sueloGeo = new THREE.CircleGeometry(3, 32);
+                const sueloMat = new THREE.MeshStandardMaterial({ 
+                    color: 0x3a4a5a, 
+                    roughness: 0.7, 
+                    metalness: 0.1,
+                    emissive: new THREE.Color(0x111122),
+                    emissiveIntensity: 0.2
+                });
+                const suelo = new THREE.Mesh(sueloGeo, sueloMat);
+                suelo.rotation.x = -Math.PI / 2;
+                suelo.position.y = 0;
+                suelo.receiveShadow = true;
+                
+                // Crear pared de fondo
+                const paredGeo = new THREE.PlaneGeometry(5, 3);
+                const paredMat = new THREE.MeshStandardMaterial({ 
+                    color: 0x2a3a4a, 
+                    roughness: 0.8,
+                    emissive: new THREE.Color(0x111122),
+                    emissiveIntensity: 0.2
+                });
+                const pared = new THREE.Mesh(paredGeo, paredMat);
+                pared.position.set(0, 1.5, -2);
+                pared.receiveShadow = true;
+                
+                // Crear sombra realista
+                const sombraGrupo = crearSombraRealista(objetoFase1);
+                
+                const grupoAR = new THREE.Group();
+                grupoAR.add(objeto3D);
+                grupoAR.add(suelo);
+                grupoAR.add(pared);
+                grupoAR.add(sombraGrupo);
+                
+                grupoAR.scale.set(0.25, 0.25, 0.25);
+
+                const anchor = mindarThree.addAnchor(0);
+                anchor.group.add(grupoAR);
+
+                anchor.onTargetFound = () => {
+                    document.getElementById('indicador-ar').innerHTML = '✅ QR DETECTADO - Observa la sombra';
+                    document.getElementById('indicador-ar').style.background = 'linear-gradient(45deg, #4CAF50, #388E3C)';
+                    anchorDetectado = true;
+                    
+                    enviarLog('QR detectado', objetoFase1.nombre);
+                };
+                
+                anchor.onTargetLost = () => {
+                    document.getElementById('indicador-ar').innerHTML = '📱 Escanea el QR para ver la sombra misteriosa';
+                    document.getElementById('indicador-ar').style.background = 'linear-gradient(45deg, rgba(0, 122, 255, 0.95), rgba(0, 188, 212, 0.95))';
+                    anchorDetectado = false;
+                };
+
+                await mindarThree.start();
+                
+                renderer.setAnimationLoop(() => {
+                    renderer.render(scene, camera);
+                });
+
+            } catch (error) {
+                console.error('Error MindAR:', error);
+                document.getElementById('indicador-ar').innerHTML = '❌ Error: ' + error.message;
+                enviarLog('Error AR', objetoFase1.nombre, null, null, 0, { error: error.message });
+            }
+        }
+
+        // ============================================
+        // CONFIGURAR ESCENA VR (FASE 2) - MANTENIDA DE LA VERSIÓN ANTERIOR
+        // ============================================
+        function configurarEscenaVR() {
+            document.getElementById('indicador-ar').classList.add('oculto');
+            document.getElementById('escena-vr').classList.remove('oculto');
+            document.getElementById('distancia-info').classList.add('oculto');
+            
+            const objetoBase = objetosParaSombras.find(o => o.nombre === objetoFase2.objetoNombre);
+            if (!objetoBase) return;
+            
+            enviarLog('Entrar a VR', objetoFase2.objetoNombre);
+
+            const posicionesLuz = {
+                'Norte': { x: 0, y: 3, z: -5 },
+                'Sur': { x: 0, y: 3, z: 5 },
+                'Este': { x: 5, y: 3, z: 0 },
+                'Oeste': { x: -5, y: 3, z: 0 },
+                'Arriba': { x: 0, y: 8, z: 0 }
+            };
+            
+            const luzPos = posicionesLuz[objetoFase2.luzCorrecta] || { x: 0, y: 5, z: 0 };
+            
+            let objetoHTML = '';
+            switch(objetoBase.tipo) {
+                case 'cubo':
+                    objetoHTML = `<a-box width="1.5" height="1.5" depth="1.5" color="${objetoBase.color}" shadow="cast: true; receive: true"></a-box>`;
+                    break;
+                case 'esfera':
+                    objetoHTML = `<a-sphere radius="0.75" color="${objetoBase.color}" shadow="cast: true; receive: true"></a-sphere>`;
+                    break;
+                case 'cilindro':
+                    objetoHTML = `<a-cylinder radius="0.75" height="1.5" color="${objetoBase.color}" shadow="cast: true; receive: true"></a-cylinder>`;
+                    break;
+                case 'piramide':
+                    objetoHTML = `<a-cone radius-bottom="0.75" height="1.5" color="${objetoBase.color}" shadow="cast: true; receive: true"></a-cone>`;
+                    break;
+            }
+            
+            const escenaHTML = `
+                <a-scene embedded vr-mode-ui="enabled: true" renderer="antialias: true; shadowMapEnabled: true">
+                    <a-sky color="#111122"></a-sky>
+                    
+                    <a-plane rotation="-90 0 0" width="20" height="20" material="color: #333; roughness: 0.8" shadow="receive: true"></a-plane>
+                    
+                    <a-entity light="type: ambient; intensity: 0.2"></a-entity>
+                    
+                    <!-- LUZ OCULTA -->
+                    <a-entity light="type: directional; color: #FFF; intensity: 1.5; castShadow: true" 
+                              position="${luzPos.x} ${luzPos.y} ${luzPos.z}" 
+                              target="#objeto-principal"></a-entity>
+                    
+                    <a-entity id="objeto-principal" position="0 1 0" scale="0.8 0.8 0.8">
+                        ${objetoHTML}
+                    </a-entity>
+                    
+                    <!-- Marcadores de posición -->
+                    <a-entity position="0 0.2 -5">
+                        <a-torus radius="0.4" radius-tubular="0.05" color="#FFD700" rotation="90 0 0"></a-torus>
+                        <a-text value="NORTE" position="-0.3 0.8 0" scale="0.5 0.5 0.5" color="#FFF"></a-text>
+                    </a-entity>
+                    <a-entity position="0 0.2 5">
+                        <a-torus radius="0.4" radius-tubular="0.05" color="#FFD700" rotation="90 0 0"></a-torus>
+                        <a-text value="SUR" position="-0.2 0.8 0" scale="0.5 0.5 0.5" color="#FFF"></a-text>
+                    </a-entity>
+                    <a-entity position="5 0.2 0">
+                        <a-torus radius="0.4" radius-tubular="0.05" color="#FFD700" rotation="90 0 0"></a-torus>
+                        <a-text value="ESTE" position="-0.2 0.8 0" scale="0.5 0.5 0.5" color="#FFF"></a-text>
+                    </a-entity>
+                    <a-entity position="-5 0.2 0">
+                        <a-torus radius="0.4" radius-tubular="0.05" color="#FFD700" rotation="90 0 0"></a-torus>
+                        <a-text value="OESTE" position="-0.3 0.8 0" scale="0.5 0.5 0.5" color="#FFF"></a-text>
+                    </a-entity>
+                    <a-entity position="0 8 0">
+                        <a-sphere radius="0.5" color="#FFD700" transparent="true" opacity="0.3"></a-sphere>
+                        <a-text value="ARRIBA" position="-0.3 -1 0" scale="0.5 0.5 0.5" color="#FFF"></a-text>
+                    </a-entity>
+                    
+                    <!-- Texto informativo -->
+                    <a-entity position="0 2.5 -4">
+                        <a-text value="LA LUZ ESTÁ OCULTA" align="center" color="#FF5252" width="6"></a-text>
+                        <a-text value="Observa la sombra y deduce su posición" align="center" color="#B0BEC5" width="7" position="0 -0.5 0"></a-text>
+                    </a-entity>
+                    
+                    <a-entity camera look-controls wasd-controls position="0 1.8 8"></a-entity>
+                </a-scene>
+            `;
+            
+            document.getElementById('escena-vr').innerHTML = escenaHTML;
+            escenaVR = document.querySelector('#escena-vr a-scene');
+            crearBotonVR();
+        }
+
+        function crearBotonVR() {
+            if (botonVR) botonVR.remove();
+            
+            botonVR = document.createElement('button');
+            botonVR.className = 'vr-gafas-btn';
+            botonVR.id = 'btn-vr-gafas';
+            botonVR.innerHTML = '👓 ACTIVAR GAFAS VR';
+            
+            botonVR.onclick = toggleModoVR;
+            document.body.appendChild(botonVR);
+        }
+
+        function toggleModoVR() {
+            if (!escenaVR) {
+                escenaVR = document.querySelector('#escena-vr a-scene');
+                if (!escenaVR) return;
+            }
+            
+            if (!modoVR) {
+                escenaVR.enterVR().then(() => {
+                    modoVR = true;
+                    botonVR.innerHTML = '👓 DESACTIVAR GAFAS VR';
+                    botonVR.style.background = 'linear-gradient(45deg, #4CAF50, #388E3C)';
+                    enviarLog('Activar VR', objetoFase2.objetoNombre);
+                }).catch(() => {
+                    modoVR = false;
+                });
+            } else {
+                escenaVR.exitVR();
+                modoVR = false;
+                botonVR.innerHTML = '👓 ACTIVAR GAFAS VR';
+                botonVR.style.background = 'linear-gradient(45deg, #FF9800, #F57C00)';
+                enviarLog('Desactivar VR', objetoFase2.objetoNombre);
+            }
+        }
+
+        // ============================================
+        // FUNCIONES DE VALIDACIÓN
+        // ============================================
+        
+        async function validarFase1(opcion) {
+            const botones = document.querySelectorAll('#contenedor-opciones .opcion-btn');
+            botones.forEach(b => b.disabled = true);
+            
+            guardarTiempoFase(0);
+            
+            const esCorrecto = (opcion === objetoFase1.nombre);
+            fase1Puntos = esCorrecto ? 30 : 0;
+            puntaje += fase1Puntos;
+            
+            document.querySelector('#puntaje span').textContent = puntaje;
+            
+            const explicacion = esCorrecto 
+                ? `¡Has identificado correctamente el ${objetoFase1.nombre}! ${objetoFase1.descripcion}`
+                : `El objeto correcto era ${objetoFase1.nombre}. ${objetoFase1.descripcion} Observa que su sombra característica es ${objetoFase1.sombraDesc}.`;
+            
+            const mensajeIA = await generarRespuestaUnica({
+                tipo: 'validacion',
+                esCorrecto: esCorrecto,
+                explicacion: explicacion
+            });
+            
+            document.getElementById('mensaje-ia').innerHTML = 
+                `<strong>🎓 TUTOR IA - FASE 1:</strong><br>` +
+                `${esCorrecto ? '✅' : '❌'} ${mensajeIA}<br><br>` +
+                `⏱️ Preparando Fase 2 en 8 segundos...`;
+            
+            respuestasUsuario.push({
+                fase: 1,
+                objeto: objetoFase1.nombre,
+                opcion: opcion,
+                correcto: esCorrecto,
+                puntos: fase1Puntos
+            });
+            
+            enviarLog('Respuesta Fase 1', objetoFase1.nombre, opcion, esCorrecto, fase1Puntos);
+            
+            setTimeout(async () => {
+                await detenerMindAR();
+                iniciarFase(1);
+            }, 8000);
+        }
+        
+        async function validarFase2(opcion) {
+            const botones = document.querySelectorAll('#contenedor-opciones .opcion-btn');
+            botones.forEach(b => b.disabled = true);
+            
+            guardarTiempoFase(1);
+            
+            const esCorrecto = (opcion === objetoFase2.luzCorrecta);
+            fase2Puntos = esCorrecto ? 40 : 0;
+            
+            if (!fase2Avanzada) {
+                puntaje += fase2Puntos;
+                document.querySelector('#puntaje span').textContent = puntaje;
+            }
+            
+            const explicacion = esCorrecto 
+                ? `¡Correcto! La luz está en el ${objetoFase2.luzCorrecta}. ${objetoFase2.descripcion}`
+                : `No es correcto. La luz está en el ${objetoFase2.luzCorrecta}. ${objetoFase2.descripcion} Observa hacia dónde se proyecta la sombra.`;
+            
+            const mensajeIA = await generarRespuestaUnica({
+                tipo: 'validacion',
+                esCorrecto: esCorrecto,
+                explicacion: explicacion
+            });
+            
+            if (!fase2Avanzada) {
+                respuestasUsuario.push({
+                    fase: 2,
+                    objeto: objetoFase2.objetoNombre,
+                    opcion: opcion,
+                    correcto: esCorrecto,
+                    puntos: fase2Puntos
+                });
+                
+                fase2Avanzada = true;
+                
+                document.getElementById('mensaje-ia').innerHTML = 
+                    `<strong>🎓 TUTOR IA - FASE 2:</strong><br>` +
+                    `${esCorrecto ? '✅' : '❌'} ${mensajeIA}<br><br>` +
+                    `⏱️ Preparando Fase 3 (4 preguntas) en 8 segundos...`;
+                
+                enviarLog('Respuesta Fase 2', objetoFase2.objetoNombre, opcion, esCorrecto, fase2Puntos);
+                
+                setTimeout(() => {
+                    preguntaActualIA = 0;
+                    iniciarFase(2);
+                }, 8000);
+            }
+        }
+        
+        async function validarFase3(opcion) {
+            const botones = document.querySelectorAll('#contenedor-opciones .opcion-btn');
+            botones.forEach(b => b.disabled = true);
+            
+            const preguntaActual = preguntasSeleccionadasIA[preguntaActualIA];
+            const esCorrecto = (opcion === preguntaActual.correcta);
+            const puntosPregunta = esCorrecto ? 15 : 0;
+            
+            fase3Puntos += puntosPregunta;
+            puntaje += puntosPregunta;
+            document.querySelector('#puntaje span').textContent = puntaje;
+            
+            respuestasIA.push({
+                pregunta: preguntaActual.pregunta,
+                opcion: opcion,
+                correcto: esCorrecto,
+                puntos: puntosPregunta
+            });
+            
+            const mensajeIA = await generarRespuestaUnica({
+                tipo: 'validacion',
+                esCorrecto: esCorrecto,
+                explicacion: preguntaActual.explicacion
+            });
+            
+            enviarLog('Respuesta Fase 3', 'Pregunta conceptual', opcion, esCorrecto, puntosPregunta, {
+                pregunta: preguntaActual.pregunta
+            });
+            
+            preguntaActualIA++;
+            
+            if (preguntaActualIA < preguntasSeleccionadasIA.length) {
+                document.getElementById('mensaje-ia').innerHTML = 
+                    `<strong>🎓 TUTOR IA - FASE 3 (Pregunta ${preguntaActualIA + 1}/4):</strong><br>` +
+                    `${esCorrecto ? '✅' : '❌'} ${mensajeIA}<br><br>` +
+                    `⏱️ Siguiente pregunta en 5 segundos...`;
+                
+                setTimeout(() => {
+                    mostrarPreguntaIA(preguntaActualIA);
+                }, 5000);
+            } else {
+                // Última pregunta - mostrar retroalimentación antes de resultados
+                document.getElementById('mensaje-ia').innerHTML = 
+                    `<strong>🎓 TUTOR IA - FASE 3 COMPLETADA:</strong><br>` +
+                    `${esCorrecto ? '✅' : '❌'} ${mensajeIA}<br><br>` +
+                    `Respondiste ${respuestasIA.filter(r => r.correcto).length} de 4 preguntas correctamente.<br>` +
+                    `Puntos obtenidos: ${fase3Puntos}/60<br><br>` +
+                    `⏱️ Generando análisis final en 5 segundos...`;
+                
+                fase3Avanzada = true;
+                
+                respuestasUsuario.push({
+                    fase: 3,
+                    respuestas: respuestasIA,
+                    puntos: fase3Puntos
+                });
+                
+                guardarTiempoFase(2);
+                setTimeout(() => mostrarResultados(), 5000);
+            }
+        }
+
+        function mostrarPreguntaIA(index) {
+            // Ocultar TODAS las escenas
+            document.getElementById('contenedor-ar').classList.add('oculto');
+            document.getElementById('escena-vr').classList.add('oculto');
+            document.getElementById('indicador-ar').classList.add('oculto');
+            document.getElementById('distancia-info').classList.add('oculto');
+            
+            // Convertir panel IA a pantalla completa
+            const panelIA = document.getElementById('panel-ia');
+            panelIA.classList.add('pantalla-completa');
+            
+            const pregunta = preguntasSeleccionadasIA[index];
+            
+            document.getElementById('mensaje-ia').innerHTML = 
+                `<strong>🎓 TUTOR IA - FASE 3 (Pregunta ${index + 1}/4):</strong><br><br>` +
+                `${pregunta.pregunta}`;
+            
+            const contenedor = document.getElementById('contenedor-opciones');
+            contenedor.innerHTML = '';
+            
+            pregunta.opciones.forEach(op => {
+                const btn = document.createElement('button');
+                btn.className = 'opcion-btn';
+                btn.textContent = op;
+                btn.onclick = () => validarFase3(op);
+                contenedor.appendChild(btn);
+            });
+        }
+
+        // ============================================
+        // INICIAR FASE
+        // ============================================
+        async function iniciarFase(numFase) {
+            if (tiempoInicioFase) {
+                guardarTiempoFase(faseActual);
+            }
+            
+            faseActual = numFase;
+            marcadorDetectado = false;
+            iniciarTemporizadorFase(numFase);
+            
+            // Resetear panel IA
+            const panelIA = document.getElementById('panel-ia');
+            panelIA.classList.remove('pantalla-completa');
+            
+            if (botonVR) {
+                botonVR.remove();
+                botonVR = null;
+            }
+            modoVR = false;
+            
+            await detenerMindAR();
+            
+            document.getElementById('escena-ar').classList.add('oculto');
+            document.getElementById('contenedor-ar').classList.add('oculto');
+            document.getElementById('escena-vr').classList.add('oculto');
+            document.getElementById('distancia-info').classList.add('oculto');
+            
+            const contenedorAR = document.getElementById('contenedor-ar');
+            contenedorAR.innerHTML = '';
+            
+            if (numFase === 0) {
+                document.getElementById('fase-actual').textContent = `Fase 1: La Sombra Misteriosa`;
+                
+                const mensajeBienvenida = await generarRespuestaUnica({
+                    tipo: 'bienvenida',
+                    fase: 0,
+                    mensaje: `Observa la sombra. ¿Qué objeto la proyecta?`
+                });
+                
+                document.getElementById('mensaje-ia').innerHTML = 
+                    `<strong>🎓 TUTOR IA - FASE 1:</strong><br>` +
+                    `${mensajeBienvenida}<br><br>` +
+                    `<button class="btn" style="max-width: 200px; padding: 8px; margin-top: 10px;" onclick="mostrarQR()">🔍 VER QR</button>`;
+                
+                const contenedor = document.getElementById('contenedor-opciones');
+                contenedor.innerHTML = '';
+                
+                const opciones = objetosParaSombras.map(o => o.nombre);
+                opciones.sort(() => Math.random() - 0.5);
+                
+                opciones.forEach(op => {
+                    const btn = document.createElement('button');
+                    btn.className = 'opcion-btn';
+                    btn.textContent = op;
+                    btn.onclick = () => validarFase1(op);
+                    contenedor.appendChild(btn);
+                });
+                
+                document.getElementById('indicador-ar').classList.remove('oculto');
+                document.getElementById('indicador-ar').innerHTML = '📱 Escanea el QR para ver la sombra misteriosa';
+                
+                configurarMindAR();
+                
+            } else if (numFase === 1) {
+                document.getElementById('fase-actual').textContent = `Fase 2: El Laboratorio Congelado`;
+                
+                const mensajeBienvenida = await generarRespuestaUnica({
+                    tipo: 'bienvenida',
+                    fase: 1,
+                    mensaje: `Observa el ${objetoFase2.objetoNombre} y su sombra. La luz está oculta.`
+                });
+                
+                document.getElementById('mensaje-ia').innerHTML = 
+                    `<strong>🎓 TUTOR IA - FASE 2:</strong><br>` +
+                    `${mensajeBienvenida}<br>` +
+                    `<small style='color:#B0BEC5'>Usa WASD para moverte y el mouse para mirar alrededor</small>`;
+                
+                const contenedor = document.getElementById('contenedor-opciones');
+                contenedor.innerHTML = '';
+                
+                const posiciones = ['Norte', 'Sur', 'Este', 'Oeste', 'Arriba'];
+                posiciones.sort(() => Math.random() - 0.5);
+                
+                posiciones.forEach(pos => {
+                    const btn = document.createElement('button');
+                    btn.className = 'opcion-btn';
+                    btn.textContent = pos;
+                    btn.onclick = () => validarFase2(pos);
+                    contenedor.appendChild(btn);
+                });
+                
+                configurarEscenaVR();
+                
+            } else if (numFase === 2) {
+                document.getElementById('fase-actual').textContent = `Fase 3: El Verdadero o Falso Definitivo (1/4)`;
+                mostrarPreguntaIA(0);
+            }
+            
+            enviarLog(`Iniciar fase ${numFase+1}`, numFase === 0 ? objetoFase1?.nombre : numFase === 1 ? objetoFase2?.objetoNombre : 'Cuestionario IA');
+        }
+
+        // ============================================
+        // MOSTRAR RESULTADOS - MANTENIDO DE LA VERSIÓN ANTERIOR
+        // ============================================
+        function mostrarResultados() {
+            document.getElementById('barra-superior').classList.add('oculto');
+            document.getElementById('panel-ia').classList.add('oculto');
+            document.getElementById('indicador-ar').classList.add('oculto');
+            document.getElementById('contenedor-ar').classList.add('oculto');
+            document.getElementById('escena-vr').classList.add('oculto');
+            document.getElementById('qr-visualizacion').style.display = 'none';
+            
+            if (botonVR) botonVR.remove();
+            
+            document.getElementById('puntaje-final').textContent = puntaje;
+            
+            const porcentaje = (puntaje / 130) * 100;
+            let nivel = porcentaje >= 90 ? '✨ Maestro de las Sombras' : 
+                       porcentaje >= 70 ? '📐 Aprendiz Avanzado' : 
+                       porcentaje >= 50 ? '🔦 Detective en Formación' : 
+                       '🌅 Observador Principiante';
+            
+            let actividades = [];
+            if (objetoFase1) {
+                actividades.push(`🔸 ${objetoFase1.ejercicioComplementario}`);
+            }
+            
+            let reflexion = puntaje < 70 ? 
+                'Te recomiendo volver a la fase de conceptos y practicar con objetos reales.' : 
+                '¡Excelente trabajo! Ahora puedes explicar cómo cambian las sombras según la luz.';
+            
+            let recomendacionesHTML = `
+                <h3 style="color: #00BCD4; text-align: center;">📊 ANÁLISIS DEL TUTOR IA</h3>
+                <div style="text-align: right; font-size: 10px;">🆔 Sesión #${numeroSesion}</div>
+                <div style="margin:15px 0; padding:15px; background:rgba(255,255,255,0.05); border-radius:10px;">
+                    <p><strong>Nivel:</strong> ${nivel}</p>
+                    <p><strong>Puntaje:</strong> ${puntaje}/130 (${porcentaje.toFixed(1)}%)</p>
+                    <p><strong>Desglose:</strong> RA: ${fase1Puntos}/30 | RV: ${fase2Puntos}/40 | IA: ${fase3Puntos}/60</p>
+                </div>
+            `;
+            
+            if (respuestasIA.length > 0) {
+                recomendacionesHTML += '<div style="margin:15px 0; padding:15px; background:rgba(255,255,255,0.05);">';
+                recomendacionesHTML += '<p><strong>Tus respuestas conceptuales:</strong></p>';
+                respuestasIA.forEach((r, i) => {
+                    recomendacionesHTML += `<p>${i+1}. ${r.correcto ? '✅' : '❌'} ${r.pregunta.substring(0, 40)}... (${r.puntos} pts)</p>`;
+                });
+                recomendacionesHTML += '</div>';
+            }
+            
+            recomendacionesHTML += `
+                <div style="margin-top:20px; padding:20px; background:rgba(0,188,212,0.1); border-radius:10px;">
+                    <p><strong>🎓 Recomendaciones:</strong></p>
+                    <p>${actividades.join('<br>')}</p>
+                    <p><strong>💭 Reflexión:</strong> ¿Por qué es importante entender la relación entre luz y objetos?</p>
+                    <p>${reflexion}</p>
+                </div>
+            `;
+            
+            document.getElementById('recomendaciones-container').innerHTML = recomendacionesHTML;
+            document.getElementById('resultados').style.display = 'flex';
+            
+            enviarLog('Actividad completada', 'general', null, null, puntaje, { 
+                nivel: nivel,
+                respuestas: respuestasUsuario,
+                desglose: {
+                    fase1: fase1Puntos,
+                    fase2: fase2Puntos,
+                    fase3: fase3Puntos
+                }
+            });
+        }
+
+        // ============================================
+        // EXPORTAR FUNCIONES
+        // ============================================
+        window.mostrarConceptualizacion = mostrarConceptualizacion;
+        window.volverInicio = volverInicio;
+        window.comenzarActividad = comenzarActividad;
+        window.reiniciar = reiniciar;
+
+        // Precargar QR
+        setTimeout(() => {
+            const canvas = document.getElementById('qr-canvas');
+            if (canvas) {
+                QRCode.toCanvas(canvas, 'ARQUITECTO', { width: 200, margin: 2 }, (error) => {
+                    if (error) console.error('Error precargando QR:', error);
+                });
+            }
+        }, 1000);
+
+        enviarLog('Página cargada');
+    </script>
+</body>
+</html>
