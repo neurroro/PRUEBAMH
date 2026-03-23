@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>De la Sombra al Volumen - TUTOR IA</title>
+    <title>Dilatador de Mundos: El Mapa del Tesoro - MHATE</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
     
     <!-- Estilos -->
@@ -46,7 +46,7 @@
         }
         
         .btn {
-            background: linear-gradient(45deg, #007AFF, #00BCD4);
+            background: linear-gradient(45deg, #9C27B0, #673AB7);
             color: white;
             border: none;
             padding: 15px 30px;
@@ -58,12 +58,21 @@
             width: 90%;
             max-width: 300px;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);
         }
         
         .btn:hover {
             transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 122, 255, 0.4);
+            box-shadow: 0 6px 20px rgba(156, 39, 176, 0.4);
+        }
+        
+        .btn-siguiente {
+            background: linear-gradient(45deg, #FF9800, #F57C00);
+            margin-top: 20px;
+        }
+        
+        .btn-siguiente:hover {
+            background: linear-gradient(45deg, #F57C00, #EF6C00);
         }
         
         #barra-superior {
@@ -78,7 +87,7 @@
             align-items: center;
             padding: 0 20px;
             z-index: 900;
-            border-bottom: 2px solid #00BCD4;
+            border-bottom: 2px solid #9C27B0;
             backdrop-filter: blur(5px);
         }
         
@@ -89,16 +98,16 @@
             width: 100%;
             background: rgba(0, 0, 0, 0.95);
             color: white;
-            padding: 20px;
+            padding: 15px 20px;
             z-index: 900;
             text-align: center;
-            max-height: 40vh;
+            max-height: 35vh;
             overflow-y: auto;
-            border-top: 2px solid #00BCD4;
+            border-top: 2px solid #9C27B0;
             backdrop-filter: blur(5px);
+            font-size: 14px;
         }
         
-        /* Estilo para Fase 3 - Pantalla completa */
         #panel-ia.pantalla-completa {
             position: fixed;
             top: 0;
@@ -110,46 +119,74 @@
             z-index: 2000;
             display: flex;
             flex-direction: column;
-            justify-content: center;
+            justify-content: flex-start;
             align-items: center;
-            padding: 40px 20px;
+            padding: 30px 20px;
             border-top: none;
+            font-size: 16px;
+            overflow-y: auto;
         }
         
         #panel-ia.pantalla-completa #mensaje-ia {
             font-size: 24px;
-            margin-bottom: 40px;
+            margin: 20px 0 30px 0;
             max-width: 800px;
             line-height: 1.5;
+            text-align: center;
+            width: 100%;
+            padding: 0 20px;
+            flex-shrink: 0;
+        }
+        
+        #panel-ia.pantalla-completa .contenedor-opciones {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            flex-shrink: 0;
         }
         
         #panel-ia.pantalla-completa .opcion-btn {
-            max-width: 500px;
+            max-width: 100%;
+            width: 100%;
             padding: 20px;
             font-size: 20px;
-            margin: 15px auto;
+            margin: 10px 0;
+        }
+        
+        #panel-ia.pantalla-completa .ia-verification {
+            margin-top: 30px;
+            text-align: center;
+            flex-shrink: 0;
+        }
+        
+        #panel-ia.pantalla-completa .siguiente-container {
+            margin-top: 30px;
+            flex-shrink: 0;
         }
         
         .opcion-btn {
-            background: linear-gradient(45deg, #00BCD4, #0097A7);
+            background: linear-gradient(45deg, #673AB7, #512DA8);
             color: white;
             border: none;
-            padding: 14px;
+            padding: 12px;
             border-radius: 12px;
             cursor: pointer;
             width: 100%;
-            max-width: 350px;
-            margin: 8px 0;
+            max-width: 300px;
+            margin: 6px 0;
             transition: all 0.3s ease;
-            font-size: 15px;
+            font-size: 14px;
             font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0, 188, 212, 0.3);
+            box-shadow: 0 4px 10px rgba(103, 58, 183, 0.3);
         }
         
         .opcion-btn:hover {
-            background: linear-gradient(45deg, #0097A7, #00838F);
+            background: linear-gradient(45deg, #512DA8, #4527A0);
             transform: translateY(-2px);
-            box-shadow: 0 6px 15px rgba(0, 188, 212, 0.4);
+            box-shadow: 0 6px 15px rgba(103, 58, 183, 0.4);
         }
         
         .opcion-btn:disabled {
@@ -164,17 +201,17 @@
             top: 70px; 
             left: 50%;
             transform: translateX(-50%);
-            background: linear-gradient(45deg, rgba(0, 122, 255, 0.95), rgba(0, 188, 212, 0.95));
+            background: linear-gradient(45deg, rgba(156, 39, 176, 0.95), rgba(103, 58, 183, 0.95));
             color: white;
-            padding: 12px 25px;
-            border-radius: 15px;
+            padding: 8px 20px;
+            border-radius: 20px;
             z-index: 800;
             text-align: center;
             font-weight: bold;
-            box-shadow: 0 4px 15px rgba(0, 122, 255, 0.3);
+            font-size: 14px;
+            box-shadow: 0 4px 15px rgba(156, 39, 176, 0.3);
             border: 2px solid rgba(255, 255, 255, 0.2);
             backdrop-filter: blur(5px);
-            transition: all 0.3s ease;
         }
         
         #escena-ar, #escena-vr {
@@ -205,19 +242,17 @@
             background: linear-gradient(45deg, #FF9800, #F57C00) !important;
             color: white !important;
             border: none !important;
-            padding: 12px 20px !important;
+            padding: 10px 18px !important;
             border-radius: 50px !important;
             cursor: pointer !important;
             z-index: 1001 !important;
             display: flex !important;
             align-items: center !important;
-            gap: 10px !important;
+            gap: 8px !important;
             font-weight: bold !important;
-            font-size: 14px !important;
+            font-size: 13px !important;
             transition: all 0.3s ease !important;
             box-shadow: 0 4px 15px rgba(255, 152, 0, 0.3) !important;
-            visibility: visible !important;
-            opacity: 1 !important;
             backdrop-filter: blur(5px) !important;
             border: 2px solid rgba(255,255,255,0.3) !important;
         }
@@ -241,30 +276,28 @@
         .recomendaciones {
             background: rgba(255, 255, 255, 0.08);
             border-radius: 20px;
-            padding: 25px;
-            margin: 25px auto;
+            padding: 20px;
+            margin: 20px auto;
             max-width: 700px;
             text-align: left;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             box-sizing: border-box;
             word-wrap: break-word;
-            overflow-wrap: break-word;
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255,255,255,0.1);
         }
         
         .recomendacion-item {
-            margin: 12px 0;
+            margin: 10px 0;
             padding-left: 25px;
             position: relative;
             line-height: 1.6;
             word-wrap: break-word;
-            overflow-wrap: break-word;
         }
         
         .recomendacion-item:before {
             content: "▸";
-            color: #00BCD4;
+            color: #9C27B0;
             font-size: 18px;
             position: absolute;
             left: 0;
@@ -272,22 +305,22 @@
         
         .botones-final {
             display: flex;
-            gap: 20px;
-            margin-top: 40px;
+            gap: 15px;
+            margin-top: 30px;
             justify-content: center;
             flex-wrap: wrap;
         }
         
         .puntaje-final {
-            font-size: 80px;
-            margin: 20px;
+            font-size: 60px;
+            margin: 15px;
             color: #FFD700;
             text-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
             font-weight: bold;
         }
         
         .contenido-conceptual {
-            max-width: 900px;
+            max-width: 1200px;
             width: 100%;
             text-align: left;
             margin: 0 auto;
@@ -299,51 +332,125 @@
             border-radius: 20px;
             padding: 25px;
             margin: 20px 0;
-            border-left: 5px solid #00BCD4;
+            border-left: 5px solid #9C27B0;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
             backdrop-filter: blur(5px);
             border: 1px solid rgba(255,255,255,0.1);
         }
         
-        .concepto-imagen-container {
-            width: 100%;
-            max-width: 400px;
-            height: 250px;
-            margin: 15px auto;
-            border-radius: 15px;
-            border: 3px solid #00BCD4;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-            background: rgba(255, 255, 255, 0.05);
-        }
-        
-        .diagrama {
-            width: 100%;
-            height: 100%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            font-size: 24px;
-            font-weight: bold;
-        }
-        
         .concepto-titulo {
-            color: #00BCD4;
+            color: #9C27B0;
             font-size: 26px;
             margin-bottom: 20px;
             text-align: center;
+            border-bottom: 2px solid #9C27B0;
+            padding-bottom: 10px;
+        }
+        
+        .concepto-subtitulo {
+            color: #FFD700;
+            font-size: 20px;
+            margin: 15px 0 10px;
         }
         
         .concepto-lista {
-            margin-left: 25px;
-            margin-bottom: 20px;
+            margin-left: 20px;
+            margin-bottom: 15px;
             line-height: 1.8;
+            font-size: 16px;
         }
         
-        .concepto-lista li {
-            margin: 8px 0;
+        .grid-poligonos {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .poligono-item {
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+            padding: 15px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .poligono-item:hover {
+            transform: translateY(-5px);
+            background: rgba(156,39,176,0.2);
+            border-color: #9C27B0;
+        }
+        
+        .poligono-icono {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 10px;
+            background: linear-gradient(135deg, #9C27B0, #673AB7);
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+        }
+        
+        .poligono-icono.triangulo { clip-path: polygon(50% 0%, 0% 100%, 100% 100%); background: #FF5252; }
+        .poligono-icono.cuadrado { clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%); background: #4CAF50; }
+        .poligono-icono.rectangulo { clip-path: polygon(0% 0%, 0% 100%, 100% 100%, 100% 0%); width: 100px; background: #2196F3; }
+        
+        .tabla-propiedades {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .tabla-propiedades th {
+            background: #9C27B0;
+            color: white;
+            padding: 12px;
+            font-weight: bold;
+        }
+        
+        .tabla-propiedades td {
+            padding: 10px;
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .tabla-propiedades tr:hover {
+            background: rgba(156,39,176,0.2);
+        }
+        
+        .ejemplo-contenedor {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255,255,255,0.05);
+            border-radius: 15px;
+        }
+        
+        .ejemplo-imagen {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, #FFD700, #FFA500);
+            border-radius: 10px;
+        }
+        
+        .ejemplo-texto {
+            flex: 1;
+        }
+        
+        .highlight {
+            color: #FFD700;
+            font-weight: bold;
+        }
+        
+        .advertencia {
+            background: rgba(255, 82, 82, 0.2);
+            border-left: 4px solid #FF5252;
+            padding: 15px;
+            margin: 15px 0;
+            border-radius: 10px;
         }
 
         #qr-visualizacion {
@@ -351,17 +458,17 @@
             bottom: 100px;
             right: 20px;
             background: white;
-            padding: 15px;
+            padding: 12px;
             border-radius: 10px;
             box-shadow: 0 0 20px rgba(0,0,0,0.5);
             z-index: 2000;
             text-align: center;
-            border: 3px solid #00BCD4;
+            border: 3px solid #9C27B0;
         }
         
         #qr-visualizacion canvas {
             display: block;
-            margin: 10px auto;
+            margin: 8px auto;
             border: 2px solid #333;
         }
         
@@ -369,16 +476,17 @@
             background: #FF5252;
             color: white;
             border: none;
-            padding: 5px 15px;
+            padding: 5px 12px;
             border-radius: 5px;
             cursor: pointer;
-            margin-top: 10px;
+            margin-top: 8px;
             font-weight: bold;
+            font-size: 12px;
         }
         
         .qr-info {
             color: #333;
-            font-size: 14px;
+            font-size: 12px;
             margin: 5px 0;
         }
         
@@ -400,52 +508,168 @@
             left: 0 !important;
         }
         
-        #distancia-info {
-            position: fixed;
-            top: 130px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(0,0,0,0.7);
-            color: #FFD700;
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 12px;
-            z-index: 801;
-            border: 1px solid #00BCD4;
-            backdrop-filter: blur(5px);
-        }
-        
-        #ia-status {
-            font-size: 12px;
-            color: #00BCD4;
-            margin-top: 5px;
-        }
-        #ia-progress-bar {
-            width: 100%;
-            height: 4px;
-            background: #333;
-            border-radius: 2px;
-            margin-top: 5px;
-            display: none;
-        }
-        #ia-progress-bar-fill {
-            width: 0%;
-            height: 100%;
-            background: #00BCD4;
-            border-radius: 2px;
-            transition: width 0.3s;
-        }
         .ia-verification {
-            font-size: 10px;
+            font-size: 9px;
             color: #87CEEB;
             margin-top: 5px;
-            border-top: 1px dashed #00BCD4;
+            border-top: 1px dashed #9C27B0;
             padding-top: 5px;
             font-family: monospace;
         }
+        
+        .controles-3d {
+            position: fixed;
+            bottom: 120px;
+            right: 20px;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 8px 12px;
+            border-radius: 8px;
+            font-size: 11px;
+            border: 1px solid #9C27B0;
+            z-index: 803;
+        }
+
+        .pregunta-fase1 {
+            background: rgba(156, 39, 176, 0.2);
+            padding: 12px;
+            border-radius: 10px;
+            margin: 10px 0;
+            font-size: 16px;
+            border-left: 4px solid #9C27B0;
+            text-align: left;
+        }
+        
+        #panel-estantes {
+            position: fixed;
+            bottom: 120px;
+            left: 20px;
+            background: rgba(0,0,0,0.8);
+            padding: 12px;
+            border-radius: 12px;
+            z-index: 850;
+            border: 2px solid #9C27B0;
+            backdrop-filter: blur(5px);
+            color: white;
+        }
+        
+        #panel-estantes h4 {
+            color: #FFD700;
+            margin-bottom: 8px;
+            font-size: 14px;
+            text-align: center;
+        }
+        
+        .estante-info {
+            font-size: 12px;
+            margin: 5px 0;
+            padding: 3px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 5px;
+        }
+
+        #pregunta-flotante {
+            display: none;
+        }
+
+        .mensaje-exito-sutil {
+            position: fixed;
+            bottom: 120px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(76, 175, 80, 0.9);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 14px;
+            z-index: 850;
+            border: 1px solid #FFD700;
+            backdrop-filter: blur(5px);
+            animation: fadeOut 3s forwards;
+        }
+
+        @keyframes fadeOut {
+            0% { opacity: 1; }
+            70% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        
+        .figura-vr {
+            position: relative;
+            transform: scale(1.5);
+        }
+        
+        .texto-figura {
+            font-size: 1.5em !important;
+            font-weight: bold;
+            text-shadow: 2px 2px 2px black;
+        }
+        
+        .ejercicios-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 15px;
+            margin: 15px 0;
+        }
+        
+        .ejercicio-card {
+            background: rgba(255,255,255,0.05);
+            border-radius: 12px;
+            padding: 15px;
+            border-left: 4px solid #9C27B0;
+        }
+        
+        .ejercicio-card h4 {
+            color: #FFD700;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+        
+        .ejercicio-card p {
+            font-size: 13px;
+            line-height: 1.5;
+            color: #B0BEC5;
+        }
+        
+        .nivel-badge {
+            display: inline-block;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-size: 11px;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .nivel-badge.basico { background: #4CAF50; color: white; }
+        .nivel-badge.intermedio { background: #FF9800; color: white; }
+        .nivel-badge.avanzado { background: #F44336; color: white; }
+        
+        .siguiente-container {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        
+        .leyenda-vr {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(0,0,0,0.7);
+            padding: 8px 16px;
+            border-radius: 20px;
+            color: white;
+            font-size: 12px;
+            z-index: 850;
+            pointer-events: none;
+            text-align: center;
+            backdrop-filter: blur(5px);
+        }
+        
+        .leyenda-vr span.original { color: #CCCCCC; }
+        .leyenda-vr span.transformado { color: #FFD700; font-weight: bold; }
     </style>
     
-    <!-- Import Maps para MindAR -->
     <script type="importmap">
         {
             "imports": {
@@ -456,240 +680,203 @@
         }
     </script>
     
-    <!-- A-Frame para VR -->
     <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
-    
-    <!-- QR Code Generator -->
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.5.1/build/qrcode.min.js"></script>
 </head>
 <body>
-    <!-- PANTALLA INICIAL -->
     <div id="conceptual">
-        <h1 style="color: #00BCD4; margin-bottom: 20px; font-size: 2.8em; text-shadow: 0 0 20px rgba(0,188,212,0.5);">🔦 DE LA SOMBRA AL VOLUMEN</h1>
-        <div style="color: #B0BEC5; margin-bottom: 30px; font-size: 18px; max-width: 600px;">
-            Tutor IA adaptativo - Relación entre luz, objetos y sombras
+        <h1 style="color: #9C27B0; margin-bottom: 15px; font-size: 2.5em; text-shadow: 0 0 20px rgba(156,39,176,0.5);">🗺️ DILATADOR DE MUNDOS</h1>
+        <h2 style="color: #FFD700; margin-bottom: 20px; font-size: 1.8em;">El Mapa del Tesoro</h2>
+        <div style="color: #B0BEC5; margin-bottom: 20px; font-size: 16px; max-width: 600px;">
+            MHATE - Homotecias y Escalas (Pensamiento Espacial 6°-7°)
         </div>
-        <div style="text-align: left; max-width: 500px; margin-bottom: 30px; padding: 20px; background: rgba(255,255,255,0.05); border-radius: 15px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1);">
-            <p><strong style="color: #00BCD4;">Características:</strong></p>
-            <p>✅ RA: Identifica el objeto por su sombra</p>
-            <p>✅ RV: Deduce la posición de la luz oculta</p>
-            <p>✅ IA: Cuestionario conceptual de 4 preguntas</p>
-            <p>✅ Recomendaciones personalizadas por IA</p>
+        <div style="text-align: left; max-width: 500px; margin-bottom: 20px; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 15px; backdrop-filter: blur(5px); border: 1px solid rgba(255,255,255,0.1);">
+            <p><strong style="color: #9C27B0;">Secuencia del Explorador:</strong></p>
+            <p>🔮 <strong>Fase 1 - RA:</strong> Escanea el QR. Aparecerá un mapa antiguo. Identifica el punto homólogo de un objeto.</p>
+            <p>🕶️ <strong>Fase 2 - RV:</strong> Entra en la cámara secreta. Observa el objeto original y su versión transformada por el hechizo (k=0.5). ¡Responde la pregunta!</p>
+            <p>🧠 <strong>Fase 3 - IA:</strong> El Genio de la Lámpara te hará 4 preguntas sobre escalas y homotecias.</p>
         </div>
-        <button class="btn" onclick="window.mostrarConceptualizacion()">📚 ESTUDIAR CONCEPTOS</button>
-        <button class="btn" onclick="window.comenzarActividad()">🚀 COMENZAR PRÁCTICA</button>
+        <button class="btn" onclick="window.mostrarConceptualizacion()">📚 ESTUDIAR CONCEPTOS (Homotecia)</button>
+        <button class="btn" onclick="window.comenzarActividad()">🚀 COMENZAR AVENTURA</button>
     </div>
 
-    <!-- PANTALLA CONCEPTUALIZACIÓN -->
     <div id="conceptualizacion">
-        <h1 style="color: #00BCD4; margin-bottom: 20px; text-shadow: 0 0 20px rgba(0,188,212,0.5);">📚 FUNDAMENTOS: LUZ Y SOMBRA</h1>
+        <h1 style="color: #9C27B0; margin-bottom: 20px; text-shadow: 0 0 20px rgba(156,39,176,0.5);">🔷 GUÍA DE HOMOTECIA Y ESCALAS</h1>
         
         <div class="contenido-conceptual">
-            <!-- Concepto 1: Relación Luz-Objeto-Sombra -->
             <div class="concepto-card">
-                <h2 class="concepto-titulo">💡 1. La Tríada Esencial</h2>
-                <p>Para que exista una sombra se necesitan tres elementos: una <strong style="color: #00BCD4;">fuente de luz</strong>, un <strong style="color: #00BCD4;">objeto</strong> que bloquee la luz, y una <strong style="color: #00BCD4;">superficie</strong> donde la sombra se proyecte.</p>
+                <h2 class="concepto-titulo">📐 ¿Qué es una Homotecia?</h2>
+                <p style="font-size: 18px; line-height: 1.6; margin-bottom: 15px;">Una <span class="highlight">homotecia</span> es una transformación geométrica que cambia el tamaño de una figura pero mantiene su forma. Es como un "zoom" geométrico.</p>
                 
-                <div class="concepto-imagen-container" style="height: 150px;">
-                    <div style="display: flex; justify-content: space-around; align-items: center; width: 100%;">
-                        <div style="text-align: center;">
-                            <div style="width: 50px; height: 50px; background: #FFD700; border-radius: 50%; margin: 0 auto; box-shadow: 0 0 30px #FFD700;"></div>
-                            <p>LUZ</p>
-                        </div>
-                        <div style="font-size: 40px; color: #00BCD4;">→</div>
-                        <div style="text-align: center;">
-                            <div style="width: 50px; height: 50px; background: #8B4513; margin: 0 auto;"></div>
-                            <p>OBJETO</p>
-                        </div>
-                        <div style="font-size: 40px; color: #00BCD4;">→</div>
-                        <div style="text-align: center;">
-                            <div style="width: 70px; height: 40px; background: #555; margin: 0 auto; position: relative;">
-                                <div style="width: 60px; height: 30px; background: #333; position: absolute; top: 5px; left: 5px;"></div>
-                            </div>
-                            <p>SOMBRA</p>
-                        </div>
+                <div style="display: flex; justify-content: space-around; flex-wrap: wrap; margin: 20px 0;">
+                    <div style="text-align: center; width: 150px;">
+                        <div style="width: 80px; height: 80px; background: #9C27B0; margin: 0 auto 10px; clip-path: polygon(50% 0%, 100% 38%, 82% 100%, 18% 100%, 0% 38%);"></div>
+                        <p><strong>Centro</strong><br><small>Punto fijo desde donde se proyecta el cambio</small></p>
                     </div>
-                </div>
-                
-                <ul class="concepto-lista">
-                    <li>La luz viaja en <strong>línea recta</strong> desde la fuente.</li>
-                    <li>La sombra se forma donde la luz <strong>no puede llegar</strong> porque el objeto la bloquea.</li>
-                    <li>La <strong>forma de la sombra</strong> depende de la forma del objeto Y de la dirección de la luz.</li>
-                </ul>
-            </div>
-
-            <!-- Concepto 2: La Dirección de la Luz -->
-            <div class="concepto-card">
-                <h2 class="concepto-titulo">⬆️ 2. La Dirección de la Luz</h2>
-                <p>La posición de la fuente de luz es el factor más importante que determina la apariencia de una sombra.</p>
-                
-                <div style="display: flex; flex-direction: column; gap: 10px; margin-top: 15px;">
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <span style="background: #FFD700; width: 30px; height: 30px; border-radius: 50%; display: inline-block;"></span>
-                        <span>↑ Luz desde arriba → Sombra compacta, justo debajo del objeto</span>
+                    <div style="text-align: center; width: 150px;">
+                        <div style="width: 120px; height: 80px; background: #673AB7; margin: 0 auto 10px; clip-path: polygon(0% 0%, 100% 0%, 80% 100%, 20% 100%);"></div>
+                        <p><strong>Razón (k)</strong><br><small>Factor de escala</small></p>
                     </div>
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <span style="background: #FFD700; width: 30px; height: 30px; border-radius: 50%; display: inline-block;"></span>
-                        <span>→ Luz lateral → Sombra alargada hacia el lado opuesto</span>
-                    </div>
-                    <div style="display: flex; align-items: center; gap: 10px;">
-                        <span style="background: #FFD700; width: 30px; height: 30px; border-radius: 50%; display: inline-block;"></span>
-                        <span>↓ Luz frontal → Sombra detrás del objeto, similar a su silueta frontal</span>
-                    </div>
-                </div>
-                
-                <p style="margin-top:15px;"><em>"La sombra siempre se aleja de la luz."</em></p>
-            </div>
-
-            <!-- Concepto 3: Objetos y sus Sombras Características -->
-            <div class="concepto-card">
-                <h2 class="concepto-titulo">🔲 3. Objetos Básicos y sus Sombras</h2>
-                <p>Cada tipo de objeto tiene comportamientos característicos con la luz.</p>
-                
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 20px;">
-                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px;">
-                        <h3 style="color: #FFD700;">🧊 Cubo</h3>
-                        <ul style="text-align: left;">
-                            <li><strong>Luz arriba:</strong> Sombra cuadrada</li>
-                            <li><strong>Luz lateral:</strong> Sombra rectangular</li>
-                        </ul>
-                    </div>
-                    
-                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px;">
-                        <h3 style="color: #FFD700;">⚪ Esfera</h3>
-                        <ul style="text-align: left;">
-                            <li><strong>Cualquier dirección:</strong> Siempre sombra circular u ovalada</li>
-                            <li><strong>Nunca tiene bordes rectos</strong></li>
-                        </ul>
-                    </div>
-                    
-                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px;">
-                        <h3 style="color: #FFD700;">🥫 Cilindro</h3>
-                        <ul style="text-align: left;">
-                            <li><strong>Luz arriba:</strong> Sombra circular</li>
-                            <li><strong>Luz lateral:</strong> Sombra rectangular con bordes redondeados</li>
-                        </ul>
-                    </div>
-                    
-                    <div style="background: rgba(0,0,0,0.3); padding: 15px; border-radius: 15px;">
-                        <h3 style="color: #FFD700;">🔺 Pirámide</h3>
-                        <ul style="text-align: left;">
-                            <li><strong>Luz arriba:</strong> Sombra cuadrada (base) o triangular</li>
-                            <li><strong>Luz lateral:</strong> Sombra triangular alargada</li>
-                        </ul>
+                    <div style="text-align: center; width: 150px;">
+                        <div style="width: 80px; height: 80px; background: #512DA8; margin: 0 auto 10px; clip-path: polygon(50% 0%, 100% 100%, 0% 100%);"></div>
+                        <p><strong>Figura Homotética</strong><br><small>Figura resultante, semejante a la original</small></p>
                     </div>
                 </div>
             </div>
 
-            <!-- Concepto 4: El Desafío de la Actividad -->
-            <div class="concepto-card" style="background: linear-gradient(135deg, rgba(0, 188, 212, 0.15), rgba(0, 122, 255, 0.15)); border-left: 5px solid #FFD700;">
-                <h2 class="concepto-titulo" style="color: #FFD700;">🔍 4. El Desafío de esta Actividad</h2>
+            <div class="concepto-card">
+                <h2 class="concepto-titulo">📋 Tipos según la Razón (k)</h2>
                 
-                <div style="display: flex; align-items: center; justify-content: space-around; margin: 25px 0;">
-                    <div style="text-align: center;">
-                        <div style="font-size: 50px;">👁️</div>
-                        <p><strong>Fase RA</strong><br>Ves solo la SOMBRA<br>Debes inferir el OBJETO</p>
+                <div class="grid-poligonos">
+                    <div class="poligono-item">
+                        <div class="poligono-icono cuadrado" style="background: #4CAF50; transform: scale(0.8);"></div>
+                        <h3>k > 1</h3>
+                        <p>Ampliación</p>
+                        <small>La figura se hace más grande</small>
                     </div>
-                    <div style="font-size: 40px; color: #00BCD4;">→</div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 50px;">💡</div>
-                        <p><strong>Fase RV</strong><br>Ves OBJETO y SOMBRA<br>Debes inferir la LUZ oculta</p>
+                    <div class="poligono-item">
+                        <div class="poligono-icono cuadrado" style="background: #2196F3;"></div>
+                        <h3>k = 1</h3>
+                        <p>Identidad</p>
+                        <small>La figura no cambia de tamaño</small>
                     </div>
-                    <div style="font-size: 40px; color: #00BCD4;">→</div>
-                    <div style="text-align: center;">
-                        <div style="font-size: 50px;">🧠</div>
-                        <p><strong>Fase IA</strong><br>4 preguntas conceptuales<br>Demuestra lo aprendido</p>
+                    <div class="poligono-item">
+                        <div class="poligono-icono cuadrado" style="background: #FF9800; transform: scale(0.5);"></div>
+                        <h3>0 < k < 1</h3>
+                        <p>Reducción</p>
+                        <small>La figura se hace más pequeña</small>
                     </div>
                 </div>
                 
-                <h3 style="color: #00BCD4;">Reglas de oro:</h3>
-                <ol class="concepto-lista">
-                    <li><strong>Bordes rectos</strong> en la sombra → El objeto probablemente tiene <strong>caras planas</strong> (cubo, pirámide).</li>
-                    <li><strong>Bordes curvos</strong> en la sombra → El objeto probablemente es <strong>redondeado</strong> (esfera, cilindro).</li>
-                    <li>Una sombra <strong>alargada</strong> indica que la luz viene de un <strong>lado</strong>.</li>
-                    <li>Una sombra <strong>compacta</strong> y justo debajo indica luz <strong>desde arriba</strong>.</li>
-                </ol>
+                <div class="advertencia">
+                    <p><strong>📌 Importante:</strong> Si la razón es negativa (k < 0), la figura se invierte (rotación de 180°) además de cambiar de tamaño.</p>
+                </div>
+            </div>
+
+            <div class="concepto-card">
+                <h2 class="concepto-titulo">🔍 Propiedades de la Homotecia</h2>
                 
-                <p style="text-align: center; margin-top: 15px;">
-                    <button class="btn" style="max-width: 200px; padding: 10px;" onclick="mostrarQR()">🔍 VER QR</button>
-                </p>
+                <h3 class="concepto-subtitulo">A. Longitudes</h3>
+                <div class="ejemplo-contenedor">
+                    <div class="ejemplo-texto">
+                        <p>Si la razón de homotecia es <span class="highlight">k</span>, entonces <strong>todas las longitudes</strong> (lados, alturas, distancias) se multiplican por <strong>k</strong>.</p>
+                        <p><em>Ejemplo: Si un lado mide 4u y k=0.5, el nuevo lado medirá 2u.</em></p>
+                    </div>
+                </div>
+                
+                <h3 class="concepto-subtitulo">B. Áreas</h3>
+                <div class="ejemplo-contenedor">
+                    <div class="ejemplo-texto">
+                        <p>El <strong>área</strong> de la figura se multiplica por <strong>k²</strong>.</p>
+                        <p><em>Ejemplo: Si un área es de 4u² y k=0.5, la nueva área será 4 * (0.5)² = 4 * 0.25 = 1u².</em></p>
+                    </div>
+                </div>
+                
+                <h3 class="concepto-subtitulo">C. Volúmenes</h3>
+                <div class="ejemplo-contenedor">
+                    <div class="ejemplo-texto">
+                        <p>El <strong>volumen</strong> de la figura se multiplica por <strong>k³</strong>.</p>
+                        <p><em>Ejemplo: Si un volumen es de 8u³ y k=0.5, el nuevo volumen será 8 * (0.5)³ = 8 * 0.125 = 1u³.</em></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concepto-card">
+                <h2 class="concepto-titulo">📍 Puntos Homólogos</h2>
+                
+                <div class="ejemplo-contenedor">
+                    <div style="width: 150px; height: 100px; position: relative; background: #333; border-radius: 5px;">
+                        <div style="position: absolute; width: 10px; height: 10px; background: #FFD700; border-radius: 50%; top: 20px; left: 20px;"></div>
+                        <div style="position: absolute; width: 10px; height: 10px; background: #FFD700; border-radius: 50%; top: 30px; left: 80px;"></div>
+                        <div style="position: absolute; width: 2px; height: 50px; background: #9C27B0; top: 25px; left: 50px; transform: rotate(45deg);"></div>
+                    </div>
+                    <div class="ejemplo-texto">
+                        <p>Los <span class="highlight">puntos homólogos</span> son aquellos que ocupan la misma posición relativa en la figura original y en la transformada.</p>
+                        <p>En un mapa (RA) y una habitación real (RV), el punto que representa la ubicación de un tesoro es un punto homólogo.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="concepto-card">
+                <h2 class="concepto-titulo">🗺️ Mapas y Escalas</h2>
+                
+                <div style="margin: 20px 0;">
+                    <p>Una <strong>escala</strong> 1:100 significa que 1 unidad en el mapa equivale a 100 unidades en la realidad.</p>
+                    <p>La <strong>razón de homotecia</strong> para pasar del objeto real a la maqueta es el inverso de la escala.</p>
+                    <p style="margin-top: 10px;"><em>Ejemplo: Para una escala 1:50, la razón de homotecia a aplicar es k = 1/50 = 0.02.</em></p>
+                </div>
+                
+                <div class="advertencia">
+                    <p><strong>⚠️ Dato clave:</strong> Si en un mapa a escala 1:100, una calle mide 2cm, en la realidad medirá 2cm * 100 = 200cm = 2m.</p>
+                </div>
             </div>
         </div>
         
-        <div style="margin-top: 30px; margin-bottom: 30px; display: flex; gap: 20px; flex-wrap: wrap; justify-content: center;">
+        <div style="margin-top: 20px; margin-bottom: 20px; display: flex; gap: 15px; flex-wrap: wrap; justify-content: center;">
             <button class="btn" onclick="volverInicio()">🏠 VOLVER AL INICIO</button>
-            <button class="btn" onclick="comenzarActividad()">🚀 COMENZAR PRÁCTICA</button>
+            <button class="btn" onclick="comenzarActividad()">🚀 COMENZAR AVENTURA</button>
         </div>
     </div>
 
-    <!-- BARRA SUPERIOR -->
     <div id="barra-superior" class="oculto">
-        <div id="fase-actual" style="font-size: 18px; font-weight: bold;">Fase 1: La Sombra Misteriosa</div>
-        <div id="puntaje" style="font-size: 18px; font-weight: bold;">Puntos: <span style="color: #FFD700;">0</span></div>
+        <div id="fase-actual" style="font-size: 16px; font-weight: bold;">Fase 1: El Mapa Antiguo (RA)</div>
+        <div id="puntaje" style="font-size: 16px; font-weight: bold;">Puntos: <span style="color: #FFD700;">0</span></div>
     </div>
 
-    <!-- INDICADOR AR -->
-    <div id="indicador-ar" class="oculto">📱 Escanea el QR para ver la sombra misteriosa</div>
-    
-    <!-- INFO DE DISTANCIA -->
-    <div id="distancia-info" class="oculto">📏 Distancia: <span id="distancia-valor">0</span> cm</div>
+    <div id="indicador-ar" class="oculto">📱 Escanea el QR para ver el mapa</div>
 
-    <!-- ESCENAS -->
     <div id="escena-ar" class="oculto"></div>
     <div id="contenedor-ar" class="oculto" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 1;"></div>
     <div id="escena-vr" class="oculto"></div>
 
-    <!-- PANEL IA -->
     <div id="panel-ia" class="oculto">
-        <div id="mensaje-ia">Preparando actividad...</div>
-        <div id="ia-status"></div>
-        <div id="ia-progress-bar">
-            <div id="ia-progress-bar-fill"></div>
-        </div>
-        <div id="contenedor-opciones" style="margin-top: 15px;"></div>
+        <div id="mensaje-ia">Preparando la aventura...</div>
+        <div id="contenedor-opciones" style="margin-top: 10px;"></div>
         <div id="ia-verification" class="ia-verification"></div>
+        <div id="siguiente-container" class="siguiente-container" style="display: none;">
+            <button class="btn btn-siguiente" onclick="window.avanzarFase()">⏩ SIGUIENTE FASE</button>
+        </div>
     </div>
 
-    <!-- RESULTADOS -->
     <div id="resultados">
         <div class="resultados-container">
-            <h1 style="color: #00BCD4; margin-bottom: 10px; font-size: 2.5em; text-shadow: 0 0 20px rgba(0,188,212,0.5);">🎉 ACTIVIDAD COMPLETADA</h1>
-            <div style="color: #B0BEC5; margin-bottom: 30px; font-size: 18px;">
-                Análisis generado por el tutor IA
+            <h1 style="color: #9C27B0; margin-bottom: 10px; font-size: 2.2em; text-shadow: 0 0 20px rgba(156,39,176,0.5);">🏆 AVENTURA COMPLETADA</h1>
+            <div style="color: #B0BEC5; margin-bottom: 20px; font-size: 16px;">
+                Análisis del Genio de la Lámpara
             </div>
             
             <div class="puntaje-final" id="puntaje-final">0</div>
-            <h3 style="margin-bottom: 30px; color: #B0BEC5;">PUNTUACIÓN FINAL</h3>
+            <h3 style="margin-bottom: 20px; color: #B0BEC5; font-size: 18px;">PUNTUACIÓN FINAL</h3>
             
-            <div class="recomendaciones" id="recomendaciones-container">
-                <!-- Las recomendaciones se generarán dinámicamente -->
-            </div>
+            <div class="recomendaciones" id="recomendaciones-container"></div>
             
             <div class="botones-final">
-                <button class="btn" onclick="reiniciar()">🔄 REPETIR ACTIVIDAD</button>
+                <button class="btn" onclick="reiniciar()">🔄 REPETIR AVENTURA</button>
                 <button class="btn" onclick="volverInicio()">🏠 VOLVER AL INICIO</button>
             </div>
         </div>
     </div>
 
-    <!-- VISUALIZACIÓN QR -->
     <div id="qr-visualizacion" style="display: none;">
-        <div style="font-weight: bold; color: #1976D2;">QR "ARQUITECTO"</div>
-        <canvas id="qr-canvas" width="200" height="200"></canvas>
-        <div class="qr-info">Escanea este código QR para activar RA</div>
+        <div style="font-weight: bold; color: #9C27B0; font-size: 14px;">🗺️ MAPA ANTIGUO</div>
+        <canvas id="qr-canvas" width="150" height="150"></canvas>
+        <div class="qr-info">Escanea este código QR</div>
         <button id="btn-cerrar-qr" onclick="cerrarQR()">Cerrar</button>
     </div>
 
+    <div id="panel-estantes" style="display: none;">
+        <h4>🗝️ PISTAS DEL GENIO</h4>
+        <div class="estante-info" style="border-left: 3px solid #4CAF50;"> Longitud se multiplica por k (0.5)</div>
+        <div class="estante-info" style="border-left: 3px solid #FF5252;"> Área se multiplica por k² (0.25)</div>
+        <div class="estante-info" style="border-left: 3px solid #FFD700;"> Volumen se multiplica por k³ (0.125)</div>
+    </div>
+
+    <div id="pregunta-flotante" style="display: none;"></div>
+
     <script type="module">
-        // ============================================
-        // IMPORTACIONES
-        // ============================================
         import * as THREE from 'three';
         import { MindARThree } from 'mindar-image-three';
 
-        // ============================================
-        // CONFIGURACIÓN DE LOGS - MISMA URL DEL PROTOTIPO
-        // ============================================
         const LOG_URL = 'https://script.google.com/macros/s/AKfycbzgSxgwQQgiT3aDp7Vn6staeY4-Evpz9n68bg2JxIAYanQjJm12thZ2yc3HNaQCqXLO/exec';
         
         let estudianteId = localStorage.getItem('estudianteId');
@@ -712,9 +899,6 @@
             }
         }
 
-        // ============================================
-        // FUNCIÓN ENVIAR LOG - EXACTAMENTE COMO EN EL PROTOTIPO
-        // ============================================
         async function enviarLog(evento, objetoActual = null, opcionElegida = null, correcto = null, puntos = 0, metadata = {}) {
             try {
                 const timestamp = new Date().toISOString();
@@ -725,17 +909,17 @@
 
                 switch(faseActual) {
                     case 0:
-                        fase = 'Fase 1 - RA Identificación';
-                        objeto = objetoFase1 ? objetoFase1.nombre : 'desconocido';
+                        fase = 'Fase 1 - RA Mapa';
+                        objeto = elementoMapaSeleccionado ? elementoMapaSeleccionado.nombre : 'desconocido';
                         tiempoRespuesta = tiemposPorFase[0];
                         break;
                     case 1:
-                        fase = 'Fase 2 - RV Deducir Luz';
-                        objeto = objetoFase2 ? objetoFase2.objetoNombre : 'desconocido';
+                        fase = 'Fase 2 - RV Cámara';
+                        objeto = elementoMapaSeleccionado ? elementoMapaSeleccionado.nombre : 'desconocido';
                         tiempoRespuesta = tiemposPorFase[1];
                         break;
                     case 2:
-                        fase = 'Fase 3 - IA Cuestionario';
+                        fase = 'Fase 3 - IA Homotecias';
                         objeto = 'Preguntas conceptuales';
                         tiempoRespuesta = tiemposPorFase[2];
                         break;
@@ -778,214 +962,154 @@
             }
         }
 
-        // ============================================
-        // BASE DE DATOS DE OBJETOS PARA LA ACTIVIDAD
-        // ============================================
-        const objetosParaSombras = [
-            {
-                id: 1,
-                nombre: "Cubo",
-                sombraDesc: "Cuadrado perfecto",
-                descripcion: "Un cubo tiene todas sus caras cuadradas. Desde arriba, su sombra es un cuadrado. Desde un lado, se convierte en un rectángulo.",
-                tipo: "cubo",
-                color: "#8B4513",
-                tamaño: 1.5,
-                ejercicioComplementario: "Dibuja un cubo y luego dibuja su sombra desde diferentes posiciones de luz. ¿Qué observas?"
-            },
-            {
-                id: 2,
-                nombre: "Esfera",
-                sombraDesc: "Círculo perfecto",
-                descripcion: "Una esfera es completamente redonda. No importa desde dónde la ilumines, su sombra siempre será un círculo o un óvalo, nunca tendrá bordes rectos.",
-                tipo: "esfera",
-                color: "#C0C0C0",
-                tamaño: 1.2,
-                ejercicioComplementario: "Busca objetos redondos en tu casa (pelotas, frutas) y observa cómo cambia su sombra al mover una linterna."
-            },
-            {
-                id: 3,
-                nombre: "Cilindro",
-                sombraDesc: "Rectángulo con bordes redondeados",
-                descripcion: "Un cilindro es como una lata. Desde arriba, su sombra es un círculo. Desde un lado, se convierte en un rectángulo con los extremos redondeados.",
-                tipo: "cilindro",
-                color: "#4682B4",
-                tamaño: 1.3,
-                ejercicioComplementario: "Consigue un vaso cilíndrico y una linterna. Ilumínalo desde arriba y desde un lado. Dibuja las sombras que observas."
-            },
-            {
-                id: 4,
-                nombre: "Pirámide",
-                sombraDesc: "Triángulo o cuadrado según la luz",
-                descripcion: "Una pirámide de base cuadrada. Desde arriba, su sombra es un cuadrado. Desde un lado, se convierte en un triángulo alargado.",
-                tipo: "piramide",
-                color: "#DAA520",
-                tamaño: 1.4,
-                ejercicioComplementario: "Construye una pirámide de papel y experimenta con diferentes ángulos de luz. ¿Cuándo ves un triángulo? ¿Cuándo ves un cuadrado?"
-            }
+        const elementosMapa = [
+            { id: 1, nombre: "Cofre del Rey", tipo: "Cofre", colorOriginal: "#CD7F32", colorTransformado: "#FFD700", medidaOriginal: 2.0, razonHomotecia: 0.5,
+              preguntaFase1: "En el mapa, el Cofre del Rey está marcado con una X. La IA te dice: 'En la cámara secreta, hay una marca luminosa en la tapa del cofre. ¿Sobre cuál de estos puntos del mapa debería estar esa misma marca?'",
+              opcionesFase1: ["Punto A (esquina superior izquierda)", "Punto B (centro de la tapa)", "Punto C (esquina inferior derecha)", "Punto D (fuera del cofre)"],
+              respuestaCorrectaF1: "Punto B (centro de la tapa)", explicacionF1: "El punto homólogo al centro de la tapa del cofre real es el centro del dibujo del cofre en el mapa.",
+              posicionVR: [-3, 0.5, -5], tamanoVR: { ancho: 1.8, alto: 1.0, fondo: 1.2 },
+              preguntaFase2: "La altura original del Cofre del Rey es de 2.0 unidades. Después del hechizo de reducción (k=0.5), ¿cuál es su altura actual?",
+              opcionesFase2: ["0.5 u", "1.0 u", "1.5 u", "2.0 u"], respuestaCorrectaF2: "1.0 u", explicacionF2: "La altura se multiplica por k: 2u * 0.5 = 1u." },
+            { id: 2, nombre: "Columna Ancestral", tipo: "Columna", colorOriginal: "#B87333", colorTransformado: "#FFD700", medidaOriginal: 3.0, razonHomotecia: 0.5,
+              preguntaFase1: "La Columna Ancestral tiene una grieta en su base. La IA dice: 'En la cámara real, una luz brilla en esa grieta. ¿Sobre qué punto del mapa (A, B, C, D) debe estar el punto homólogo a esa luz?'",
+              opcionesFase1: ["Punto A (base)", "Punto B (capitel)", "Punto C (mitad)", "Punto D (lado izquierdo)"], respuestaCorrectaF1: "Punto A (base)", explicacionF1: "El punto homólogo de la base de la columna real es la base de la columna en el mapa.",
+              posicionVR: [0, 1.0, -7], tamanoVR: { radio: 0.4, alto: 2.0 },
+              preguntaFase2: "La altura original de la Columna Ancestral es de 3.0u. Con el hechizo de reducción (k=0.5), ¿qué altura tiene ahora?",
+              opcionesFase2: ["1.0 u", "1.5 u", "2.0 u", "2.5 u"], respuestaCorrectaF2: "1.5 u", explicacionF2: "3u * 0.5 = 1.5u." },
+            { id: 3, nombre: "Jarrón del Faraón", tipo: "Jarrón", colorOriginal: "#5F9EA0", colorTransformado: "#FFD700", medidaOriginal: 1.5, razonHomotecia: 0.5,
+              preguntaFase1: "El Jarrón del Faraón tiene un jeroglífico en su panza. La IA marca ese punto en RV. ¿Sobre qué parte del dibujo del jarrón en el mapa debe estar su punto homólogo?",
+              opcionesFase1: ["Punto A (cuello)", "Punto B (base)", "Punto C (panza)", "Punto D (asa)"], respuestaCorrectaF1: "Punto C (panza)", explicacionF1: "La panza del jarrón real es homóloga a la panza del jarrón en el mapa.",
+              posicionVR: [2, 0.6, -4], tamanoVR: { radio: 0.6, alto: 1.2 },
+              preguntaFase2: "La altura original del Jarrón del Faraón es de 1.5u. ¿Cuál es su altura tras la reducción (k=0.5)?",
+              opcionesFase2: ["0.5 u", "0.75 u", "1.0 u", "1.25 u"], respuestaCorrectaF2: "0.75 u", explicacionF2: "1.5u * 0.5 = 0.75u." },
+            { id: 4, nombre: "Escudo del Guerrero", tipo: "Escudo", colorOriginal: "#C0C0C0", colorTransformado: "#FFD700", medidaOriginal: 2.5, razonHomotecia: 0.5,
+              preguntaFase1: "El Escudo del Guerrero tiene una abolladura en su borde superior derecho. ¿Cuál es el punto homólogo en el mapa a esa abolladura?",
+              opcionesFase1: ["Punto A (centro)", "Punto B (borde superior derecho)", "Punto C (borde inferior izquierdo)", "Punto D (detrás del escudo)"], respuestaCorrectaF1: "Punto B (borde superior derecho)", explicacionF1: "La posición relativa de la abolladura se mantiene en el mapa.",
+              posicionVR: [-1.5, 0.8, -6], tamanoVR: { radio: 1.0 },
+              preguntaFase2: "El diámetro original del Escudo es de 2.5u. ¿Cuál es su diámetro después de aplicar el hechizo (k=0.5)?",
+              opcionesFase2: ["1.0 u", "1.25 u", "1.5 u", "2.0 u"], respuestaCorrectaF2: "1.25 u", explicacionF2: "2.5u * 0.5 = 1.25u." },
+            { id: 5, nombre: "Antorcha Eterna", tipo: "Antorcha", colorOriginal: "#FF8C00", colorTransformado: "#FFD700", medidaOriginal: 1.8, razonHomotecia: 0.5,
+              preguntaFase1: "La Antorcha Eterna tiene la llama inclinada hacia la izquierda. En la cámara, la llama toca un punto de la pared. ¿Cuál es el punto homólogo en el mapa a ese punto de contacto?",
+              opcionesFase1: ["Punto A (base de la antorcha)", "Punto B (punta de la llama)", "Punto C (pared izquierda)", "Punto D (techo)"], respuestaCorrectaF1: "Punto C (pared izquierda)", explicacionF1: "El punto de contacto en la pared real es homólogo al punto de contacto en el mapa.",
+              posicionVR: [1.5, 0.5, -5.5], tamanoVR: { ancho: 0.4, alto: 1.6 },
+              preguntaFase2: "La altura de la Antorcha Eterna es de 1.8u. ¿Cuánto medirá tras el hechizo de reducción (k=0.5)?",
+              opcionesFase2: ["0.6 u", "0.8 u", "0.9 u", "1.2 u"], respuestaCorrectaF2: "0.9 u", explicacionF2: "1.8u * 0.5 = 0.9u." },
+            { id: 6, nombre: "Piedra Angular", tipo: "Piedra", colorOriginal: "#A9A9A9", colorTransformado: "#FFD700", medidaOriginal: 1.2, razonHomotecia: 0.5,
+              preguntaFase1: "La Piedra Angular tiene una inscripción en su cara frontal. ¿Dónde estará ese punto homólogo en el mapa?",
+              opcionesFase1: ["Punto A (cara frontal)", "Punto B (cara trasera)", "Punto C (parte superior)", "Punto D (suelo)"], respuestaCorrectaF1: "Punto A (cara frontal)", explicacionF1: "La cara frontal de la piedra en la realidad corresponde a la cara frontal en el dibujo del mapa.",
+              posicionVR: [0.5, 0.3, -5], tamanoVR: { ancho: 1.0, alto: 0.6, fondo: 0.8 },
+              preguntaFase2: "La longitud de la Piedra Angular es de 1.2u. Tras el hechizo (k=0.5), su nueva longitud será:",
+              opcionesFase2: ["0.3 u", "0.4 u", "0.6 u", "0.8 u"], respuestaCorrectaF2: "0.6 u", explicacionF2: "1.2u * 0.5 = 0.6u." },
+            { id: 7, nombre: "Caldero Mágico", tipo: "Caldero", colorOriginal: "#2F4F4F", colorTransformado: "#FFD700", medidaOriginal: 2.2, razonHomotecia: 0.5,
+              preguntaFase1: "El Caldero Mágico tiene una asa a la izquierda. Si en RV esa asa brilla, ¿en qué parte del mapa (A, B, C, D) debería estar su punto homólogo?",
+              opcionesFase1: ["Punto A (asa izquierda)", "Punto B (asa derecha)", "Punto C (fondo)", "Punto D (boca)"], respuestaCorrectaF1: "Punto A (asa izquierda)", explicacionF1: "El punto homólogo de la asa izquierda es la asa izquierda en el mapa.",
+              posicionVR: [-2, 0.7, -4.5], tamanoVR: { radio: 0.9, alto: 0.8 },
+              preguntaFase2: "La altura original del Caldero es de 2.2u. ¿Cuál será su altura con la reducción (k=0.5)?",
+              opcionesFase2: ["0.8 u", "1.0 u", "1.1 u", "1.2 u"], respuestaCorrectaF2: "1.1 u", explicacionF2: "2.2u * 0.5 = 1.1u." },
+            { id: 8, nombre: "Estatua del Grifo", tipo: "Estatua", colorOriginal: "#8B4513", colorTransformado: "#FFD700", medidaOriginal: 2.8, razonHomotecia: 0.5,
+              preguntaFase1: "La Estatua del Grifo tiene una pluma dorada en su ala derecha. ¿Dónde se ubicará el punto homólogo en el mapa?",
+              opcionesFase1: ["Punto A (ala izquierda)", "Punto B (ala derecha)", "Punto C (cabeza)", "Punto D (cola)"], respuestaCorrectaF1: "Punto B (ala derecha)", explicacionF1: "El ala derecha en la realidad corresponde al ala derecha en el mapa.",
+              posicionVR: [2.5, 1.2, -6], tamanoVR: { ancho: 0.8, alto: 2.0 },
+              preguntaFase2: "La altura de la Estatua es de 2.8u. Después del hechizo (k=0.5), su altura será:",
+              opcionesFase2: ["1.0 u", "1.2 u", "1.4 u", "1.6 u"], respuestaCorrectaF2: "1.4 u", explicacionF2: "2.8u * 0.5 = 1.4u." },
+            { id: 9, nombre: "Cristal de Adivinación", tipo: "Cristal", colorOriginal: "#87CEEB", colorTransformado: "#FFD700", medidaOriginal: 0.8, razonHomotecia: 0.5,
+              preguntaFase1: "El Cristal de Adivinación tiene una grieta en su base. La IA ilumina esa grieta en RV. ¿Cuál es su punto homólogo en el mapa?",
+              opcionesFase1: ["Punto A (centro)", "Punto B (base)", "Punto C (cima)", "Punto D (lado)"], respuestaCorrectaF1: "Punto B (base)", explicacionF1: "La base del cristal real es homóloga a la base del dibujo del cristal en el mapa.",
+              posicionVR: [1, 0.4, -4], tamanoVR: { radio: 0.5 },
+              preguntaFase2: "La altura del Cristal es de 0.8u. ¿Cuál es su altura tras la reducción (k=0.5)?",
+              opcionesFase2: ["0.2 u", "0.3 u", "0.4 u", "0.5 u"], respuestaCorrectaF2: "0.4 u", explicacionF2: "0.8u * 0.5 = 0.4u." },
+            { id: 10, nombre: "Armadura del Caballero", tipo: "Armadura", colorOriginal: "#708090", colorTransformado: "#FFD700", medidaOriginal: 2.4, razonHomotecia: 0.5,
+              preguntaFase1: "La Armadura del Caballero tiene un rayón en la hombrera izquierda. ¿Dónde está el punto homólogo en el mapa?",
+              opcionesFase1: ["Punto A (hombrera izquierda)", "Punto B (hombrera derecha)", "Punto C (pechera)", "Punto D (casco)"], respuestaCorrectaF1: "Punto A (hombrera izquierda)", explicacionF1: "La hombrera izquierda de la armadura real es homóloga a la hombrera izquierda en el mapa.",
+              posicionVR: [-0.5, 1.0, -5.5], tamanoVR: { ancho: 1.0, alto: 2.2 },
+              preguntaFase2: "La altura de la Armadura es de 2.4u. Con el hechizo (k=0.5), su altura será:",
+              opcionesFase2: ["1.0 u", "1.2 u", "1.4 u", "1.6 u"], respuestaCorrectaF2: "1.2 u", explicacionF2: "2.4u * 0.5 = 1.2u." },
+            { id: 11, nombre: "Pergamino Encantado", tipo: "Pergamino", colorOriginal: "#F4EBD0", colorTransformado: "#FFD700", medidaOriginal: 1.0, razonHomotecia: 0.5,
+              preguntaFase1: "El Pergamino Encantado tiene un sello de cera en la esquina inferior derecha. ¿Cuál es el punto homólogo en el mapa?",
+              opcionesFase1: ["Punto A (esquina superior izquierda)", "Punto B (centro)", "Punto C (esquina inferior derecha)", "Punto D (sello)"], respuestaCorrectaF1: "Punto C (esquina inferior derecha)", explicacionF1: "La esquina inferior derecha del pergamino real es homóloga a la misma esquina en el mapa.",
+              posicionVR: [3, 0.5, -5], tamanoVR: { ancho: 1.5, alto: 0.8, fondo: 0.1 },
+              preguntaFase2: "La altura del Pergamino es de 1.0u. Tras la reducción (k=0.5), medirá:",
+              opcionesFase2: ["0.25 u", "0.5 u", "0.75 u", "1.0 u"], respuestaCorrectaF2: "0.5 u", explicacionF2: "1.0u * 0.5 = 0.5u." },
+            { id: 12, nombre: "Reloj de Arena", tipo: "Reloj", colorOriginal: "#D2B48C", colorTransformado: "#FFD700", medidaOriginal: 1.6, razonHomotecia: 0.5,
+              preguntaFase1: "El Reloj de Arena tiene una fisura en el cristal del lado izquierdo. ¿Dónde está su punto homólogo en el mapa?",
+              opcionesFase1: ["Punto A (lado izquierdo)", "Punto B (lado derecho)", "Punto C (centro)", "Punto D (base)"], respuestaCorrectaF1: "Punto A (lado izquierdo)", explicacionF1: "El lado izquierdo del reloj real es homólogo al lado izquierdo en el mapa.",
+              posicionVR: [-1, 0.7, -4], tamanoVR: { ancho: 0.8, alto: 1.4 },
+              preguntaFase2: "La altura del Reloj de Arena es de 1.6u. ¿Cuál será su altura con el hechizo (k=0.5)?",
+              opcionesFase2: ["0.4 u", "0.6 u", "0.8 u", "1.0 u"], respuestaCorrectaF2: "0.8 u", explicacionF2: "1.6u * 0.5 = 0.8u." }
         ];
 
-        const configuracionesRV = [
-            {
-                objetoNombre: "Cubo",
-                luzCorrecta: "Este",
-                sombraResultado: "Rectángulo alargado horizontal",
-                descripcion: "Un cubo con luz desde el Este produce una sombra rectangular alargada hacia el Oeste."
-            },
-            {
-                objetoNombre: "Esfera",
-                luzCorrecta: "Arriba",
-                sombraResultado: "Círculo",
-                descripcion: "Una esfera con luz desde arriba produce una sombra circular justo debajo."
-            },
-            {
-                objetoNombre: "Cilindro",
-                luzCorrecta: "Norte",
-                sombraResultado: "Rectángulo con bordes redondos",
-                descripcion: "Un cilindro vertical con luz desde el Norte produce una sombra alargada hacia el Sur."
-            },
-            {
-                objetoNombre: "Pirámide",
-                luzCorrecta: "Oeste",
-                sombraResultado: "Triángulo alargado",
-                descripcion: "Una pirámide con luz desde el Oeste produce una sombra triangular alargada hacia el Este."
-            }
+        const bancoPreguntasFase3 = [
+            { pregunta: "¿Qué es una homotecia?", opciones: ["Una rotación de una figura", "Una transformación que cambia el tamaño de una figura pero mantiene su forma", "Un desplazamiento de una figura", "Un reflejo de una figura"], correcta: "Una transformación que cambia el tamaño de una figura pero mantiene su forma", explicacion: "La homotecia es una transformación de semejanza que amplía o reduce una figura a partir de un centro." },
+            { pregunta: "Si la razón de homotecia k es mayor que 1 (k>1), la figura resultante es:", opciones: ["Más pequeña", "Más grande", "Igual", "Invertida"], correcta: "Más grande", explicacion: "Cuando k>1, la figura se amplía." },
+            { pregunta: "Si la razón de homotecia k está entre 0 y 1 (0<k<1), la figura resultante es:", opciones: ["Más grande", "Más pequeña", "Igual", "Una línea"], correcta: "Más pequeña", explicacion: "Cuando 0<k<1, la figura se reduce." },
+            { pregunta: "¿Qué son los puntos homólogos en una homotecia?", opciones: ["Puntos que están a la misma distancia del centro", "Puntos que ocupan la misma posición relativa en la figura original y la transformada", "Puntos que se superponen", "El centro de la homotecia"], correcta: "Puntos que ocupan la misma posición relativa en la figura original y la transformada", explicacion: "El vértice superior izquierdo de un cuadrado original y el del cuadrado transformado son puntos homólogos." },
+            { pregunta: "En una homotecia con razón k=0.5, si un lado de la figura original mide 10 cm, ¿cuánto medirá en la figura transformada?", opciones: ["20 cm", "5 cm", "2.5 cm", "10 cm"], correcta: "5 cm", explicacion: "La nueva longitud es la original multiplicada por k: 10 cm * 0.5 = 5 cm." },
+            { pregunta: "Si la razón de homotecia es k=3, ¿en qué factor se multiplica el área de la figura?", opciones: ["3", "6", "9", "27"], correcta: "9", explicacion: "El área se multiplica por k²: 3² = 9." },
+            { pregunta: "Si la razón de homotecia es k=0.5, ¿en qué factor se multiplica el volumen de un cuerpo?", opciones: ["0.5", "0.25", "0.125", "0.5³"], correcta: "0.125", explicacion: "El volumen se multiplica por k³: (0.5)³ = 0.125." },
+            { pregunta: "El área de un cuadrado es 16 cm². Si se le aplica una homotecia de razón k=0.25, su nueva área será:", opciones: ["4 cm²", "2 cm²", "1 cm²", "8 cm²"], correcta: "1 cm²", explicacion: "Nueva Área = 16 * (0.25)² = 16 * 0.0625 = 1 cm²." },
+            { pregunta: "Un cubo tiene un volumen de 27 cm³. Si se aplica una homotecia de razón k=1/3, su nuevo volumen será:", opciones: ["9 cm³", "3 cm³", "1 cm³", "27 cm³"], correcta: "1 cm³", explicacion: "Nuevo Volumen = 27 * (1/3)³ = 27 * (1/27) = 1 cm³." },
+            { pregunta: "¿Verdadero o Falso? Al aplicar una homotecia de razón k, todas las áreas se multiplican por k.", opciones: ["Verdadero", "Falso"], correcta: "Falso", explicacion: "Las áreas se multiplican por k², no por k." },
+            { pregunta: "Un mapa tiene una escala 1:100. Esto significa que:", opciones: ["1 cm en el mapa son 100 cm en la realidad", "100 cm en el mapa son 1 cm en la realidad", "1 cm en el mapa son 100 m en la realidad", "El mapa es 100 veces más grande que la realidad"], correcta: "1 cm en el mapa son 100 cm en la realidad", explicacion: "La escala 1:100 indica que 1 unidad en el mapa equivale a 100 unidades en la realidad." },
+            { pregunta: "Si una maqueta es a escala 1:50 del objeto real, ¿qué razón de homotecia (k) se aplicó para crear la maqueta?", opciones: ["k=50", "k=0.02", "k=0.5", "k=1/50"], correcta: "k=1/50", explicacion: "La razón es el inverso de la escala: k = 1/50 = 0.02." },
+            { pregunta: "Si un objeto real mide 200 cm y su representación en un plano mide 2 cm, ¿cuál es la escala del plano?", opciones: ["1:100", "100:1", "1:10", "10:1"], correcta: "1:100", explicacion: "Escala = tamaño en el plano / tamaño real = 2/200 = 1/100, es decir, 1:100." },
+            { pregunta: "En un mapa a escala 1:200, una calle mide 3 cm. ¿Cuál es su longitud real?", opciones: ["600 cm", "60 cm", "6 m", "600 m"], correcta: "600 cm", explicacion: "Longitud real = 3 cm * 200 = 600 cm = 6 m." },
+            { pregunta: "Si quiero construir una maqueta que sea 20 veces más pequeña que un edificio, la razón de homotecia a aplicar es:", opciones: ["k=20", "k=0.5", "k=0.05", "k=1/20"], correcta: "k=1/20", explicacion: "Más pequeña significa 0<k<1. Si es 20 veces más pequeña, k = 1/20 = 0.05." },
+            { pregunta: "En nuestra aventura, el hechizo aplicó una homotecia de razón 0.5. ¿Cómo cambió la altura de la Columna Ancestral?", opciones: ["Se duplicó", "Se redujo a la mitad", "Se mantuvo igual", "Se cuadruplicó"], correcta: "Se redujo a la mitad", explicacion: "Con k=0.5, cualquier longitud se multiplica por 0.5, es decir, se reduce a la mitad." },
+            { pregunta: "Si el área de la tapa del Cofre del Rey era de 4 u², ¿cuál será su área tras el hechizo de razón 0.5?", opciones: ["2 u²", "1 u²", "0.5 u²", "4 u²"], correcta: "1 u²", explicacion: "Nueva Área = 4 * (0.5)² = 4 * 0.25 = 1 u²." },
+            { pregunta: "Si el volumen del Caldero Mágico era de 8 u³, después del hechizo (k=0.5) su volumen será:", opciones: ["4 u³", "2 u³", "1 u³", "0.5 u³"], correcta: "1 u³", explicacion: "Nuevo Volumen = 8 * (0.5)³ = 8 * 0.125 = 1 u³." },
+            { pregunta: "Para que una réplica del Jarrón del Faraón sea 4 veces más pequeña que el original, la razón de homotecia debe ser:", opciones: ["k=4", "k=0.4", "k=0.25", "k=1/4"], correcta: "k=1/4", explicacion: "4 veces más pequeño significa que el tamaño es 1/4 del original, por lo tanto k = 1/4 = 0.25." },
+            { pregunta: "El mapa del tesoro está a escala 1:50. Si la Antorcha Eterna en la realidad mide 2 m de altura, ¿cuánto medirá en el mapa?", opciones: ["4 cm", "2 cm", "1 cm", "0.5 cm"], correcta: "4 cm", explicacion: "2 m = 200 cm. Tamaño en el mapa = 200 cm / 50 = 4 cm." }
         ];
 
-        // ============================================
-        // BANCO DE 8 PREGUNTAS PARA FASE 3
-        // ============================================
-        const bancoPreguntasIA = [
-            {
-                pregunta: "La sombra de un objeto depende únicamente de la forma del objeto.",
-                opciones: ["Verdadero", "Falso"],
-                correcta: "Falso",
-                explicacion: "Falso. La sombra depende de la forma del objeto Y de la posición de la luz. Un cubo puede dar sombra cuadrada (luz arriba) o rectangular (luz lateral)."
-            },
-            {
-                pregunta: "Una esfera siempre proyecta una sombra con bordes curvos, sin importar la posición de la luz.",
-                opciones: ["Verdadero", "Falso"],
-                correcta: "Verdadero",
-                explicacion: "¡Correcto! La esfera es simétrica y no tiene caras planas, por lo que su sombra siempre será curva (circular u ovalada)."
-            },
-            {
-                pregunta: "Si la luz está directamente arriba de un cubo, la sombra será un rectángulo alargado.",
-                opciones: ["Verdadero", "Falso"],
-                correcta: "Falso",
-                explicacion: "Falso. Con luz directamente arriba, un cubo proyecta la forma de su cara superior, que es un cuadrado, no un rectángulo."
-            },
-            {
-                pregunta: "La dirección de la sombra (hacia dónde se proyecta) nos indica la dirección de la fuente de luz.",
-                opciones: ["Verdadero", "Falso"],
-                correcta: "Verdadero",
-                explicacion: "¡Exacto! La sombra siempre se proyecta en dirección opuesta a la luz. Si la sombra está a la derecha, la luz está a la izquierda."
-            },
-            {
-                pregunta: "Un cilindro iluminado desde arriba proyecta una sombra circular.",
-                opciones: ["Verdadero", "Falso"],
-                correcta: "Verdadero",
-                explicacion: "Verdadero. Desde arriba, un cilindro muestra su base circular, por lo que su sombra también es circular."
-            },
-            {
-                pregunta: "La sombra de una pirámide puede ser triangular o cuadrada dependiendo de la posición de la luz.",
-                opciones: ["Verdadero", "Falso"],
-                correcta: "Verdadero",
-                explicacion: "Verdadero. Con luz arriba, la sombra sigue la base (cuadrada). Con luz lateral, se proyecta la forma triangular de sus caras."
-            },
-            {
-                pregunta: "Si la luz está muy cerca del objeto, la sombra se vuelve más pequeña que el objeto.",
-                opciones: ["Verdadero", "Falso"],
-                correcta: "Falso",
-                explicacion: "Falso. Cuanto más cerca está la luz, más grande y difusa se vuelve la sombra (por la divergencia de los rayos)."
-            },
-            {
-                pregunta: "La sombra de un objeto siempre tiene la misma forma sin importar la superficie donde se proyecte.",
-                opciones: ["Verdadero", "Falso"],
-                correcta: "Falso",
-                explicacion: "Falso. La forma puede distorsionarse si la superficie no es plana o está inclinada."
-            }
-        ];
-
-        // ============================================
-        // VARIABLES GLOBALES
-        // ============================================
-        let puntaje = 0;
-        let faseActual = 0;
-        let marcadorDetectado = false;
-        let respuestasUsuario = [];
-        let modoVR = false;
-        let botonVR = null;
-        let escenaVR = null;
-        let fase2Avanzada = false;
-        let fase3Avanzada = false;
-        
-        let objetoFase1 = null;
-        let objetoFase2 = null;
-        let preguntasSeleccionadasIA = [];
-        let respuestasIA = [];
-        
-        let mindarInstance = null;
-        let anchorDetectado = false;
-        let objetoActualAR = null;
-
-        let fase1Puntos = 0;
-        let fase2Puntos = 0;
-        let fase3Puntos = 0;
-        let preguntaActualIA = 0;
-
+        let puntaje = 0, faseActual = 0, respuestasUsuario = [], modoVR = false, botonVR = null, escenaVR = null;
+        let elementoMapaSeleccionado = null, preguntaFase1 = null, preguntasFase3 = [], respuestasIA = [];
+        let mindarInstance = null, anchorDetectado = false;
+        let fase1Puntos = 0, fase2Puntos = 0, fase3Puntos = 0, preguntaActualIA = 0;
         let numeroSesion = Math.floor(Math.random() * 10000);
+        let grupoFachada = null, mensajeExitoTimeout = null;
+        let respuestaFase1Registrada = false, respuestaFase2Registrada = false;
 
-        // ============================================
-        // FUNCIÓN PARA SELECCIONAR 4 PREGUNTAS ALEATORIAS
-        // ============================================
-        function seleccionarPreguntasIA() {
-            const copiaBanco = [...bancoPreguntasIA];
-            const seleccionadas = [];
-            
-            for (let i = 0; i < 4; i++) {
-                if (copiaBanco.length === 0) break;
-                const indice = Math.floor(Math.random() * copiaBanco.length);
-                seleccionadas.push(copiaBanco[indice]);
-                copiaBanco.splice(indice, 1);
-            }
-            
-            return seleccionadas;
-        }
+        function seleccionarElementoAleatorio() { return elementosMapa[Math.floor(Math.random() * elementosMapa.length)]; }
+        function prepararPreguntasFase3() { return [...bancoPreguntasFase3].sort(() => Math.random() - 0.5).slice(0, 4); }
 
-        // ============================================
-        // FUNCIÓN PARA DETENER MINDAR
-        // ============================================
         async function detenerMindAR() {
-            if (mindarInstance) {
-                try {
-                    await mindarInstance.stop();
-                    mindarInstance = null;
-                } catch (e) {
-                    console.log('Error deteniendo MindAR:', e);
-                }
-            }
+            if (mindarInstance) { try { await mindarInstance.stop(); } catch(e) {} mindarInstance = null; }
             const contenedorAR = document.getElementById('contenedor-ar');
-            if (contenedorAR) {
-                contenedorAR.innerHTML = '';
-            }
+            if (contenedorAR) contenedorAR.innerHTML = '';
             anchorDetectado = false;
-            objetoActualAR = null;
         }
 
-        // ============================================
-        // FUNCIONES DE NAVEGACIÓN
-        // ============================================
-        function mostrarConceptualizacion() {
+        function mostrarMensajeExitoSutil(texto, esExito = true) {
+            const mensajeAnterior = document.querySelector('.mensaje-exito-sutil');
+            if (mensajeAnterior) mensajeAnterior.remove();
+            const mensaje = document.createElement('div');
+            mensaje.className = 'mensaje-exito-sutil';
+            mensaje.style.background = esExito ? 'rgba(76, 175, 80, 0.9)' : 'rgba(255, 82, 82, 0.9)';
+            mensaje.textContent = texto;
+            document.body.appendChild(mensaje);
+            if (mensajeExitoTimeout) clearTimeout(mensajeExitoTimeout);
+            mensajeExitoTimeout = setTimeout(() => { if (mensaje.parentNode) mensaje.remove(); }, 3000);
+        }
+
+        window.avanzarFase = async function() {
+            document.getElementById('siguiente-container').style.display = 'none';
+            if (faseActual === 0) { await detenerMindAR(); iniciarFase(1); }
+            else if (faseActual === 1) { iniciarFase(2); }
+            else if (faseActual === 2) {
+                if (preguntaActualIA < preguntasFase3.length) mostrarPreguntaIA(preguntaActualIA);
+                else mostrarResultados();
+            }
+        };
+
+        window.mostrarConceptualizacion = function() {
             document.getElementById('conceptual').style.display = 'none';
             document.getElementById('conceptualizacion').style.display = 'flex';
             document.getElementById('conceptualizacion').scrollTop = 0;
             enviarLog('Ver conceptualización');
         }
         
-        function volverInicio() {
-            if (tiempoInicioFase) {
-                guardarTiempoFase(faseActual);
-            }
-
+        window.volverInicio = function() {
+            if (tiempoInicioFase) guardarTiempoFase(faseActual);
             document.getElementById('conceptual').style.display = 'flex';
             document.getElementById('conceptualizacion').style.display = 'none';
             document.getElementById('resultados').style.display = 'none';
@@ -996,746 +1120,354 @@
             document.getElementById('contenedor-ar').classList.add('oculto');
             document.getElementById('escena-vr').classList.add('oculto');
             document.getElementById('qr-visualizacion').style.display = 'none';
-            document.getElementById('distancia-info').classList.add('oculto');
-
+            document.getElementById('panel-estantes').style.display = 'none';
+            document.getElementById('pregunta-flotante').style.display = 'none';
             const contenedorAR = document.getElementById('contenedor-ar');
             contenedorAR.innerHTML = '';
-
             const escenaVR = document.getElementById('escena-vr');
             escenaVR.innerHTML = '';
-
-            puntaje = 0;
-            faseActual = 0;
-            marcadorDetectado = false;
-            respuestasUsuario = [];
-            respuestasIA = [];
-            modoVR = false;
-            fase2Avanzada = false;
-            fase3Avanzada = false;
-            tiemposPorFase = {0: 0, 1: 0, 2: 0};
-            tiempoInicioFase = null;
-
-            objetoFase1 = null;
-            objetoFase2 = null;
-
+            puntaje = 0; faseActual = 0; respuestasUsuario = []; respuestasIA = []; modoVR = false;
+            tiemposPorFase = {0: 0, 1: 0, 2: 0}; tiempoInicioFase = null;
+            respuestaFase1Registrada = false; respuestaFase2Registrada = false;
+            elementoMapaSeleccionado = null; preguntaFase1 = null;
             const botonVR = document.querySelector('.vr-gafas-btn');
             if (botonVR) botonVR.remove();
-
             enviarLog('Volver al inicio');
         }
         
-        function comenzarActividad() {
+        window.comenzarActividad = function() { iniciarNuevaActividad(); }
+        window.reiniciar = function() { enviarLog('Reiniciar actividad'); volverInicio(); setTimeout(() => { iniciarNuevaActividad(); }, 100); }
+        
+        function iniciarNuevaActividad() {
             document.getElementById('conceptual').style.display = 'none';
             document.getElementById('conceptualizacion').style.display = 'none';
             document.getElementById('resultados').style.display = 'none';
             document.getElementById('qr-visualizacion').style.display = 'none';
-
             document.getElementById('barra-superior').classList.remove('oculto');
             document.getElementById('panel-ia').classList.remove('oculto');
-
-            fase2Avanzada = false;
-            fase3Avanzada = false;
-            puntaje = 0;
-            respuestasUsuario = [];
-            respuestasIA = [];
-            tiemposPorFase = {0: 0, 1: 0, 2: 0};
-            tiempoInicioFase = null;
-            fase1Puntos = 0;
-            fase2Puntos = 0;
-            fase3Puntos = 0;
-
+            document.getElementById('siguiente-container').style.display = 'none';
+            puntaje = 0; respuestasUsuario = []; respuestasIA = [];
+            tiemposPorFase = {0: 0, 1: 0, 2: 0}; tiempoInicioFase = null;
+            fase1Puntos = 0; fase2Puntos = 0; fase3Puntos = 0;
+            respuestaFase1Registrada = false; respuestaFase2Registrada = false;
             document.querySelector('#puntaje span').textContent = puntaje;
-
-            objetoFase1 = objetosParaSombras[Math.floor(Math.random() * objetosParaSombras.length)];
-            objetoFase2 = configuracionesRV[Math.floor(Math.random() * configuracionesRV.length)];
-            preguntasSeleccionadasIA = seleccionarPreguntasIA();
-
-            enviarLog('Iniciar actividad', 'general', null, null, 0, {
-                fase1: objetoFase1.nombre,
-                fase2: `${objetoFase2.objetoNombre} - Luz: ${objetoFase2.luzCorrecta}`
-            });
-
+            elementoMapaSeleccionado = seleccionarElementoAleatorio();
+            preguntaFase1 = {
+                pregunta: elementoMapaSeleccionado.preguntaFase1,
+                opciones: elementoMapaSeleccionado.opcionesFase1,
+                correcta: elementoMapaSeleccionado.respuestaCorrectaF1,
+                explicacion: elementoMapaSeleccionado.explicacionF1
+            };
+            preguntasFase3 = prepararPreguntasFase3();
+            enviarLog('Iniciar actividad', elementoMapaSeleccionado.nombre, null, null, 0, { elemento: elementoMapaSeleccionado.nombre, tipo: elementoMapaSeleccionado.tipo });
             iniciarFase(0);
         }
-        
-        function reiniciar() {
-            enviarLog('Reiniciar actividad');
-            volverInicio();
-            setTimeout(() => comenzarActividad(), 100);
-        }
 
-        // ============================================
-        // FUNCIONES QR
-        // ============================================
-        function mostrarQR() {
+        window.mostrarQR = function() {
             const qrDiv = document.getElementById('qr-visualizacion');
             const canvas = document.getElementById('qr-canvas');
-            
-            QRCode.toCanvas(canvas, 'ARQUITECTO', { width: 200, margin: 2 }, function(error) {
-                if (error) console.error('Error generando QR:', error);
-                else {
-                    qrDiv.style.display = 'block';
-                    enviarLog('Ver QR', objetoFase1?.nombre);
-                }
+            QRCode.toCanvas(canvas, 'ARQUITECTO', { width: 150, margin: 2 }, function(error) {
+                if (!error) { qrDiv.style.display = 'block'; enviarLog('Ver QR', elementoMapaSeleccionado.nombre); }
             });
         }
         
-        function cerrarQR() {
-            document.getElementById('qr-visualizacion').style.display = 'none';
-        }
+        window.cerrarQR = function() { document.getElementById('qr-visualizacion').style.display = 'none'; }
 
-        window.mostrarQR = mostrarQR;
-        window.cerrarQR = cerrarQR;
-
-        // ============================================
-        // FUNCIÓN DE ESCALADO DINÁMICO
-        // ============================================
-        function actualizarEscalaPorDistancia(objetoMesh, distanciaEstimada) {
-            if (!objetoMesh) return;
-            
-            const distanciaCm = Math.max(10, Math.min(100, distanciaEstimada));
-            const factorEscala = 0.08 + (30 / distanciaCm) * 0.42;
-            const escalaFinal = Math.min(0.5, Math.max(0.08, factorEscala));
-            
-            objetoMesh.scale.set(escalaFinal, escalaFinal, escalaFinal);
-            document.getElementById('distancia-valor').textContent = Math.round(distanciaCm);
-        }
-
-        // ============================================
-        // IA: GENERAR RESPUESTA ÚNICA
-        // ============================================
         async function generarRespuestaUnica(contexto) {
             const ahora = new Date();
             const timestamp = ahora.toLocaleTimeString();
             const idUnico = Math.floor(Math.random() * 10000);
-            
             let respuesta = '';
-            
             if (contexto.tipo === 'bienvenida') {
-                const frases = [
-                    `Bienvenido a la Fase ${contexto.fase+1}. ${contexto.mensaje || ''}`,
-                    `Comenzamos la Fase ${contexto.fase+1}. Observa con atención.`,
-                    `Fase ${contexto.fase+1}: Pon a prueba tu capacidad de observación.`
-                ];
+                const frases = [`Fase ${contexto.fase+1}: ${contexto.mensaje || ''}`, `${contexto.mensaje || ''}`, `El Genio observa. ${contexto.mensaje || ''}`];
                 respuesta = frases[Math.floor(Math.random() * frases.length)];
-            }
-            else if (contexto.tipo === 'validacion') {
+            } else if (contexto.tipo === 'validacion') {
                 if (contexto.esCorrecto) {
-                    const felicitaciones = [
-                        `¡Excelente! ${contexto.explicacion || ''}`,
-                        `¡Correcto! ${contexto.explicacion || ''}`,
-                        `¡Muy bien! ${contexto.explicacion || ''}`
-                    ];
+                    const felicitaciones = [`¡Excelente, explorador! ${contexto.explicacion || ''}`, `¡Correcto! El Genio te felicita. ${contexto.explicacion || ''}`, `¡Muy bien! ${contexto.explicacion || ''}`, `¡Perfecto! ${contexto.explicacion || ''}`];
                     respuesta = felicitaciones[Math.floor(Math.random() * felicitaciones.length)];
                 } else {
-                    const errores = [
-                        `No es correcto. ${contexto.explicacion || 'Observa de nuevo.'}`,
-                        `Incorrecto. ${contexto.explicacion || 'Analiza la relación entre luz y sombra.'}`,
-                        `Fallaste. ${contexto.explicacion || 'Revisa el concepto.'}`
-                    ];
+                    const errores = [`No es correcto, aventurero. ${contexto.explicacion || 'Observa de nuevo.'}`, `Incorrecto. ${contexto.explicacion || 'Revisa con cuidado.'}`, `Fallaste. ${contexto.explicacion || 'Intenta de nuevo.'}`, `No coincide. ${contexto.explicacion || 'Observa las medidas.'}`];
                     respuesta = errores[Math.floor(Math.random() * errores.length)];
                 }
             }
-            
-            document.getElementById('ia-verification').innerHTML = 
-                `🆔 Sesión: ${numeroSesion} | ⏱️ ${timestamp} | 🎲 ID: ${idUnico}`;
-            
+            document.getElementById('ia-verification').innerHTML = `🆔 Sesión: ${numeroSesion} | ⏱️ ${timestamp} | 🎲 ID: ${idUnico}`;
             return respuesta;
         }
 
-        // ============================================
-        // FUNCIONES PARA CREAR OBJETOS 3D
-        // ============================================
-        function crearObjetoSegunTipo(tipo, color, tamaño) {
-            const grupo = new THREE.Group();
-            
-            switch(tipo) {
-                case 'cubo':
-                    const cuboGeo = new THREE.BoxGeometry(tamaño, tamaño, tamaño);
-                    const cuboMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.6, emissive: new THREE.Color(0x221100), emissiveIntensity: 0.1 });
-                    const cubo = new THREE.Mesh(cuboGeo, cuboMat);
-                    cubo.castShadow = true;
-                    cubo.receiveShadow = true;
-                    cubo.position.y = tamaño/2;
-                    grupo.add(cubo);
-                    break;
-                    
-                case 'esfera':
-                    const esferaGeo = new THREE.SphereGeometry(tamaño/2, 32, 32);
-                    const esferaMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.3, metalness: 0.2, emissive: new THREE.Color(0x222222), emissiveIntensity: 0.1 });
-                    const esfera = new THREE.Mesh(esferaGeo, esferaMat);
-                    esfera.castShadow = true;
-                    esfera.receiveShadow = true;
-                    esfera.position.y = tamaño/2;
-                    grupo.add(esfera);
-                    break;
-                    
-                case 'cilindro':
-                    const cilindroGeo = new THREE.CylinderGeometry(tamaño/2, tamaño/2, tamaño, 32);
-                    const cilindroMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.5, emissive: new THREE.Color(0x223344), emissiveIntensity: 0.1 });
-                    const cilindro = new THREE.Mesh(cilindroGeo, cilindroMat);
-                    cilindro.castShadow = true;
-                    cilindro.receiveShadow = true;
-                    cilindro.position.y = tamaño/2;
-                    grupo.add(cilindro);
-                    break;
-                    
-                case 'piramide':
-                    const piramideGeo = new THREE.ConeGeometry(tamaño/2, tamaño, 4);
-                    const piramideMat = new THREE.MeshStandardMaterial({ color: color, roughness: 0.6, emissive: new THREE.Color(0x332200), emissiveIntensity: 0.1 });
-                    const piramide = new THREE.Mesh(piramideGeo, piramideMat);
-                    piramide.castShadow = true;
-                    piramide.receiveShadow = true;
-                    piramide.position.y = tamaño/2;
-                    grupo.add(piramide);
-                    break;
+        function crearElementoMapa(grupo, elemento, x, y, z) {
+            const mapaMat = new THREE.MeshStandardMaterial({ color: 0xD2B48C, roughness: 0.8 });
+            const mapaPlano = new THREE.Mesh(new THREE.PlaneGeometry(2.5, 2.0), mapaMat);
+            mapaPlano.rotation.x = -Math.PI / 2;
+            mapaPlano.position.y = -0.1;
+            mapaPlano.receiveShadow = true;
+            grupo.add(mapaPlano);
+            const materialDibujo = new THREE.MeshStandardMaterial({ color: new THREE.Color(elemento.colorOriginal), emissive: 0x332211 });
+            if (elemento.tipo === "Cofre") {
+                const base = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.3, 0.4), materialDibujo);
+                base.position.set(x, y, z); grupo.add(base);
+                const tapa = new THREE.Mesh(new THREE.BoxGeometry(0.8, 0.1, 0.4), materialDibujo);
+                tapa.position.set(x, y + 0.2, z); grupo.add(tapa);
+            } else if (elemento.tipo === "Columna") {
+                const columna = new THREE.Mesh(new THREE.CylinderGeometry(0.2, 0.25, 1.2), materialDibujo);
+                columna.position.set(x, y + 0.6, z); grupo.add(columna);
+            } else if (elemento.tipo === "Jarrón") {
+                const jarron = new THREE.Mesh(new THREE.CylinderGeometry(0.3, 0.2, 0.8), materialDibujo);
+                jarron.position.set(x, y + 0.4, z); grupo.add(jarron);
+            } else if (elemento.tipo === "Escudo") {
+                const escudo = new THREE.Mesh(new THREE.CylinderGeometry(0.5, 0.5, 0.1), materialDibujo);
+                escudo.rotation.x = Math.PI / 2;
+                escudo.position.set(x, y + 0.05, z); grupo.add(escudo);
+            } else if (elemento.tipo === "Antorcha") {
+                const palo = new THREE.Mesh(new THREE.CylinderGeometry(0.05, 0.05, 0.8), new THREE.MeshStandardMaterial({color: 0x8B4513}));
+                palo.position.set(x, y + 0.4, z); grupo.add(palo);
+                const llama = new THREE.Mesh(new THREE.ConeGeometry(0.1, 0.3), new THREE.MeshStandardMaterial({color: 0xFF8C00}));
+                llama.position.set(x, y + 0.8, z); grupo.add(llama);
+            } else {
+                const cubo = new THREE.Mesh(new THREE.BoxGeometry(0.5, 0.5, 0.1), materialDibujo);
+                cubo.position.set(x, y, z); grupo.add(cubo);
             }
-            
-            return grupo;
+            const marcadorMat = new THREE.MeshStandardMaterial({ color: 0xFFD700 });
+            const radioMarcador = 0.05;
+            const posiciones = [[-0.8, 0.5, 0.1, "A", -0.8, 0.7], [0.8, 0.5, 0.1, "B", 0.8, 0.7], [-0.8, -0.3, 0.1, "C", -0.8, -0.1], [0.8, -0.3, 0.1, "D", 0.8, -0.1]];
+            posiciones.forEach(([px, py, pz, letra, tx, ty]) => {
+                const esfera = new THREE.Mesh(new THREE.SphereGeometry(radioMarcador), marcadorMat);
+                esfera.position.set(x + px, y + py, z + pz);
+                grupo.add(esfera);
+                const canvas = document.createElement('canvas');
+                canvas.width = 32; canvas.height = 32;
+                const ctx = canvas.getContext('2d');
+                ctx.fillStyle = 'white'; ctx.font = 'bold 20px Arial'; ctx.fillText(letra, 5, 25);
+                const texture = new THREE.CanvasTexture(canvas);
+                const textMat = new THREE.MeshStandardMaterial({ map: texture, side: THREE.DoubleSide, transparent: true });
+                const textMesh = new THREE.Mesh(new THREE.PlaneGeometry(0.2, 0.2), textMat);
+                textMesh.position.set(x + tx, y + ty, z + pz);
+                grupo.add(textMesh);
+            });
         }
 
-        // ============================================
-        // FUNCIÓN PARA CREAR SOMBRA REALISTA
-        // ============================================
-        function crearSombraRealista(objeto) {
-            const grupo = new THREE.Group();
-            const tamaño = objeto.tamaño * 1.5;
-            
-            // Crear un canvas para la textura de sombra con gradiente
-            const canvas = document.createElement('canvas');
-            canvas.width = 256;
-            canvas.height = 256;
-            const ctx = canvas.getContext('2d');
-            
-            // Gradiente radial para sombra suave
-            const gradient = ctx.createRadialGradient(128, 128, 0, 128, 128, 128);
-            gradient.addColorStop(0, 'rgba(0,0,0,0.9)');
-            gradient.addColorStop(0.5, 'rgba(0,0,0,0.5)');
-            gradient.addColorStop(1, 'rgba(0,0,0,0)');
-            
-            ctx.fillStyle = gradient;
-            ctx.fillRect(0, 0, 256, 256);
-            
-            // Según la forma del objeto, dibujar la silueta correspondiente
-            ctx.globalCompositeOperation = 'destination-out';
-            ctx.fillStyle = 'white';
-            
-            const centroX = 128;
-            const centroY = 128;
-            
-            switch(objeto.formaSombra || objeto.tipo) {
-                case 'cubo':
-                case 'cuadrado':
-                    ctx.fillRect(centroX - 60, centroY - 60, 120, 120);
-                    break;
-                case 'esfera':
-                case 'circulo':
-                    ctx.beginPath();
-                    ctx.arc(centroX, centroY, 70, 0, Math.PI * 2);
-                    ctx.fill();
-                    break;
-                case 'cilindro':
-                case 'rectangulo_redondeado':
-                    // Rectángulo con bordes redondeados
-                    ctx.fillRect(centroX - 70, centroY - 40, 140, 80);
-                    ctx.beginPath();
-                    ctx.arc(centroX - 70, centroY - 40, 40, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.beginPath();
-                    ctx.arc(centroX + 70, centroY - 40, 40, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.beginPath();
-                    ctx.arc(centroX - 70, centroY + 40, 40, 0, Math.PI * 2);
-                    ctx.fill();
-                    ctx.beginPath();
-                    ctx.arc(centroX + 70, centroY + 40, 40, 0, Math.PI * 2);
-                    ctx.fill();
-                    break;
-                case 'piramide':
-                case 'triangulo':
-                    ctx.beginPath();
-                    ctx.moveTo(centroX, centroY - 70);
-                    ctx.lineTo(centroX - 70, centroY + 50);
-                    ctx.lineTo(centroX + 70, centroY + 50);
-                    ctx.closePath();
-                    ctx.fill();
-                    break;
-            }
-            
-            ctx.globalCompositeOperation = 'source-over';
-            
-            const texturaSombra = new THREE.CanvasTexture(canvas);
-            
-            // Plano para la sombra en el suelo
-            const sombraSueloGeo = new THREE.PlaneGeometry(tamaño, tamaño);
-            const sombraSueloMat = new THREE.MeshStandardMaterial({ 
-                map: texturaSombra,
-                transparent: true,
-                opacity: 1,
-                side: THREE.DoubleSide,
-                emissive: 0x000000,
-                depthWrite: false,
-                blending: THREE.NormalBlending
-            });
-            
-            const sombraSuelo = new THREE.Mesh(sombraSueloGeo, sombraSueloMat);
-            sombraSuelo.rotation.x = -Math.PI / 2;
-            sombraSuelo.position.set(0.5, 0.02, 0.8);
-            sombraSuelo.receiveShadow = false;
-            grupo.add(sombraSuelo);
-            
-            // Sombra proyectada en la pared (para dar más realismo)
-            const sombraParedGeo = new THREE.PlaneGeometry(tamaño * 1.2, tamaño * 0.8);
-            const sombraParedMat = new THREE.MeshStandardMaterial({ 
-                map: texturaSombra,
-                transparent: true,
-                opacity: 0.4,
-                side: THREE.DoubleSide
-            });
-            const sombraPared = new THREE.Mesh(sombraParedGeo, sombraParedMat);
-            sombraPared.position.set(0.5, 1.2, -1.8);
-            sombraPared.rotation.y = 0;
-            sombraPared.receiveShadow = false;
-            grupo.add(sombraPared);
-            
-            return grupo;
-        }
-
-        // ============================================
-        // CONFIGURAR MINDAR (FASE 1) - VERSIÓN MEJORADA
-        // ============================================
         async function configurarMindAR() {
             document.getElementById('indicador-ar').classList.remove('oculto');
             document.getElementById('contenedor-ar').classList.remove('oculto');
-            document.getElementById('distancia-info').classList.remove('oculto');
-            
+            document.getElementById('indicador-ar').innerHTML = '📱 Escanea el QR para ver el mapa antiguo';
             const container = document.getElementById('contenedor-ar');
             container.innerHTML = '';
-            
             try {
-                const mindarThree = new MindARThree({
-                    container: container,
-                    imageTargetSrc: './assets/qr-arquitecto.mind',
-                    filterMinCF: 0.001,
-                    filterBeta: 0.001,
-                });
-
+                const mindarThree = new MindARThree({ container: container, imageTargetSrc: './assets/qr-arquitecto.mind', maxTrack: 1, filterMinCF: 0.0001, filterBeta: 0.0005, warmupTolerance: 0.1, missTolerance: 0.1, threshold: 0.9 });
                 mindarInstance = mindarThree;
                 const { renderer, scene, camera } = mindarThree;
-
+                renderer.setClearColor(0x000000, 0);
                 renderer.shadowMap.enabled = true;
-                renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-                renderer.setClearColor(0x111122);
-                renderer.shadowMap.bias = 0.0001;
-
-                // Luces para crear ambiente realista
-                const ambientLight = new THREE.AmbientLight(0x404060);
+                const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
                 scene.add(ambientLight);
-                
-                // Luz principal que crea la sombra
-                const dirLight = new THREE.DirectionalLight(0xffeedd, 1.5);
-                dirLight.position.set(3, 5, 2);
-                dirLight.castShadow = true;
-                dirLight.shadow.mapSize.width = 2048;
-                dirLight.shadow.mapSize.height = 2048;
-                dirLight.shadow.camera.near = 0.5;
-                dirLight.shadow.camera.far = 15;
-                dirLight.shadow.camera.left = -5;
-                dirLight.shadow.camera.right = 5;
-                dirLight.shadow.camera.top = 5;
-                dirLight.shadow.camera.bottom = -5;
-                dirLight.shadow.bias = -0.0005;
-                scene.add(dirLight);
-
-                // Luz de relleno desde atrás
-                const backLight = new THREE.DirectionalLight(0x446688, 0.5);
-                backLight.position.set(-2, 1, -3);
-                scene.add(backLight);
-
-                // Luz de acento desde la derecha
-                const rightLight = new THREE.PointLight(0x88aaff, 0.3);
-                rightLight.position.set(2, 2, 1);
-                scene.add(rightLight);
-
-                // Crear el objeto 3D (INVISIBLE)
-                const objeto3D = crearObjetoSegunTipo(objetoFase1.tipo, objetoFase1.color, objetoFase1.tamaño);
-                objeto3D.visible = false;
-                objeto3D.position.y = objetoFase1.tamaño/2;
-                
-                // Crear suelo con textura
-                const sueloGeo = new THREE.CircleGeometry(3, 32);
-                const sueloMat = new THREE.MeshStandardMaterial({ 
-                    color: 0x3a4a5a, 
-                    roughness: 0.7, 
-                    metalness: 0.1,
-                    emissive: new THREE.Color(0x111122),
-                    emissiveIntensity: 0.2
-                });
-                const suelo = new THREE.Mesh(sueloGeo, sueloMat);
-                suelo.rotation.x = -Math.PI / 2;
-                suelo.position.y = 0;
-                suelo.receiveShadow = true;
-                
-                // Crear pared de fondo
-                const paredGeo = new THREE.PlaneGeometry(5, 3);
-                const paredMat = new THREE.MeshStandardMaterial({ 
-                    color: 0x2a3a4a, 
-                    roughness: 0.8,
-                    emissive: new THREE.Color(0x111122),
-                    emissiveIntensity: 0.2
-                });
-                const pared = new THREE.Mesh(paredGeo, paredMat);
-                pared.position.set(0, 1.5, -2);
-                pared.receiveShadow = true;
-                
-                // Crear sombra realista
-                const sombraGrupo = crearSombraRealista(objetoFase1);
-                
-                const grupoAR = new THREE.Group();
-                grupoAR.add(objeto3D);
-                grupoAR.add(suelo);
-                grupoAR.add(pared);
-                grupoAR.add(sombraGrupo);
-                
-                grupoAR.scale.set(0.25, 0.25, 0.25);
-
+                const dirLight1 = new THREE.DirectionalLight(0xffffff, 1.2);
+                dirLight1.position.set(2, 3, 2);
+                dirLight1.castShadow = true;
+                scene.add(dirLight1);
+                const grupoPrincipal = new THREE.Group();
+                const canvasTitulo = document.createElement('canvas');
+                canvasTitulo.width = 300; canvasTitulo.height = 50;
+                const ctxTitulo = canvasTitulo.getContext('2d');
+                ctxTitulo.fillStyle = '#FFD700'; ctxTitulo.font = 'bold 20px Arial';
+                ctxTitulo.fillText(`🗺️ ${elementoMapaSeleccionado.nombre}`, 20, 30);
+                const texturaTitulo = new THREE.CanvasTexture(canvasTitulo);
+                const tituloMesh = new THREE.Mesh(new THREE.PlaneGeometry(1.5, 0.3), new THREE.MeshStandardMaterial({ map: texturaTitulo, side: THREE.DoubleSide }));
+                tituloMesh.position.set(0, 1.5, 0);
+                grupoPrincipal.add(tituloMesh);
+                grupoFachada = new THREE.Group();
+                crearElementoMapa(grupoFachada, elementoMapaSeleccionado, 0, 0, 0);
+                grupoFachada.scale.set(0.5, 0.5, 0.5);
+                grupoPrincipal.add(grupoFachada);
                 const anchor = mindarThree.addAnchor(0);
-                anchor.group.add(grupoAR);
-
+                anchor.group.add(grupoPrincipal);
                 anchor.onTargetFound = () => {
-                    document.getElementById('indicador-ar').innerHTML = '✅ QR DETECTADO - Observa la sombra';
+                    document.getElementById('indicador-ar').innerHTML = `✅ MAPA DETECTADO - Elemento: ${elementoMapaSeleccionado.nombre}`;
                     document.getElementById('indicador-ar').style.background = 'linear-gradient(45deg, #4CAF50, #388E3C)';
                     anchorDetectado = true;
-                    
-                    enviarLog('QR detectado', objetoFase1.nombre);
+                    enviarLog('QR detectado', elementoMapaSeleccionado.nombre);
+                    mostrarMensajeExitoSutil('✅ Mapa encontrado', true);
                 };
-                
                 anchor.onTargetLost = () => {
-                    document.getElementById('indicador-ar').innerHTML = '📱 Escanea el QR para ver la sombra misteriosa';
-                    document.getElementById('indicador-ar').style.background = 'linear-gradient(45deg, rgba(0, 122, 255, 0.95), rgba(0, 188, 212, 0.95))';
+                    document.getElementById('indicador-ar').innerHTML = '📱 Escanea el QR para ver el mapa';
+                    document.getElementById('indicador-ar').style.background = 'linear-gradient(45deg, rgba(156, 39, 176, 0.95), rgba(103, 58, 183, 0.95))';
                     anchorDetectado = false;
+                    mostrarMensajeExitoSutil('❌ Mapa perdido - Vuelve a escanear', false);
                 };
-
                 await mindarThree.start();
-                
-                renderer.setAnimationLoop(() => {
-                    renderer.render(scene, camera);
-                });
-
+                renderer.setAnimationLoop(() => renderer.render(scene, camera));
             } catch (error) {
                 console.error('Error MindAR:', error);
                 document.getElementById('indicador-ar').innerHTML = '❌ Error: ' + error.message;
-                enviarLog('Error AR', objetoFase1.nombre, null, null, 0, { error: error.message });
+                enviarLog('Error AR', elementoMapaSeleccionado.nombre, null, null, 0, { error: error.message });
             }
         }
 
-        // ============================================
-        // CONFIGURAR ESCENA VR (FASE 2) - MANTENIDA DE LA VERSIÓN ANTERIOR
-        // ============================================
+        function generarObjetoVR(elemento, esOriginal = true) {
+            let color = esOriginal ? elemento.colorOriginal : elemento.colorTransformado;
+            let tam = elemento.tamanoVR;
+            let escala = esOriginal ? 1.0 : elemento.razonHomotecia;
+            let anchoEscalado = tam.ancho ? tam.ancho * escala : 1.0;
+            let altoEscalado = tam.alto ? tam.alto * escala : 1.0;
+            let fondoEscalado = tam.fondo ? tam.fondo * escala : 1.0;
+            let radioEscalado = tam.radio ? tam.radio * escala : 0.5;
+            const materialProps = esOriginal ? `color="${color}" material="opacity: 0.8; metalness: 0.3; roughness: 0.5"` : `color="${color}" material="metalness: 0.8; roughness: 0.2; emissive: #442200; emissiveIntensity: 0.3"`;
+            switch(elemento.tipo) {
+                case "Cofre": return `<a-box width="${anchoEscalado}" height="${altoEscalado}" depth="${fondoEscalado}" ${materialProps} shadow="cast: true; receive: true"></a-box><a-box width="${anchoEscalado*0.9}" height="${altoEscalado*0.2}" depth="${fondoEscalado*0.9}" color="#B8860B" position="0 ${altoEscalado*0.55} 0" shadow="cast: true"></a-box>`;
+                case "Columna": return `<a-cylinder radius="${radioEscalado}" height="${altoEscalado}" ${materialProps} shadow="cast: true; receive: true"></a-cylinder>`;
+                case "Jarrón": return `<a-cylinder radius="${radioEscalado}" height="${altoEscalado}" ${materialProps} shadow="cast: true; receive: true"></a-cylinder>`;
+                case "Escudo": return `<a-cylinder radius="${radioEscalado}" height="0.1" ${materialProps} rotation="90 0 0" shadow="cast: true; receive: true"></a-cylinder>`;
+                case "Antorcha": return `<a-cylinder radius="${0.1 * escala}" height="${altoEscalado}" color="#8B4513" position="0 0 0" shadow="cast: true"></a-cylinder><a-cone radius="${0.2 * escala}" height="${0.4 * escala}" color="#FF8C00" position="0 ${altoEscalado/2 + 0.2*escala} 0" shadow="cast: true"></a-cone>`;
+                case "Piedra": return `<a-box width="${anchoEscalado}" height="${altoEscalado}" depth="${fondoEscalado}" ${materialProps} shadow="cast: true; receive: true"></a-box>`;
+                case "Caldero": return `<a-cylinder radius="${radioEscalado}" height="${altoEscalado}" ${materialProps} shadow="cast: true; receive: true"></a-cylinder>`;
+                case "Estatua": return `<a-cylinder radius="${anchoEscalado/2}" height="${altoEscalado}" ${materialProps} shadow="cast: true; receive: true"></a-cylinder>`;
+                case "Cristal": return `<a-sphere radius="${radioEscalado}" ${materialProps} shadow="cast: true"></a-sphere>`;
+                case "Armadura": return `<a-box width="${anchoEscalado}" height="${altoEscalado}" depth="${0.6 * escala}" ${materialProps} shadow="cast: true; receive: true"></a-box>`;
+                case "Pergamino": return `<a-box width="${anchoEscalado}" height="${altoEscalado}" depth="${fondoEscalado}" ${materialProps} rotation="0 0 5" shadow="cast: true; receive: true"></a-box>`;
+                case "Reloj": return `<a-cylinder radius="${anchoEscalado/2}" height="${altoEscalado*0.1}" ${materialProps} position="0 ${altoEscalado/2} 0" shadow="cast: true"></a-cylinder><a-cylinder radius="${anchoEscalado/2}" height="${altoEscalado*0.1}" ${materialProps} position="0 -${altoEscalado/2} 0" shadow="cast: true"></a-cylinder><a-cylinder radius="${0.1 * escala}" height="${altoEscalado}" ${materialProps} position="0 0 0" shadow="cast: true"></a-cylinder>`;
+                default: return `<a-box width="1.0" height="1.0" depth="1.0" ${materialProps}></a-box>`;
+            }
+        }
+
         function configurarEscenaVR() {
             document.getElementById('indicador-ar').classList.add('oculto');
             document.getElementById('escena-vr').classList.remove('oculto');
-            document.getElementById('distancia-info').classList.add('oculto');
-            
-            const objetoBase = objetosParaSombras.find(o => o.nombre === objetoFase2.objetoNombre);
-            if (!objetoBase) return;
-            
-            enviarLog('Entrar a VR', objetoFase2.objetoNombre);
-
-            const posicionesLuz = {
-                'Norte': { x: 0, y: 3, z: -5 },
-                'Sur': { x: 0, y: 3, z: 5 },
-                'Este': { x: 5, y: 3, z: 0 },
-                'Oeste': { x: -5, y: 3, z: 0 },
-                'Arriba': { x: 0, y: 8, z: 0 }
-            };
-            
-            const luzPos = posicionesLuz[objetoFase2.luzCorrecta] || { x: 0, y: 5, z: 0 };
-            
-            let objetoHTML = '';
-            switch(objetoBase.tipo) {
-                case 'cubo':
-                    objetoHTML = `<a-box width="1.5" height="1.5" depth="1.5" color="${objetoBase.color}" shadow="cast: true; receive: true"></a-box>`;
-                    break;
-                case 'esfera':
-                    objetoHTML = `<a-sphere radius="0.75" color="${objetoBase.color}" shadow="cast: true; receive: true"></a-sphere>`;
-                    break;
-                case 'cilindro':
-                    objetoHTML = `<a-cylinder radius="0.75" height="1.5" color="${objetoBase.color}" shadow="cast: true; receive: true"></a-cylinder>`;
-                    break;
-                case 'piramide':
-                    objetoHTML = `<a-cone radius-bottom="0.75" height="1.5" color="${objetoBase.color}" shadow="cast: true; receive: true"></a-cone>`;
-                    break;
-            }
-            
+            document.getElementById('panel-estantes').style.display = 'block';
+            document.getElementById('siguiente-container').style.display = 'none';
+            enviarLog('Entrar a RV', elementoMapaSeleccionado.nombre);
+            const pos = elementoMapaSeleccionado.posicionVR;
+            const k = elementoMapaSeleccionado.razonHomotecia;
+            const posOriginalX = -2.5, posTransformadoX = 2.5;
+            const posY = pos[1], posZ = pos[2];
             const escenaHTML = `
-                <a-scene embedded vr-mode-ui="enabled: true" renderer="antialias: true; shadowMapEnabled: true">
-                    <a-sky color="#111122"></a-sky>
-                    
-                    <a-plane rotation="-90 0 0" width="20" height="20" material="color: #333; roughness: 0.8" shadow="receive: true"></a-plane>
-                    
-                    <a-entity light="type: ambient; intensity: 0.2"></a-entity>
-                    
-                    <!-- LUZ OCULTA -->
-                    <a-entity light="type: directional; color: #FFF; intensity: 1.5; castShadow: true" 
-                              position="${luzPos.x} ${luzPos.y} ${luzPos.z}" 
-                              target="#objeto-principal"></a-entity>
-                    
-                    <a-entity id="objeto-principal" position="0 1 0" scale="0.8 0.8 0.8">
-                        ${objetoHTML}
+                <a-scene embedded vr-mode-ui="enabled: true" renderer="antialias: true; shadowMapEnabled: true" background="color: #E8E0C8">
+                    <a-entity light="type: ambient; intensity: 0.8" color="#FFFFFF"></a-entity>
+                    <a-entity light="type: directional; color: #FFF5E0; intensity: 1.2" position="3 5 4" castShadow="true" shadow-map-size="1024"></a-entity>
+                    <a-entity light="type: directional; color: #FFEEDD; intensity: 0.8" position="-2 3 2"></a-entity>
+                    <a-plane position="0 -0.5 0" width="20" height="20" rotation="-90 0 0" material="color: #E8E0C8; roughness: 0.6"></a-plane>
+                    <a-plane position="0 2 -10" width="20" height="5" color="#E8D9B0" rotation="0 0 0" material="side: double; opacity: 0.3"></a-plane>
+                    <a-entity position="${posOriginalX} ${posY} ${posZ}">
+                        <a-entity scale="1.3 1.3 1.3">${generarObjetoVR(elementoMapaSeleccionado, true)}</a-entity>
+                        <a-text value="📦 OBJETO ORIGINAL" align="center" color="#5D3A1A" width="3" position="0 -1.8 0" scale="1.2 1.2 1.2"></a-text>
+                        <a-text value="Altura: ${elementoMapaSeleccionado.medidaOriginal} u" align="center" color="#5D3A1A" width="3" position="0 -2.5 0" scale="0.9 0.9 0.9"></a-text>
                     </a-entity>
-                    
-                    <!-- Marcadores de posición -->
-                    <a-entity position="0 0.2 -5">
-                        <a-torus radius="0.4" radius-tubular="0.05" color="#FFD700" rotation="90 0 0"></a-torus>
-                        <a-text value="NORTE" position="-0.3 0.8 0" scale="0.5 0.5 0.5" color="#FFF"></a-text>
+                    <a-entity position="${posTransformadoX} ${posY} ${posZ}">
+                        <a-entity scale="1.3 1.3 1.3">${generarObjetoVR(elementoMapaSeleccionado, false)}</a-entity>
+                        <a-text value="✨ k = ${k} ✨" align="center" color="#FFD700" width="3" position="0 -1.8 0" scale="1.2 1.2 1.2"></a-text>
+                        <a-text value="Altura: ${elementoMapaSeleccionado.medidaOriginal * k} u" align="center" color="#FFD700" width="3" position="0 -2.5 0" scale="0.9 0.9 0.9"></a-text>
                     </a-entity>
-                    <a-entity position="0 0.2 5">
-                        <a-torus radius="0.4" radius-tubular="0.05" color="#FFD700" rotation="90 0 0"></a-torus>
-                        <a-text value="SUR" position="-0.2 0.8 0" scale="0.5 0.5 0.5" color="#FFF"></a-text>
-                    </a-entity>
-                    <a-entity position="5 0.2 0">
-                        <a-torus radius="0.4" radius-tubular="0.05" color="#FFD700" rotation="90 0 0"></a-torus>
-                        <a-text value="ESTE" position="-0.2 0.8 0" scale="0.5 0.5 0.5" color="#FFF"></a-text>
-                    </a-entity>
-                    <a-entity position="-5 0.2 0">
-                        <a-torus radius="0.4" radius-tubular="0.05" color="#FFD700" rotation="90 0 0"></a-torus>
-                        <a-text value="OESTE" position="-0.3 0.8 0" scale="0.5 0.5 0.5" color="#FFF"></a-text>
-                    </a-entity>
-                    <a-entity position="0 8 0">
-                        <a-sphere radius="0.5" color="#FFD700" transparent="true" opacity="0.3"></a-sphere>
-                        <a-text value="ARRIBA" position="-0.3 -1 0" scale="0.5 0.5 0.5" color="#FFF"></a-text>
-                    </a-entity>
-                    
-                    <!-- Texto informativo -->
-                    <a-entity position="0 2.5 -4">
-                        <a-text value="LA LUZ ESTÁ OCULTA" align="center" color="#FF5252" width="6"></a-text>
-                        <a-text value="Observa la sombra y deduce su posición" align="center" color="#B0BEC5" width="7" position="0 -0.5 0"></a-text>
-                    </a-entity>
-                    
-                    <a-entity camera look-controls wasd-controls position="0 1.8 8"></a-entity>
+                    <a-entity camera look-controls wasd-controls position="0 1.8 3"></a-entity>
                 </a-scene>
             `;
-            
             document.getElementById('escena-vr').innerHTML = escenaHTML;
             escenaVR = document.querySelector('#escena-vr a-scene');
-            crearBotonVR();
-        }
-
-        function crearBotonVR() {
-            if (botonVR) botonVR.remove();
-            
-            botonVR = document.createElement('button');
-            botonVR.className = 'vr-gafas-btn';
-            botonVR.id = 'btn-vr-gafas';
-            botonVR.innerHTML = '👓 ACTIVAR GAFAS VR';
-            
-            botonVR.onclick = toggleModoVR;
-            document.body.appendChild(botonVR);
-        }
-
-        function toggleModoVR() {
-            if (!escenaVR) {
-                escenaVR = document.querySelector('#escena-vr a-scene');
-                if (!escenaVR) return;
-            }
-            
-            if (!modoVR) {
-                escenaVR.enterVR().then(() => {
-                    modoVR = true;
-                    botonVR.innerHTML = '👓 DESACTIVAR GAFAS VR';
-                    botonVR.style.background = 'linear-gradient(45deg, #4CAF50, #388E3C)';
-                    enviarLog('Activar VR', objetoFase2.objetoNombre);
-                }).catch(() => {
-                    modoVR = false;
-                });
-            } else {
-                escenaVR.exitVR();
-                modoVR = false;
+            function crearBotonVR() {
+                if (botonVR) botonVR.remove();
+                botonVR = document.createElement('button');
+                botonVR.className = 'vr-gafas-btn';
                 botonVR.innerHTML = '👓 ACTIVAR GAFAS VR';
-                botonVR.style.background = 'linear-gradient(45deg, #FF9800, #F57C00)';
-                enviarLog('Desactivar VR', objetoFase2.objetoNombre);
+                botonVR.onclick = () => {
+                    if (!escenaVR) escenaVR = document.querySelector('#escena-vr a-scene');
+                    if (!modoVR) { escenaVR.enterVR().then(() => { modoVR = true; botonVR.innerHTML = '👓 DESACTIVAR GAFAS VR'; botonVR.style.background = 'linear-gradient(45deg, #4CAF50, #388E3C)'; enviarLog('Activar VR', elementoMapaSeleccionado.nombre); }).catch(() => {}); }
+                    else { escenaVR.exitVR(); modoVR = false; botonVR.innerHTML = '👓 ACTIVAR GAFAS VR'; botonVR.style.background = 'linear-gradient(45deg, #FF9800, #F57C00)'; enviarLog('Desactivar VR', elementoMapaSeleccionado.nombre); }
+                };
+                document.body.appendChild(botonVR);
             }
+            crearBotonVR();
+            const controlesDiv = document.createElement('div');
+            controlesDiv.className = 'controles-3d';
+            controlesDiv.innerHTML = '🖱️ Gira: Mouse | Muévete: WASD | Compara los dos objetos';
+            document.body.appendChild(controlesDiv);
+            setTimeout(() => controlesDiv.remove(), 10000);
+            document.getElementById('mensaje-ia').innerHTML = `<strong>🎓 GENIO DE LA LÁMPARA - FASE 2:</strong><br><span style="font-size: 18px;">❓ ${elementoMapaSeleccionado.preguntaFase2}</span><br><small style='color:#B0BEC5'>Observa el objeto original (izquierda) y su versión transformada (derecha). La razón de homotecia es k = ${k}.</small>`;
+            const contenedor = document.getElementById('contenedor-opciones');
+            contenedor.innerHTML = '';
+            setTimeout(() => {
+                if (!respuestaFase2Registrada) {
+                    const opcionesMezcladas = [...elementoMapaSeleccionado.opcionesFase2].sort(() => Math.random() - 0.5);
+                    opcionesMezcladas.forEach(op => {
+                        const btn = document.createElement('button');
+                        btn.className = 'opcion-btn';
+                        btn.textContent = op;
+                        btn.onclick = () => validarFase2(op);
+                        contenedor.appendChild(btn);
+                    });
+                }
+            }, 2000);
         }
 
-        // ============================================
-        // FUNCIONES DE VALIDACIÓN
-        // ============================================
-        
         async function validarFase1(opcion) {
+            if (respuestaFase1Registrada) return;
             const botones = document.querySelectorAll('#contenedor-opciones .opcion-btn');
             botones.forEach(b => b.disabled = true);
-            
             guardarTiempoFase(0);
-            
-            const esCorrecto = (opcion === objetoFase1.nombre);
-            fase1Puntos = esCorrecto ? 30 : 0;
-            puntaje += fase1Puntos;
-            
+            const esCorrecto = (opcion === preguntaFase1.correcta);
+            const puntosPregunta = esCorrecto ? 15 : 0;
+            fase1Puntos = puntosPregunta; puntaje += puntosPregunta;
             document.querySelector('#puntaje span').textContent = puntaje;
-            
-            const explicacion = esCorrecto 
-                ? `¡Has identificado correctamente el ${objetoFase1.nombre}! ${objetoFase1.descripcion}`
-                : `El objeto correcto era ${objetoFase1.nombre}. ${objetoFase1.descripcion} Observa que su sombra característica es ${objetoFase1.sombraDesc}.`;
-            
-            const mensajeIA = await generarRespuestaUnica({
-                tipo: 'validacion',
-                esCorrecto: esCorrecto,
-                explicacion: explicacion
-            });
-            
-            document.getElementById('mensaje-ia').innerHTML = 
-                `<strong>🎓 TUTOR IA - FASE 1:</strong><br>` +
-                `${esCorrecto ? '✅' : '❌'} ${mensajeIA}<br><br>` +
-                `⏱️ Preparando Fase 2 en 8 segundos...`;
-            
-            respuestasUsuario.push({
-                fase: 1,
-                objeto: objetoFase1.nombre,
-                opcion: opcion,
-                correcto: esCorrecto,
-                puntos: fase1Puntos
-            });
-            
-            enviarLog('Respuesta Fase 1', objetoFase1.nombre, opcion, esCorrecto, fase1Puntos);
-            
-            setTimeout(async () => {
-                await detenerMindAR();
-                iniciarFase(1);
-            }, 8000);
+            const explicacion = esCorrecto ? preguntaFase1.explicacion : `Incorrecto. La respuesta correcta era: ${preguntaFase1.correcta}. ${preguntaFase1.explicacion || ''}`;
+            const mensajeIA = await generarRespuestaUnica({ tipo: 'validacion', esCorrecto: esCorrecto, explicacion: explicacion });
+            mostrarMensajeExitoSutil(esCorrecto ? '✅ ¡Correcto!' : '❌ Incorrecto', esCorrecto);
+            document.getElementById('mensaje-ia').innerHTML = `<strong>🎓 GENIO DE LA LÁMPARA - FASE 1:</strong><br>${esCorrecto ? '✅' : '❌'} ${mensajeIA}<br><br>✅ Fase 1 completada. Presiona el botón para continuar.`;
+            respuestasUsuario.push({ fase: 1, elemento: elementoMapaSeleccionado.nombre, pregunta: preguntaFase1.pregunta, opcion: opcion, correcto: esCorrecto, puntos: puntosPregunta });
+            respuestaFase1Registrada = true;
+            enviarLog('Respuesta Fase 1', elementoMapaSeleccionado.nombre, opcion, esCorrecto, puntosPregunta, { elemento: elementoMapaSeleccionado.nombre });
+            document.getElementById('siguiente-container').style.display = 'flex';
         }
-        
+
         async function validarFase2(opcion) {
+            if (respuestaFase2Registrada) return;
             const botones = document.querySelectorAll('#contenedor-opciones .opcion-btn');
             botones.forEach(b => b.disabled = true);
-            
             guardarTiempoFase(1);
-            
-            const esCorrecto = (opcion === objetoFase2.luzCorrecta);
-            fase2Puntos = esCorrecto ? 40 : 0;
-            
-            if (!fase2Avanzada) {
-                puntaje += fase2Puntos;
-                document.querySelector('#puntaje span').textContent = puntaje;
-            }
-            
-            const explicacion = esCorrecto 
-                ? `¡Correcto! La luz está en el ${objetoFase2.luzCorrecta}. ${objetoFase2.descripcion}`
-                : `No es correcto. La luz está en el ${objetoFase2.luzCorrecta}. ${objetoFase2.descripcion} Observa hacia dónde se proyecta la sombra.`;
-            
-            const mensajeIA = await generarRespuestaUnica({
-                tipo: 'validacion',
-                esCorrecto: esCorrecto,
-                explicacion: explicacion
-            });
-            
-            if (!fase2Avanzada) {
-                respuestasUsuario.push({
-                    fase: 2,
-                    objeto: objetoFase2.objetoNombre,
-                    opcion: opcion,
-                    correcto: esCorrecto,
-                    puntos: fase2Puntos
-                });
-                
-                fase2Avanzada = true;
-                
-                document.getElementById('mensaje-ia').innerHTML = 
-                    `<strong>🎓 TUTOR IA - FASE 2:</strong><br>` +
-                    `${esCorrecto ? '✅' : '❌'} ${mensajeIA}<br><br>` +
-                    `⏱️ Preparando Fase 3 (4 preguntas) en 8 segundos...`;
-                
-                enviarLog('Respuesta Fase 2', objetoFase2.objetoNombre, opcion, esCorrecto, fase2Puntos);
-                
-                setTimeout(() => {
-                    preguntaActualIA = 0;
-                    iniciarFase(2);
-                }, 8000);
-            }
+            const esCorrecto = (opcion === elementoMapaSeleccionado.respuestaCorrectaF2);
+            fase2Puntos = esCorrecto ? 40 : 0; puntaje += fase2Puntos;
+            document.querySelector('#puntaje span').textContent = puntaje;
+            const explicacion = esCorrecto ? elementoMapaSeleccionado.explicacionF2 : `No es correcto. ${elementoMapaSeleccionado.explicacionF2}`;
+            const mensajeIA = await generarRespuestaUnica({ tipo: 'validacion', esCorrecto: esCorrecto, explicacion: explicacion });
+            mostrarMensajeExitoSutil(esCorrecto ? '✅ ¡Correcto!' : '❌ Incorrecto', esCorrecto);
+            respuestasUsuario.push({ fase: 2, elemento: elementoMapaSeleccionado.nombre, pregunta: elementoMapaSeleccionado.preguntaFase2, opcion: opcion, correcto: esCorrecto, puntos: fase2Puntos });
+            respuestaFase2Registrada = true;
+            document.getElementById('mensaje-ia').innerHTML = `<strong>🎓 GENIO DE LA LÁMPARA - FASE 2:</strong><br>${esCorrecto ? '✅' : '❌'} ${mensajeIA}<br><br>✅ Fase 2 completada. Presiona el botón para continuar.`;
+            enviarLog('Respuesta Fase 2', elementoMapaSeleccionado.nombre, opcion, esCorrecto, fase2Puntos);
+            document.getElementById('siguiente-container').style.display = 'flex';
         }
-        
+
         async function validarFase3(opcion) {
             const botones = document.querySelectorAll('#contenedor-opciones .opcion-btn');
             botones.forEach(b => b.disabled = true);
-            
-            const preguntaActual = preguntasSeleccionadasIA[preguntaActualIA];
+            const preguntaActual = preguntasFase3[preguntaActualIA];
             const esCorrecto = (opcion === preguntaActual.correcta);
             const puntosPregunta = esCorrecto ? 15 : 0;
-            
-            fase3Puntos += puntosPregunta;
-            puntaje += puntosPregunta;
+            fase3Puntos += puntosPregunta; puntaje += puntosPregunta;
             document.querySelector('#puntaje span').textContent = puntaje;
-            
-            respuestasIA.push({
-                pregunta: preguntaActual.pregunta,
-                opcion: opcion,
-                correcto: esCorrecto,
-                puntos: puntosPregunta
-            });
-            
-            const mensajeIA = await generarRespuestaUnica({
-                tipo: 'validacion',
-                esCorrecto: esCorrecto,
-                explicacion: preguntaActual.explicacion
-            });
-            
-            enviarLog('Respuesta Fase 3', 'Pregunta conceptual', opcion, esCorrecto, puntosPregunta, {
-                pregunta: preguntaActual.pregunta
-            });
-            
+            respuestasIA.push({ pregunta: preguntaActual.pregunta, opcion: opcion, correcto: esCorrecto, puntos: puntosPregunta });
+            const mensajeIA = await generarRespuestaUnica({ tipo: 'validacion', esCorrecto: esCorrecto, explicacion: preguntaActual.explicacion });
+            mostrarMensajeExitoSutil(esCorrecto ? '✅ ¡Correcto!' : '❌ Incorrecto', esCorrecto);
+            enviarLog('Respuesta Fase 3', 'Pregunta conceptual', opcion, esCorrecto, puntosPregunta, { pregunta: preguntaActual.pregunta });
             preguntaActualIA++;
-            
-            if (preguntaActualIA < preguntasSeleccionadasIA.length) {
-                document.getElementById('mensaje-ia').innerHTML = 
-                    `<strong>🎓 TUTOR IA - FASE 3 (Pregunta ${preguntaActualIA + 1}/4):</strong><br>` +
-                    `${esCorrecto ? '✅' : '❌'} ${mensajeIA}<br><br>` +
-                    `⏱️ Siguiente pregunta en 5 segundos...`;
-                
-                setTimeout(() => {
-                    mostrarPreguntaIA(preguntaActualIA);
-                }, 5000);
+            if (preguntaActualIA < preguntasFase3.length) {
+                document.getElementById('mensaje-ia').innerHTML = `<strong>🎓 GENIO DE LA LÁMPARA - FASE 3 (Pregunta ${preguntaActualIA + 1}/${preguntasFase3.length}):</strong><br>${esCorrecto ? '✅' : '❌'} ${mensajeIA}<br><br>✅ Pregunta respondida. Presiona el botón para la siguiente.`;
+                document.getElementById('siguiente-container').style.display = 'flex';
             } else {
-                // Última pregunta - mostrar retroalimentación antes de resultados
-                document.getElementById('mensaje-ia').innerHTML = 
-                    `<strong>🎓 TUTOR IA - FASE 3 COMPLETADA:</strong><br>` +
-                    `${esCorrecto ? '✅' : '❌'} ${mensajeIA}<br><br>` +
-                    `Respondiste ${respuestasIA.filter(r => r.correcto).length} de 4 preguntas correctamente.<br>` +
-                    `Puntos obtenidos: ${fase3Puntos}/60<br><br>` +
-                    `⏱️ Generando análisis final en 5 segundos...`;
-                
-                fase3Avanzada = true;
-                
-                respuestasUsuario.push({
-                    fase: 3,
-                    respuestas: respuestasIA,
-                    puntos: fase3Puntos
-                });
-                
+                document.getElementById('mensaje-ia').innerHTML = `<strong>🎓 GENIO DE LA LÁMPARA - FASE 3 COMPLETADA:</strong><br>${esCorrecto ? '✅' : '❌'} ${mensajeIA}<br><br>Respondiste ${respuestasIA.filter(r => r.correcto).length} de ${preguntasFase3.length} preguntas correctamente.<br>Puntos obtenidos: ${fase3Puntos}/${preguntasFase3.length * 15}<br><br>🏆 Aventura completada. Presiona el botón para ver tu botín.`;
+                respuestasUsuario.push({ fase: 3, elemento: elementoMapaSeleccionado.nombre, respuestas: respuestasIA, puntos: fase3Puntos });
                 guardarTiempoFase(2);
-                setTimeout(() => mostrarResultados(), 5000);
+                document.getElementById('siguiente-container').style.display = 'flex';
             }
         }
 
         function mostrarPreguntaIA(index) {
-            // Ocultar TODAS las escenas
             document.getElementById('contenedor-ar').classList.add('oculto');
             document.getElementById('escena-vr').classList.add('oculto');
             document.getElementById('indicador-ar').classList.add('oculto');
-            document.getElementById('distancia-info').classList.add('oculto');
-            
-            // Convertir panel IA a pantalla completa
+            document.getElementById('panel-estantes').style.display = 'none';
+            document.getElementById('siguiente-container').style.display = 'none';
             const panelIA = document.getElementById('panel-ia');
             panelIA.classList.add('pantalla-completa');
-            
-            const pregunta = preguntasSeleccionadasIA[index];
-            
-            document.getElementById('mensaje-ia').innerHTML = 
-                `<strong>🎓 TUTOR IA - FASE 3 (Pregunta ${index + 1}/4):</strong><br><br>` +
-                `${pregunta.pregunta}`;
-            
+            const pregunta = preguntasFase3[index];
+            document.getElementById('mensaje-ia').innerHTML = `<strong>🎓 GENIO DE LA LÁMPARA - FASE 3 (Pregunta ${index + 1}/${preguntasFase3.length}):</strong><br><br><span style="font-size: 20px;">${pregunta.pregunta}</span>`;
             const contenedor = document.getElementById('contenedor-opciones');
             contenedor.innerHTML = '';
-            
+            contenedor.className = 'contenedor-opciones';
             pregunta.opciones.forEach(op => {
                 const btn = document.createElement('button');
                 btn.className = 'opcion-btn';
@@ -1745,112 +1477,53 @@
             });
         }
 
-        // ============================================
-        // INICIAR FASE
-        // ============================================
         async function iniciarFase(numFase) {
-            if (tiempoInicioFase) {
-                guardarTiempoFase(faseActual);
-            }
-            
+            if (tiempoInicioFase) guardarTiempoFase(faseActual);
             faseActual = numFase;
-            marcadorDetectado = false;
             iniciarTemporizadorFase(numFase);
-            
-            // Resetear panel IA
             const panelIA = document.getElementById('panel-ia');
             panelIA.classList.remove('pantalla-completa');
-            
-            if (botonVR) {
-                botonVR.remove();
-                botonVR = null;
-            }
+            if (botonVR) { botonVR.remove(); botonVR = null; }
             modoVR = false;
-            
             await detenerMindAR();
-            
             document.getElementById('escena-ar').classList.add('oculto');
             document.getElementById('contenedor-ar').classList.add('oculto');
             document.getElementById('escena-vr').classList.add('oculto');
-            document.getElementById('distancia-info').classList.add('oculto');
-            
+            document.getElementById('pregunta-flotante').style.display = 'none';
+            document.getElementById('panel-estantes').style.display = 'none';
+            document.getElementById('siguiente-container').style.display = 'none';
             const contenedorAR = document.getElementById('contenedor-ar');
             contenedorAR.innerHTML = '';
-            
             if (numFase === 0) {
-                document.getElementById('fase-actual').textContent = `Fase 1: La Sombra Misteriosa`;
-                
-                const mensajeBienvenida = await generarRespuestaUnica({
-                    tipo: 'bienvenida',
-                    fase: 0,
-                    mensaje: `Observa la sombra. ¿Qué objeto la proyecta?`
-                });
-                
-                document.getElementById('mensaje-ia').innerHTML = 
-                    `<strong>🎓 TUTOR IA - FASE 1:</strong><br>` +
-                    `${mensajeBienvenida}<br><br>` +
-                    `<button class="btn" style="max-width: 200px; padding: 8px; margin-top: 10px;" onclick="mostrarQR()">🔍 VER QR</button>`;
-                
+                document.getElementById('fase-actual').textContent = `Fase 1: El Mapa Antiguo (RA)`;
+                const mensajeBienvenida = await generarRespuestaUnica({ tipo: 'bienvenida', fase: 0, mensaje: `Has encontrado el mapa que señala el ${elementoMapaSeleccionado.nombre}. Observa los puntos A, B, C, D alrededor del dibujo.` });
+                document.getElementById('mensaje-ia').innerHTML = `<strong>🎓 GENIO DE LA LÁMPARA - FASE 1:</strong><br>${mensajeBienvenida}<br><br><div class="pregunta-fase1"><strong>❓ ${preguntaFase1.pregunta}</strong></div><button class="btn" style="max-width: 180px; padding: 8px; margin-top: 8px;" onclick="mostrarQR()">🔍 VER MAPA (QR)</button>`;
                 const contenedor = document.getElementById('contenedor-opciones');
                 contenedor.innerHTML = '';
-                
-                const opciones = objetosParaSombras.map(o => o.nombre);
-                opciones.sort(() => Math.random() - 0.5);
-                
-                opciones.forEach(op => {
+                const opcionesMezcladas = [...preguntaFase1.opciones].sort(() => Math.random() - 0.5);
+                opcionesMezcladas.forEach(op => {
                     const btn = document.createElement('button');
                     btn.className = 'opcion-btn';
                     btn.textContent = op;
                     btn.onclick = () => validarFase1(op);
                     contenedor.appendChild(btn);
                 });
-                
                 document.getElementById('indicador-ar').classList.remove('oculto');
-                document.getElementById('indicador-ar').innerHTML = '📱 Escanea el QR para ver la sombra misteriosa';
-                
+                document.getElementById('indicador-ar').innerHTML = '📱 Escanea el QR para ver el mapa';
                 configurarMindAR();
-                
             } else if (numFase === 1) {
-                document.getElementById('fase-actual').textContent = `Fase 2: El Laboratorio Congelado`;
-                
-                const mensajeBienvenida = await generarRespuestaUnica({
-                    tipo: 'bienvenida',
-                    fase: 1,
-                    mensaje: `Observa el ${objetoFase2.objetoNombre} y su sombra. La luz está oculta.`
-                });
-                
-                document.getElementById('mensaje-ia').innerHTML = 
-                    `<strong>🎓 TUTOR IA - FASE 2:</strong><br>` +
-                    `${mensajeBienvenida}<br>` +
-                    `<small style='color:#B0BEC5'>Usa WASD para moverte y el mouse para mirar alrededor</small>`;
-                
-                const contenedor = document.getElementById('contenedor-opciones');
-                contenedor.innerHTML = '';
-                
-                const posiciones = ['Norte', 'Sur', 'Este', 'Oeste', 'Arriba'];
-                posiciones.sort(() => Math.random() - 0.5);
-                
-                posiciones.forEach(pos => {
-                    const btn = document.createElement('button');
-                    btn.className = 'opcion-btn';
-                    btn.textContent = pos;
-                    btn.onclick = () => validarFase2(pos);
-                    contenedor.appendChild(btn);
-                });
-                
+                document.getElementById('fase-actual').textContent = `Fase 2: La Cámara Secreta (RV)`;
+                const mensajeBienvenida = await generarRespuestaUnica({ tipo: 'bienvenida', fase: 1, mensaje: `Has entrado a la cámara. Observa el ${elementoMapaSeleccionado.nombre} original (izquierda) y su versión transformada (derecha) con k = ${elementoMapaSeleccionado.razonHomotecia}.` });
+                document.getElementById('mensaje-ia').innerHTML = `<strong>🎓 GENIO DE LA LÁMPARA - FASE 2:</strong><br>${mensajeBienvenida}<br><small style='color:#B0BEC5'>Preparando la cámara...</small>`;
+                document.getElementById('contenedor-opciones').innerHTML = '';
                 configurarEscenaVR();
-                
             } else if (numFase === 2) {
-                document.getElementById('fase-actual').textContent = `Fase 3: El Verdadero o Falso Definitivo (1/4)`;
+                document.getElementById('fase-actual').textContent = `Fase 3: El Desafío del Genio (1/${preguntasFase3.length})`;
                 mostrarPreguntaIA(0);
             }
-            
-            enviarLog(`Iniciar fase ${numFase+1}`, numFase === 0 ? objetoFase1?.nombre : numFase === 1 ? objetoFase2?.objetoNombre : 'Cuestionario IA');
+            enviarLog(`Iniciar fase ${numFase+1}`, elementoMapaSeleccionado ? elementoMapaSeleccionado.nombre : 'Elemento');
         }
 
-        // ============================================
-        // MOSTRAR RESULTADOS - MANTENIDO DE LA VERSIÓN ANTERIOR
-        // ============================================
         function mostrarResultados() {
             document.getElementById('barra-superior').classList.add('oculto');
             document.getElementById('panel-ia').classList.add('oculto');
@@ -1858,86 +1531,50 @@
             document.getElementById('contenedor-ar').classList.add('oculto');
             document.getElementById('escena-vr').classList.add('oculto');
             document.getElementById('qr-visualizacion').style.display = 'none';
-            
+            document.getElementById('panel-estantes').style.display = 'none';
+            document.getElementById('siguiente-container').style.display = 'none';
             if (botonVR) botonVR.remove();
-            
             document.getElementById('puntaje-final').textContent = puntaje;
-            
-            const porcentaje = (puntaje / 130) * 100;
-            let nivel = porcentaje >= 90 ? '✨ Maestro de las Sombras' : 
-                       porcentaje >= 70 ? '📐 Aprendiz Avanzado' : 
-                       porcentaje >= 50 ? '🔦 Detective en Formación' : 
-                       '🌅 Observador Principiante';
-            
-            let actividades = [];
-            if (objetoFase1) {
-                actividades.push(`🔸 ${objetoFase1.ejercicioComplementario}`);
-            }
-            
-            let reflexion = puntaje < 70 ? 
-                'Te recomiendo volver a la fase de conceptos y practicar con objetos reales.' : 
-                '¡Excelente trabajo! Ahora puedes explicar cómo cambian las sombras según la luz.';
-            
-            let recomendacionesHTML = `
-                <h3 style="color: #00BCD4; text-align: center;">📊 ANÁLISIS DEL TUTOR IA</h3>
-                <div style="text-align: right; font-size: 10px;">🆔 Sesión #${numeroSesion}</div>
-                <div style="margin:15px 0; padding:15px; background:rgba(255,255,255,0.05); border-radius:10px;">
-                    <p><strong>Nivel:</strong> ${nivel}</p>
-                    <p><strong>Puntaje:</strong> ${puntaje}/130 (${porcentaje.toFixed(1)}%)</p>
-                    <p><strong>Desglose:</strong> RA: ${fase1Puntos}/30 | RV: ${fase2Puntos}/40 | IA: ${fase3Puntos}/60</p>
-                </div>
-            `;
-            
-            if (respuestasIA.length > 0) {
-                recomendacionesHTML += '<div style="margin:15px 0; padding:15px; background:rgba(255,255,255,0.05);">';
-                recomendacionesHTML += '<p><strong>Tus respuestas conceptuales:</strong></p>';
-                respuestasIA.forEach((r, i) => {
-                    recomendacionesHTML += `<p>${i+1}. ${r.correcto ? '✅' : '❌'} ${r.pregunta.substring(0, 40)}... (${r.puntos} pts)</p>`;
-                });
-                recomendacionesHTML += '</div>';
-            }
-            
-            recomendacionesHTML += `
-                <div style="margin-top:20px; padding:20px; background:rgba(0,188,212,0.1); border-radius:10px;">
-                    <p><strong>🎓 Recomendaciones:</strong></p>
-                    <p>${actividades.join('<br>')}</p>
-                    <p><strong>💭 Reflexión:</strong> ¿Por qué es importante entender la relación entre luz y objetos?</p>
-                    <p>${reflexion}</p>
-                </div>
-            `;
-            
+            const puntajeMaximo = 115;
+            const porcentaje = (puntaje / puntajeMaximo) * 100;
+            let nivel = '', iconoNivel = '', descripcionNivel = '', emojiNivel = '';
+            if (porcentaje >= 90) { nivel = 'Señor del Tesoro'; iconoNivel = '👑'; emojiNivel = '🏆'; descripcionNivel = '¡Dominas las homotecias como un verdadero explorador!'; }
+            else if (porcentaje >= 75) { nivel = 'Cartógrafo Experto'; iconoNivel = '🗺️'; emojiNivel = '✨'; descripcionNivel = 'Excelente manejo de mapas y escalas.'; }
+            else if (porcentaje >= 60) { nivel = 'Aventurero Intermedio'; iconoNivel = '⚔️'; emojiNivel = '👍'; descripcionNivel = 'Vas por buen camino. Comprendes las reducciones.'; }
+            else if (porcentaje >= 40) { nivel = 'Aprendiz de Explorador'; iconoNivel = '🔦'; emojiNivel = '📝'; descripcionNivel = 'Estás comenzando a descifrar el mapa.'; }
+            else { nivel = 'Novato en Aventuras'; iconoNivel = '🌱'; emojiNivel = '🌱'; descripcionNivel = 'Todo explorador empieza desde cero.'; }
+            const respuestasCorrectasIA = respuestasIA.filter(r => r.correcto).length;
+            const totalPreguntasIA = preguntasFase3.length;
+            let recomendacionesExtra = [];
+            if (fase1Puntos < 15) recomendacionesExtra.push("🔸 En el mapa (Fase 1), tuviste dificultades con los puntos homólogos. Recuerda que un punto en el objeto real y su dibujo en el mapa ocupan la misma posición relativa.");
+            else recomendacionesExtra.push("🔸 En el mapa, identificaste correctamente el punto homólogo. ¡Buen ojo de cartógrafo!");
+            if (fase2Puntos < 40) recomendacionesExtra.push(`🔸 En la cámara secreta (Fase 2), no calculaste bien la nueva medida. Con k=${elementoMapaSeleccionado.razonHomotecia}, las longitudes se reducen a la mitad.`);
+            else recomendacionesExtra.push("🔸 En la cámara secreta, calculaste correctamente la nueva medida del objeto.");
+            if (respuestasCorrectasIA < totalPreguntasIA) {
+                if (respuestasCorrectasIA <= 1) recomendacionesExtra.push("🔸 En las preguntas del Genio, necesitas reforzar los conceptos básicos.");
+                else if (respuestasCorrectasIA <= 2) recomendacionesExtra.push("🔸 En las preguntas conceptuales, vas bien. Repasa cómo se relaciona la escala con la razón.");
+                else recomendacionesExtra.push("🔸 En las preguntas del Genio, tuviste un buen desempeño.");
+            } else recomendacionesExtra.push("🔸 ¡Respondiste todas las preguntas del Genio correctamente! Dominas la teoría.");
+            let ejerciciosBasicos = [{ titulo: "Cazador de Escalas", descripcion: "Busca un mapa físico. Identifica la escala y calcula la longitud real de una calle." }, { titulo: "Miniaturista", descripcion: "Toma un objeto. Dibuja su silueta reducida a la mitad (k=0.5) y ampliada al doble (k=2)." }, { titulo: "Arquitecto de Habitaciones", descripcion: "Dibuja el plano de tu habitación a escala 1:50." }];
+            let ejerciciosIntermedios = [{ titulo: "Detective de Áreas", descripcion: "Calcula el área de la pantalla de tu TV. Si aplicaras k=0.5, ¿cuál sería su nueva área?" }, { titulo: "Constructor de Maquetas", descripcion: "Quieres construir una maqueta 10 veces más pequeña. ¿Qué razón usarías?" }, { titulo: "Escultor de Volúmenes", descripcion: "Toma una caja de zapatos. Calcula su volumen y el de una caja con k=0.5." }];
+            let ejerciciosAvanzados = [{ titulo: "El Misterio de las Áreas", descripcion: "¿Por qué al duplicar el tamaño (k=2), el área se cuadruplica?" }, { titulo: "Diseñador de Esculturas", descripcion: "Diseña una escultura y crea una versión a escala 1:5." }, { titulo: "Investigador de la Naturaleza", descripcion: "Investiga la relación superficie-volumen en biología y su relación con las homotecias." }];
+            let ejerciciosHTML = '';
+            if (porcentaje < 40) ejerciciosHTML = ejerciciosBasicos.map(e => `<div class="ejercicio-card"><span class="nivel-badge basico">BÁSICO</span><h4>${e.titulo}</h4><p>${e.descripcion}</p></div>`).join('');
+            else if (porcentaje < 60) ejerciciosHTML = ejerciciosBasicos.slice(0,2).concat(ejerciciosIntermedios.slice(0,1)).map(e => `<div class="ejercicio-card"><span class="nivel-badge intermedio">INTERMEDIO</span><h4>${e.titulo}</h4><p>${e.descripcion}</p></div>`).join('');
+            else if (porcentaje < 75) ejerciciosHTML = ejerciciosIntermedios.map(e => `<div class="ejercicio-card"><span class="nivel-badge intermedio">INTERMEDIO</span><h4>${e.titulo}</h4><p>${e.descripcion}</p></div>`).join('');
+            else if (porcentaje < 90) ejerciciosHTML = ejerciciosIntermedios.slice(0,2).concat(ejerciciosAvanzados.slice(0,1)).map(e => `<div class="ejercicio-card"><span class="nivel-badge avanzado">AVANZADO</span><h4>${e.titulo}</h4><p>${e.descripcion}</p></div>`).join('');
+            else ejerciciosHTML = ejerciciosAvanzados.map(e => `<div class="ejercicio-card"><span class="nivel-badge avanzado">AVANZADO</span><h4>${e.titulo}</h4><p>${e.descripcion}</p></div>`).join('');
+            let mensajeMotivacional = porcentaje < 40 ? "¡Sigue explorando! La geometría de las escalas está en todas partes." : porcentaje < 60 ? "¡Buen progreso, aventurero! Ya entiendes cómo se reducen las cosas." : porcentaje < 75 ? "¡Muy bien! Estás desarrollando una gran intuición para las escalas." : porcentaje < 90 ? "¡Excelente trabajo! Tu comprensión de las homotecias es sólida." : "¡Impresionante, Señor del Tesoro! ¡El mundo de las matemáticas es tuyo!";
+            let recomendacionesHTML = `<h3 style="color: #9C27B0; text-align: center;">📊 ANÁLISIS DEL GENIO</h3><div style="text-align: right; font-size: 9px;">🆔 Sesión #${numeroSesion}</div><div style="margin:15px 0; padding:15px; background: linear-gradient(135deg, rgba(156,39,176,0.2), rgba(103,58,183,0.2)); border-radius:15px; text-align:center;"><p style="font-size: 36px; margin-bottom: 5px;">${emojiNivel} ${iconoNivel}</p><p style="font-size: 22px; color: #FFD700; margin-bottom: 8px;">${nivel}</p><p style="font-size: 14px; color: #B0BEC5;">${descripcionNivel}</p><p style="font-size: 18px; margin-top: 12px;">Puntaje: ${puntaje}/${puntajeMaximo} (${porcentaje.toFixed(1)}%)</p></div><div style="margin:12px 0; padding:12px; background:rgba(255,255,255,0.05); border-radius:10px;"><p style="font-size: 16px; color: #9C27B0; margin-bottom: 8px;">📋 Desglose del botín:</p><p>🔮 <strong>Fase 1 - RA (Mapa):</strong> ${fase1Puntos}/15 pts ${fase1Puntos === 15 ? '✅' : '❌'}</p><p>🕶️ <strong>Fase 2 - RV (Cámara):</strong> ${fase2Puntos}/40 pts ${fase2Puntos === 40 ? '✅' : '❌'}</p><p>🧠 <strong>Fase 3 - IA (Genio):</strong> ${respuestasCorrectasIA}/${totalPreguntasIA} correctas (${fase3Puntos}/${totalPreguntasIA * 15} pts)</p></div><div style="margin:15px 0; padding:15px; background:rgba(156,39,176,0.15); border-radius:10px;"><p style="font-size: 16px; color: #FFD700; margin-bottom: 8px;">💡 Recomendaciones del Genio:</p>${recomendacionesExtra.map(r => `<p class="recomendacion-item">${r}</p>`).join('')}</div><div style="margin:15px 0; padding:12px; background:rgba(255,255,255,0.05); border-radius:10px; text-align:center;"><p style="font-size: 14px; color: #B0BEC5; font-style: italic;">"${mensajeMotivacional}"</p></div><div style="margin-top:15px; padding:15px; background:rgba(0,0,0,0.3); border-radius:10px;"><p><strong style="color:#9C27B0;">🎓 Reflexión final:</strong></p><p style="font-size: 14px;">Has explorado cómo las homotecias y escalas nos permiten representar objetos grandes en mapas pequeños. Esta habilidad es clave para la arquitectura y la ingeniería.</p><h4 style="color: #FFD700; margin: 15px 0 10px;">📝 Ejercicios para tu próxima aventura:</h4><div class="ejercicios-grid">${ejerciciosHTML}</div><p style="font-size: 12px; margin-top: 10px; color: #B0BEC5;">Elige al menos uno de estos ejercicios para practicar esta semana.</p></div>`;
             document.getElementById('recomendaciones-container').innerHTML = recomendacionesHTML;
             document.getElementById('resultados').style.display = 'flex';
-            
-            enviarLog('Actividad completada', 'general', null, null, puntaje, { 
-                nivel: nivel,
-                respuestas: respuestasUsuario,
-                desglose: {
-                    fase1: fase1Puntos,
-                    fase2: fase2Puntos,
-                    fase3: fase3Puntos
-                }
-            });
+            enviarLog('Actividad completada', elementoMapaSeleccionado ? elementoMapaSeleccionado.nombre : 'Completada', null, null, puntaje, { nivel: nivel, porcentaje: porcentaje, elemento: elementoMapaSeleccionado ? elementoMapaSeleccionado.nombre : 'N/A' });
         }
 
-        // ============================================
-        // EXPORTAR FUNCIONES
-        // ============================================
-        window.mostrarConceptualizacion = mostrarConceptualizacion;
-        window.volverInicio = volverInicio;
-        window.comenzarActividad = comenzarActividad;
-        window.reiniciar = reiniciar;
-
-        // Precargar QR
         setTimeout(() => {
             const canvas = document.getElementById('qr-canvas');
-            if (canvas) {
-                QRCode.toCanvas(canvas, 'ARQUITECTO', { width: 200, margin: 2 }, (error) => {
-                    if (error) console.error('Error precargando QR:', error);
-                });
-            }
+            if (canvas) QRCode.toCanvas(canvas, 'ARQUITECTO', { width: 150, margin: 2 }, (error) => { if (error) console.error('Error precargando QR:', error); });
         }, 1000);
-
         enviarLog('Página cargada');
     </script>
 </body>
